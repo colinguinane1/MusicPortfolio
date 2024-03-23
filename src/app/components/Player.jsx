@@ -4,10 +4,16 @@ import React, { useState, useEffect } from "react";
 import Modal from "./Modal/Modal";
 
 const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
-  const [audio] = useState(new Audio());
+  const [audio] = useState(() => {
+    // Create audio element only in the browser environment
+    if (typeof window !== "undefined") {
+      return new Audio();
+    }
+    return null;
+  });
 
   useEffect(() => {
-    if (currentSong) {
+    if (audio && currentSong) {
       audio.src = currentSong;
       if (isPlaying) {
         audio.play();
