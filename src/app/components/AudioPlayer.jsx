@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Modal from "./Modal/Modal";
+import { motion, spring } from "framer-motion";
 
 const MusicPlayer = () => {
   const [folders, setFolders] = useState([]);
@@ -103,7 +104,10 @@ const MusicPlayer = () => {
       <div className="grid grid-cols-3 gap-4">
         {folders.map((folder, index) => (
           <div key={index} className="relative">
-            <button
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: spring }}
               onClick={() => handleFolderSelect(folder.name)}
               className="block w-full h-full bg-gray-200 rounded-md overflow-hidden focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
@@ -136,7 +140,7 @@ const MusicPlayer = () => {
                   </svg>
                 </div>
               )}
-            </button>
+            </motion.button>
           </div>
         ))}
       </div>
