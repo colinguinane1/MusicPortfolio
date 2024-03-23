@@ -2,15 +2,31 @@
 import React, { useEffect, useState } from "react";
 import Modal from "./Modal/Modal";
 import { motion, spring } from "framer-motion";
+import Player from "./Player";
 
 const MusicPlayer = () => {
   const [folders, setFolders] = useState([]);
   const [selectedFolder, setSelectedFolder] = useState(null);
   const [folderContents, setFolderContents] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [folderLoading, setFolderLoading] = useState({});
+  const [currentSong, setCurrentSong] = useState(null);
+
+  const handlePlay = () => {
+    setIsPlaying(true);
+  };
+
+  const handlePause = () => {
+    setIsPlaying(false);
+  };
+
+  const handleStop = () => {
+    setIsPlaying(false);
+    setCurrentSong(null);
+  };
 
   useEffect(() => {
     const fetchFolders = async () => {
@@ -98,8 +114,14 @@ const MusicPlayer = () => {
     return <div>Error: {error}</div>;
   }
 
+  console.log("Current Song in MusicPlayer:", currentSong);
   return (
     <div>
+      <Player
+        currentSong={currentSong}
+        isPlaying={isPlaying}
+        setIsPlaying={setIsPlaying}
+      />
       <h1 className="text-3xl font-bold mb-4">Music Player</h1>
       <div className="grid grid-cols-3 gap-4">
         {folders.map((folder, index) => (
@@ -150,6 +172,7 @@ const MusicPlayer = () => {
           folderContents={folderContents}
           tidyFileName={tidyFileName}
           onClose={handleCloseModal}
+          setCurrentSong={setCurrentSong}
         />
       )}
     </div>
