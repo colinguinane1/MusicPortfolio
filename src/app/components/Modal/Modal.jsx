@@ -1,5 +1,6 @@
 // Modal.jsx
 import React from "react";
+import { motion, spring } from "framer-motion";
 
 const Modal = ({ folderName, folderContents, tidyFileName, onClose }) => {
   const artist = "Colin Guinane";
@@ -12,18 +13,22 @@ const Modal = ({ folderName, folderContents, tidyFileName, onClose }) => {
   };
 
   return (
-    <div
-      className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
+    <motion.div
+      initial={{ scale: 0 }}
+      animate={{ scale: 1 }}
+      exit={{ scale: 0 }}
+      transition={{ type: spring, duration: 0.75 }}
+      className="fixed inset-0 flex items-center justify-center bg-transparent backdrop-blur-sm"
       onClick={handleClickOutside}
     >
-      <div className="bg-white p-8 rounded shadow-md modal-content">
+      <div className="bg-white p-8 rounded shadow-md modal-content pr-20">
         <span
           className="absolute top-0 right-0 p-2 cursor-pointer"
           onClick={onClose}
         >
           &times;
         </span>
-        <h2 className="text-xl font-bold mb-4 text-4xl">{folderName}</h2>
+        <h2 className="font-bold mb-4 text-4xl">{folderName}</h2>
         <ul className="">
           {folderContents.map((item, index) => (
             <li key={index} className="flex items-center space-x-4 py-2 px-2">
@@ -41,7 +46,7 @@ const Modal = ({ folderName, folderContents, tidyFileName, onClose }) => {
           ))}
         </ul>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
