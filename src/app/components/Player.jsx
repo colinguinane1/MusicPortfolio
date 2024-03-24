@@ -66,9 +66,6 @@ const Player = memo(function Player({ currentSong, coverUrl }) {
         <div>
           <h1 className="text-white font-bold">{tidyFileName(currentSong)}</h1>
           <h1 className="text-gray-500">{artist}</h1>
-          <h1 className="text-gray-500">
-            Remaining: {remainingTime && formatTime(remainingTime)}
-          </h1>
         </div>
         <audio ref={audioRef}></audio>
         {!isPlaying && (
@@ -119,8 +116,10 @@ const Player = memo(function Player({ currentSong, coverUrl }) {
           onClick={handleStop}
         >
           <path d="M6 6h12v12H6z" />
-        </svg>
-        <audio className="text-white bg-white" ref={audioRef}></audio>
+        </svg>{" "}
+        <h1 className="text-gray-500">
+          {remainingTime && formatTime(remainingTime)}
+        </h1>
       </div>
     </div>
   );

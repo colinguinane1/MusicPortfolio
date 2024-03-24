@@ -1,5 +1,4 @@
-// Modal.jsx
-import React from "react";
+import React, { useState } from "react";
 import { motion, spring } from "framer-motion";
 
 const Modal = ({
@@ -8,9 +7,11 @@ const Modal = ({
   tidyFileName,
   onClose,
   setCurrentSong,
+  currentSong,
   handlePlay,
 }) => {
   const artist = "Colin Guinane";
+  const [currentSongIndex, setCurrentSongIndex] = useState(-1);
 
   const handleClickOutside = (event) => {
     // Check if the click occurred outside the modal content
@@ -19,10 +20,11 @@ const Modal = ({
     }
   };
 
-  const handleItemClick = (fileName) => {
+  const handleItemClick = (fileName, index) => {
     const filePath = `https://storage.googleapis.com/music-portfolio-67eb6.appspot.com/${fileName}`;
     console.log("Selected Song:", filePath); // Log the selected song path
     setCurrentSong(filePath); // Update the current song
+    setCurrentSongIndex(index); // Update the current song index
   };
 
   return (
@@ -47,8 +49,11 @@ const Modal = ({
             <li
               key={index}
               className="flex items-center space-x-4 py-2 px-2 hover:bg-blue-500 rounded-md hover:scale-105 active:scale-95 transition-all duration-400 cursor-pointer"
-              onClick={() => handleItemClick(item.name)}
+              onClick={() => handleItemClick(item.name, index)}
             >
+              {index === currentSongIndex && (
+                <div className=" w-4 h-4 rounded-full bg-green-500 animate-ping"></div>
+              )}
               <img
                 src={`https://storage.googleapis.com/music-portfolio-67eb6.appspot.com/music/${folderName}/cover.jpg`}
                 alt="Icon"
