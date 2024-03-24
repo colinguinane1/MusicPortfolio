@@ -72,15 +72,21 @@ const Player = memo(({ currentSong, coverUrl }) => {
   return (
     <div className="flex flex-col items-center mt-10">
       <div className="fixed bottom-0 bg-transparent backdrop-blur-md w-full h-20 flex justify-center items-center z-[1000]">
-        <img
-          src={coverUrl}
-          alt="Album Cover"
-          className="w-10 h-10 rounded-md mx-6"
-        />
-        <div>
-          <h1 className="text-white font-bold">{tidyFileName(currentSong)}</h1>
-          <h1 className="text-gray-500">{artist}</h1>
-        </div>
+        {isPlaying && (
+          <main className="flex mx-6">
+            <img
+              src={coverUrl}
+              alt="Album Cover"
+              className="w-10 h-10 rounded-md mx-6"
+            />
+            <div className="hidden md:block">
+              <h1 className="text-white font-bold">
+                {tidyFileName(currentSong)}
+              </h1>
+              <h1 className="text-gray-500">{artist}</h1>
+            </div>
+          </main>
+        )}
         <audio ref={audioRef}></audio>
         <input
           type="range"

@@ -179,6 +179,7 @@ const MusicPlayer = () => {
           tidyFileName={tidyFileName}
           onClose={handleCloseModal}
           setCurrentSong={setCurrentSong}
+          handlePlay={handlePlay}
         />
       )}
     </div>
