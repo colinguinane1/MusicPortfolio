@@ -1,10 +1,10 @@
 "use client";
 import React, { useState, useEffect, useRef, memo } from "react";
 
-const Player = memo(({ currentSong, coverUrl }) => {
+const Player = memo(function Player({ currentSong, coverUrl }) {
   const audioRef = useRef(new Audio());
   const [isPlaying, setIsPlaying] = useState(false);
-  const [remainingTime, setRemainingTime] = useState(null); // State to hold the remaining time
+  const [remainingTime, setRemainingTime] = useState(null);
   const artist = "Colin Guinane";
 
   const tidyFileName = (fileName) => {
@@ -16,16 +16,13 @@ const Player = memo(({ currentSong, coverUrl }) => {
   useEffect(() => {
     const audio = audioRef.current;
 
-    // Update the audio source when currentSong changes
     audio.src = currentSong;
 
-    // Event listener for time update to calculate remaining time
     const handleTimeUpdate = () => {
       const remaining = audio.duration - audio.currentTime;
       setRemainingTime(remaining);
     };
 
-    // Attach time update event listener
     audio.addEventListener("timeupdate", handleTimeUpdate);
 
     if (isPlaying) {
@@ -37,7 +34,6 @@ const Player = memo(({ currentSong, coverUrl }) => {
     }
 
     return () => {
-      // Cleanup audio when unmounting
       audio.pause();
       audio.removeEventListener("timeupdate", handleTimeUpdate);
     };
@@ -53,7 +49,6 @@ const Player = memo(({ currentSong, coverUrl }) => {
 
   const handleStop = () => {};
 
-  // Function to convert seconds to minutes:seconds format
   const formatTime = (time) => {
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
@@ -71,13 +66,15 @@ const Player = memo(({ currentSong, coverUrl }) => {
         <div>
           <h1 className="text-white font-bold">{tidyFileName(currentSong)}</h1>
           <h1 className="text-gray-500">{artist}</h1>
+          <h1 className="text-gray-500">
+            Remaining: {remainingTime && formatTime(remainingTime)}
+          </h1>
         </div>
         <audio ref={audioRef}></audio>
-        {/* Play, pause, and stop buttons */}
         {!isPlaying && (
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="icon icon-tabler icon-tabler-player-play-filled mx-4 hover:scale-105 active:scale-95 cursor-pointer hover:stroke-blue-400 transition-all duration-700"
+            className="icon icon-tabler icon-tabler-player-play-filled mx-4 hover:scale-105 active:scale-95 cursor-pointer hover:stroke-blue-400"
             width="44"
             height="44"
             viewBox="0 0 24 24"
@@ -94,7 +91,7 @@ const Player = memo(({ currentSong, coverUrl }) => {
         {isPlaying && (
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="icon icon-tabler icon-tabler-player-pause-filled mx-4 hover:scale-105 active:scale-95 cursor-pointer hover:stroke-blue-400 transition-all duration-700"
+            className="icon icon-tabler icon-tabler-player-pause-filled mx-4 hover:scale-105 active:scale-95 cursor-pointer hover:stroke-blue-400"
             width="44"
             height="44"
             viewBox="0 0 24 24"
@@ -123,12 +120,12 @@ const Player = memo(({ currentSong, coverUrl }) => {
         >
           <path d="M6 6h12v12H6z" />
         </svg>
-        <h1 className="text-gray-500">
-          {remainingTime && formatTime(remainingTime)}
-        </h1>
+        <audio className="text-white bg-white" ref={audioRef}></audio>
       </div>
     </div>
   );
 });
+
+Player.displayName = "Player";
 
 export default Player;
