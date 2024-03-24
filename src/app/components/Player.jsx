@@ -1,63 +1,64 @@
 "use client";
+import React, { useState, useEffect, useRef, memo } from "react";
 
-import React, { useState, useEffect } from "react";
-import Modal from "./Modal/Modal";
-
-const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
-  const [audio] = useState(() => {
-    // Create audio element only in the browser environment
-    if (typeof window !== "undefined") {
-      return new Audio();
-    }
-    return null;
-  });
+const Player = memo(({ currentSong, isPlaying, setIsPlaying }) => {
+  const audioRef = useRef(new Audio()); // Create audio element using useRef
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (audio && currentSong) {
-      audio.src = currentSong;
-      if (isPlaying) {
-        audio.play();
-      } else {
-        audio.pause();
-      }
-    }
-  }, [currentSong, isPlaying, audio]);
+    const audio = audioRef.current;
 
-  const getSongNameFromUrl = (url) => {
-    if (!url) return ""; // Return empty string if URL is undefined
-    // Split the URL by '/' and get the last part (i.e., the song name)
-    const parts = url.split("/");
-    return parts[parts.length - 1];
-  };
+    const handleError = (errorEvent) => {
+      console.error("Audio playback error:", errorEvent.target.error);
+      setError(errorEvent.target.error);
+    };
+
+    audio.addEventListener("error", handleError);
+
+    return () => {
+      audio.removeEventListener("error", handleError);
+    };
+  }, []);
+
+  useEffect(() => {
+    const audio = audioRef.current;
+
+    // Update the audio source when currentSong changes
+    audio.src = currentSong;
+
+    // Play or pause based on isPlaying
+    if (isPlaying) {
+      audio.play().catch((error) => {
+        console.error("Playback error:", error);
+        setError(error);
+      });
+    } else {
+      audio.pause();
+    }
+
+    return () => {
+      // Cleanup audio when unmounting
+      audio.pause();
+      audio.src = "";
+    };
+  }, [currentSong, isPlaying]);
 
   const handlePlay = () => {
-    if (currentSong) {
-      const audio = new Audio(currentSong);
-      audio.play();
-      setIsPlaying(true);
-    }
+    setIsPlaying(true);
   };
 
   const handlePause = () => {
-    if (currentSong) {
-      setIsPlaying(false);
-    }
+    setIsPlaying(false);
   };
 
   const handleStop = () => {
     setIsPlaying(false);
-    // Add code to stop the current song
   };
-  //   console.log(getSongNameFromUrl(currentSong));
-  console.log("Current Song in Player:", currentSong);
 
   return (
-    <div className="flex flex-col items-center">
-      <div className="fixed bottom-0 bg-white w-full h-20 flex justify-center items-center">
-        <h1></h1>
-        {/* Display song name extracted from URL */}
-        {/* Ensure that currentSong is rendered */}
-        {/* {play button} */}
+    <div className="flex flex-col items-center mt-10">
+      <div className="fixed bottom-0 bg-transparent backdrop-blur-md  w-full h-20 flex justify-center items-center z-[1000]">
+        <audio src={currentSong} controls></audio>
         {!isPlaying && (
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -75,7 +76,6 @@ const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
             <path d="M5 3l14 9l-14 9z" />
           </svg>
         )}
-        {/* {pause button} */}
         {isPlaying && (
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -93,7 +93,6 @@ const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
             <path d="M6 4h4v16h-4zm8 0h4v16h-4z" />
           </svg>
         )}
-        {/* {stop button} */}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="icon icon-tabler icon-tabler-player-stop-filled mx-4"
@@ -112,6 +111,6 @@ const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
       </div>
     </div>
   );
-};
+});
 
 export default Player;

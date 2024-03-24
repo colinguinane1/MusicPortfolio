@@ -46,7 +46,7 @@ const Modal = ({
           {folderContents.map((item, index) => (
             <li
               key={index}
-              className="flex items-center space-x-4 py-2 px-2 hover:bg-blue-500 rounded-md actiev:scale-95 transition-colors duration-400"
+              className="flex items-center space-x-4 py-2 px-2 hover:bg-blue-500 rounded-md hover:scale-105 active:scale-95 transition-all duration-400 cursor-pointer"
               onClick={() => handleItemClick(item.name)}
             >
               <img

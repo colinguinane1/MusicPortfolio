@@ -13,7 +13,9 @@ const MusicPlayer = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [folderLoading, setFolderLoading] = useState({});
-  const [currentSong, setCurrentSong] = useState(null);
+  const [currentSong, setCurrentSong] = useState(
+    "https://storage.googleapis.com/music-portfolio-67eb6.appspot.com/music/Isolated/Isolated.mp3"
+  );
 
   const handlePlay = () => {
     setIsPlaying(true);
@@ -103,7 +105,9 @@ const MusicPlayer = () => {
   const tidyFileName = (fileName) => {
     const parts = fileName.split("/");
     const name = parts[parts.length - 1];
-    return name.replace(/\.[^.]+$/, "");
+    // Remove any additional folder prefixes in the name
+    const tidyName = name.replace(/^.*[\\\/]/, "");
+    return tidyName.replace(/\.[^.]+$/, "");
   };
 
   if (loading) {
@@ -122,7 +126,6 @@ const MusicPlayer = () => {
         isPlaying={isPlaying}
         setIsPlaying={setIsPlaying}
       />
-      <h1 className="text-3xl font-bold mb-4">Music Player</h1>
       <div className="grid grid-cols-3 gap-4">
         {folders.map((folder, index) => (
           <div key={index} className="relative">
