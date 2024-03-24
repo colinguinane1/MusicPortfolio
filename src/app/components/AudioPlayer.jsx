@@ -13,9 +13,7 @@ const MusicPlayer = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [folderLoading, setFolderLoading] = useState({});
-  const [currentSong, setCurrentSong] = useState(
-    "https://storage.googleapis.com/music-portfolio-67eb6.appspot.com/music/Isolated/Isolated.mp3"
-  );
+  const [currentSong, setCurrentSong] = useState("null");
 
   const handlePlay = () => {
     setIsPlaying(true);
@@ -125,6 +123,11 @@ const MusicPlayer = () => {
         currentSong={currentSong}
         isPlaying={isPlaying}
         setIsPlaying={setIsPlaying}
+        coverUrl={
+          selectedFolder
+            ? folders.find((folder) => folder.name === selectedFolder).coverUrl
+            : ""
+        }
       />
       <div className="grid grid-cols-3 gap-4">
         {folders.map((folder, index) => (
