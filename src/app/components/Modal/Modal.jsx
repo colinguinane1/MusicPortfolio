@@ -25,7 +25,7 @@ const Modal = ({
     console.log("Selected Song:", filePath); // Log the selected song path
     setCurrentSong(filePath); // Update the current song
     setCurrentSongIndex(index); // Update the current song index
-    handlePlay();
+    handlePlay(); // Start playing the selected song
   };
 
   const getModalWidth = () => {
@@ -47,9 +47,7 @@ const Modal = ({
       className="inset-0 flex items-center justify-center bg-transparent backdrop-blur-sm overflow-y-auto fixed"
       onClick={handleClickOutside}
     >
-      <div
-        className={`bg-transparent backdrop-blur-2xl p-8 rounded shadow-md modal-content scale-75 md:scale-100 min-w-fit md:w-full`}
-      >
+<div className="p-8 rounded shadow-md modal-content scale-75 md:scale-100 z-50">
         <span className="absolute right-0 p-2 cursor-pointer" onClick={onClose}>
           &times;
         </span>
