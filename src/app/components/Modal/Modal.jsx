@@ -28,6 +28,16 @@ const Modal = ({
     handlePlay();
   };
 
+  const getModalWidth = () => {
+    // Determine the width of the modal based on screen size
+    return "lg:w-3/4 xl:w-1/2";
+  };
+
+  const getGridColumns = () => {
+    // Determine the number of columns based on the number of items
+    return folderContents.length > 6 ? "grid-cols-2" : "grid-cols-1";
+  };
+
   return (
     <motion.div
       initial={{ scale: 0 }}
@@ -37,12 +47,14 @@ const Modal = ({
       className="inset-0 flex items-center justify-center bg-transparent backdrop-blur-sm overflow-y-auto fixed"
       onClick={handleClickOutside}
     >
-      <div className="bg-transparent backdrop-blur-2xl p-8 rounded shadow-md modal-content scale-75 md:scale-100">
+      <div
+        className={`bg-transparent backdrop-blur-2xl p-8 rounded shadow-md modal-content scale-75 md:scale-100 min-w-fit md:w-full`}
+      >
         <span className="absolute right-0 p-2 cursor-pointer" onClick={onClose}>
           &times;
         </span>
         <h2 className="font-bold mb-4 text-4xl text-white">{folderName}</h2>
-        <ul className="">
+        <ul className={`grid ${getGridColumns()} gap-4`}>
           {folderContents.map((item, index) => (
             <li
               key={index}
