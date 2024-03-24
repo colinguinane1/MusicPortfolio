@@ -21,3 +21,13 @@
     text-wrap: balance;
   }
 }
+
+input[type=range] {
+  height: 2px;
+  -webkit-appearance: none;
+  margin: 10px 0;
+}
+
+input[type=range]:focus {
+  outline: none;
+}

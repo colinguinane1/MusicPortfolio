@@ -1,10 +1,12 @@
 "use client";
 import React, { useState, useEffect, useRef, memo } from "react";
 
-const Player = memo(function Player({ currentSong, coverUrl }) {
+const Player = memo(({ currentSong, coverUrl }) => {
   const audioRef = useRef(new Audio());
   const [isPlaying, setIsPlaying] = useState(false);
   const [remainingTime, setRemainingTime] = useState(null);
+  const [progress, setProgress] = useState(0);
+  const [duration, setDuration] = useState(0);
   const artist = "Colin Guinane";
 
   const tidyFileName = (fileName) => {
@@ -21,9 +23,13 @@ const Player = memo(function Player({ currentSong, coverUrl }) {
     const handleTimeUpdate = () => {
       const remaining = audio.duration - audio.currentTime;
       setRemainingTime(remaining);
+      setProgress((audio.currentTime / audio.duration) * 100);
     };
 
     audio.addEventListener("timeupdate", handleTimeUpdate);
+    audio.addEventListener("loadedmetadata", () => {
+      setDuration(audio.duration);
+    });
 
     if (isPlaying) {
       audio.play().catch((error) => {
@@ -47,7 +53,15 @@ const Player = memo(function Player({ currentSong, coverUrl }) {
     setIsPlaying(false);
   };
 
-  const handleStop = () => {};
+  const handleStop = () => {
+    setIsPlaying(false);
+    audioRef.current.currentTime = 0;
+  };
+
+  const handleSeek = (e) => {
+    const seekTime = (e.target.value / 100) * duration;
+    audioRef.current.currentTime = seekTime;
+  };
 
   const formatTime = (time) => {
     const minutes = Math.floor(time / 60);
@@ -68,10 +82,18 @@ const Player = memo(function Player({ currentSong, coverUrl }) {
           <h1 className="text-gray-500">{artist}</h1>
         </div>
         <audio ref={audioRef}></audio>
+        <input
+          type="range"
+          min="0"
+          max="100"
+          value={progress}
+          onChange={handleSeek}
+          className="mx-10"
+        />
         {!isPlaying && (
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="icon icon-tabler icon-tabler-player-play-filled mx-4 hover:scale-105 active:scale-95 cursor-pointer hover:stroke-blue-400"
+            className="icon icon-tabler icon-tabler-player-play-filled mx-4 stroke-white hover:scale-105 active:scale-95 cursor-pointer hover:stroke-blue-400"
             width="44"
             height="44"
             viewBox="0 0 24 24"
@@ -88,7 +110,7 @@ const Player = memo(function Player({ currentSong, coverUrl }) {
         {isPlaying && (
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="icon icon-tabler icon-tabler-player-pause-filled mx-4 hover:scale-105 active:scale-95 cursor-pointer hover:stroke-blue-400"
+            className="icon icon-tabler icon-tabler-player-pause-filled mx-4 stroke-white hover:scale-105 active:scale-95 cursor-pointer hover:stroke-blue-400"
             width="44"
             height="44"
             viewBox="0 0 24 24"
@@ -104,7 +126,7 @@ const Player = memo(function Player({ currentSong, coverUrl }) {
         )}
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="icon icon-tabler icon-tabler-player-stop-filled mx-4"
+          className="icon icon-tabler icon-tabler-player-stop-filled mx-4 stroke-white"
           width="44"
           height="44"
           viewBox="0 0 24 24"
@@ -117,8 +139,8 @@ const Player = memo(function Player({ currentSong, coverUrl }) {
         >
           <path d="M6 6h12v12H6z" />
         </svg>{" "}
-        <h1 className="text-gray-500">
-          {remainingTime && formatTime(remainingTime)}
+        <h1 className="text-white">
+          {remainingTime != 0 && formatTime(remainingTime)}
         </h1>
       </div>
     </div>

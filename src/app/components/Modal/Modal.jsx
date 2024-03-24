@@ -52,7 +52,12 @@ const Modal = ({
               onClick={() => handleItemClick(item.name, index)}
             >
               {index === currentSongIndex && (
-                <div className=" w-4 h-4 rounded-full bg-green-500 animate-ping"></div>
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ duration: 0.3 }}
+                  className=" w-4 h-4 rounded-full bg-blue-300 animate-pulse"
+                ></motion.div>
               )}
               <img
                 src={`https://storage.googleapis.com/music-portfolio-67eb6.appspot.com/music/${folderName}/cover.jpg`}
