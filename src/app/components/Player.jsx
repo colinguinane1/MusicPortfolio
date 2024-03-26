@@ -83,7 +83,7 @@ const Player = memo(({ currentSong, coverUrl }) => {
               <h1 className="text-white font-bold">
                 {tidyFileName(currentSong)}
               </h1>
-              <h1 className="text-gray-500">{artist}</h1>
+              <h1 className="text-gray-400">{artist}</h1>
             </div>
           </main>
         )}
