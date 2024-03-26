@@ -16,10 +16,10 @@ const MusicPlayer = () => {
   const [error, setError] = useState(null);
   const [folderLoading, setFolderLoading] = useState({});
   const [metadata, setMetadata] = useState(null); // State for metadata
-  const [currentSong, setCurrentSong] = useState(null);
+  const [currentSong, setCurrentSong] = useState("https://storage.googleapis.com/music-portfolio-67eb6.appspot.com/music/Isolated/Isolated.mp3");
 
   const handlePlay = () => {
-    setIsPlaying(true);
+    setIsPlaying(false);
   };
 
   const handlePause = () => {
@@ -101,7 +101,7 @@ const MusicPlayer = () => {
     // Fetch metadata for the selected album
     try {
       const response = await fetch(
-        `https://cors-anywhere.herokuapp.com/https://firebasestorage.googleapis.com/v0/b/music-portfolio-67eb6.appspot.com/o/music%2FHYPER%2Fmetadata.json?alt=media&token=a9b12963-fd87-4313-8414-4c37f981f361`,
+        `https://cors-anywhere.herokuapp.com/https://storage.googleapis.com/music-portfolio-67eb6.appspot.com/music/${folderName}/metadata.json`,
         {
           headers: {
             Accept: "application/json", // Specify the desired content type
@@ -115,6 +115,7 @@ const MusicPlayer = () => {
       }
       const metadataJson = await response.json();
       setMetadata(metadataJson);
+      console.log(metadataJson)
     } catch (error) {
       console.error("Error fetching metadata:", error);
       setMetadata(null);
@@ -147,6 +148,7 @@ const MusicPlayer = () => {
         currentSong={currentSong}
         isPlaying={isPlaying}
         setIsPlaying={setIsPlaying}
+        handlePlay={handlePlay}
         coverUrl={
           selectedFolder
             ? folders.find((folder) => folder.name === selectedFolder).coverUrl
@@ -209,7 +211,8 @@ const MusicPlayer = () => {
           // Pass metadata to the Modal component
           albumDescription={metadata ? metadata.albumDescription : ""}
           yearReleased={metadata ? metadata.yearReleased : ""}
-          musicWebsiteLink={metadata ? metadata.musicWebsiteLink : ""}
+          spotifyLink={metadata ? metadata.spotifyLink : ""}
+          appleMusicLink={metadata ? metadata.appleMusicLink : ""}
         />
       )}
     </div>

@@ -1,18 +1,25 @@
 "use client";
 import React, { useState, useEffect, useRef, memo } from "react";
+import Modal from "./Modal/Modal";
 
-const Player = memo(({ currentSong, coverUrl }) => {
+const Player = memo(({ currentSong, coverUrl,}) => {
   const audioRef = useRef(new Audio());
   const [isPlaying, setIsPlaying] = useState(false);
   const [remainingTime, setRemainingTime] = useState(null);
   const [progress, setProgress] = useState(0);
   const [duration, setDuration] = useState(0);
+
   const artist = "Colin Guinane";
 
   const tidyFileName = (fileName) => {
+    if (fileName != "null"){
     const parts = fileName.split("/");
     const name = parts[parts.length - 1];
     return name.replace(/\.[^.]+$/, "");
+  }
+  else{
+    console.error("Cant tidy filename")
+  }
   };
 
   useEffect(() => {
@@ -47,6 +54,9 @@ const Player = memo(({ currentSong, coverUrl }) => {
 
   const handlePlay = () => {
     setIsPlaying(true);
+    return(
+      <audio ref={audioRef}></audio>
+    )
   };
 
   const handlePause = () => {
@@ -72,7 +82,7 @@ const Player = memo(({ currentSong, coverUrl }) => {
   return (
     <div className="flex flex-col items-center mt-10">
       <div className="fixed bottom-0 bg-transparent backdrop-blur-md w-full h-20 flex justify-center items-center z-[1000]">
-        {isPlaying && (
+       
           <main className="flex mx-6">
             <img
               src={coverUrl}
@@ -84,8 +94,9 @@ const Player = memo(({ currentSong, coverUrl }) => {
               <h1 className="text-gray-400">{artist}</h1>
             </div>
           </main>
-        )}
+        
         <audio ref={audioRef}></audio>
+        {isPlaying &&
         <input
           type="range"
           min="0"
@@ -94,6 +105,7 @@ const Player = memo(({ currentSong, coverUrl }) => {
           onChange={handleSeek}
           className="mx-10"
         />
+        }
         {!isPlaying && (
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -143,9 +155,11 @@ const Player = memo(({ currentSong, coverUrl }) => {
         >
           <path d="M6 6h12v12H6z" />
         </svg>{" "}
+        {isPlaying && 
         <h1 className="text-white">
           {remainingTime != 0 && formatTime(remainingTime)}
         </h1>
+        }
       </div>
     </div>
   );
