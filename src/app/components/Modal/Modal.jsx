@@ -31,7 +31,7 @@ const Modal = ({
 
   const checkName = (fileName) => {
     if (artistChoicesNames.includes(fileName)) {
-      return <h1>Artist's Choice</h1>;
+      return <h1>Artists Choice</h1>;
     }
     return null;
   };
@@ -54,7 +54,7 @@ const Modal = ({
             &times;
           </span>
           <h2 className="font-bold mb-4 text-4xl text-white">{folderName}</h2>
-          <ul className={`grid grid-cols-1 md:grid-cols-2 gap-4`}>
+          <ul className={`grid grid-cols-2 md:grid-cols-1 gap-4`}>
             {folderContents.map((item, index) => (
               <li
                 key={index}
@@ -75,7 +75,7 @@ const Modal = ({
                   className="h-16 w-16" // Increase image size as needed
                 />
                 <div>
-                  <h3 className="font-bold">{tidyFileName(item.name)}</h3>
+                  <h3 className="">{tidyFileName(item.name)}</h3>
                   <p className="text-gray-400">{artist}</p>
                 </div>
               </li>
