@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+
 import Modal from "./Modal/Modal";
 import { motion, spring } from "framer-motion";
 import Player from "./Player";
@@ -100,7 +101,14 @@ const MusicPlayer = () => {
     // Fetch metadata for the selected album
     try {
       const response = await fetch(
-        `https://storage.googleapis.com/music-portfolio-67eb6.appspot.com/music/${folderName}/metadata.json`
+        `https://cors-anywhere.herokuapp.com/https://firebasestorage.googleapis.com/v0/b/music-portfolio-67eb6.appspot.com/o/music%2FHYPER%2Fmetadata.json?alt=media&token=a9b12963-fd87-4313-8414-4c37f981f361`,
+        {
+          headers: {
+            Accept: "application/json", // Specify the desired content type
+            Origin: "http://localhost:3003", // Set the Origin header
+            // You can add more custom headers if needed
+          },
+        }
       );
       if (!response.ok) {
         throw new Error("Failed to fetch metadata");
