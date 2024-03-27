@@ -56,12 +56,16 @@ const Modal = ({
         <div className="flex">
           <h2 className="font-bold mb-4 text-4xl text-white">{folderName}</h2>{" "}
           <div
-            className="group border max-w-fit h-8 rounded-full mt-1 ml-5"
+            className={`group border max-w-fit h-8 hover:scale-105 active:scale-95 ${
+              dropdown ? "bg-white" : ""
+            } rounded-full mt-1 ml-5`}
             onClick={dropdownList}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="icon icon-tabler icon-tabler-dots stroke-white cursor-pointer max-h-fit"
+              class={`icon icon-tabler icon-tabler-dots ${
+                dropdown ? "stroke-black" : "stroke-white"
+              } cursor-pointer max-h-fit`}
               width="30"
               height="30"
               viewBox="0 0 24 24"
@@ -80,13 +84,16 @@ const Modal = ({
           {dropdown && (
             <motion.div
               initial={{ scale: 0 }}
-              animate={{ scale: 1}}
-              exit={{scale:0}}
-              transition={{duration: 0.2}}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0 }}
+              transition={{ duration: 0.2 }}
               className="flex -mt-1 mx-2"
             >
               {spotifyLink && (
-                <a href={spotifyLink} className="max-w-fit mt-2 rounded-full border bg-black border-black h-8">
+                <a
+                  href={spotifyLink}
+                  className="max-w-fit mt-2 rounded-full border bg-black border-black h-8"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="icon icon-tabler icon-tabler-brand-spotify stroke-green-400 hover:scale-105 hover:stroke-green-200 active:scale-95 transition-all duration-300"
@@ -130,6 +137,25 @@ const Modal = ({
                   </svg>
                 </a>
               )}
+              <a className="mt-2 bg-white max-h-fit rounded-full p-[6px] mx-1">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="icon icon-tabler icon-tabler-download stroke-blue-400 cursor-pointer"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="#2c3e50"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" />
+                  <path d="M7 11l5 5l5 -5" />
+                  <path d="M12 4l0 12" />
+                </svg>
+              </a>
             </motion.div>
           )}
         </div>
