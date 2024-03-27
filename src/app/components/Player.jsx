@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef, memo } from "react";
 import Modal from "./Modal/Modal";
 
-const Player = memo(({ currentSong, coverUrl,}) => {
+const Player = memo(({ currentSong, coverUrl }) => {
   const audioRef = useRef(new Audio());
   const [isPlaying, setIsPlaying] = useState(false);
   const [remainingTime, setRemainingTime] = useState(null);
@@ -12,14 +12,17 @@ const Player = memo(({ currentSong, coverUrl,}) => {
   const artist = "Colin Guinane";
 
   const tidyFileName = (fileName) => {
-    if (fileName != "null"){
-    const parts = fileName.split("/");
-    const name = parts[parts.length - 1];
-    return name.replace(/\.[^.]+$/, "");
-  }
-  else{
-    console.error("Cant tidy filename")
-  }
+    if (fileName !== "null") {
+      const decodedFileName = decodeURIComponent(fileName); // Decode URL-encoded string
+      const parts = decodedFileName.split("/");
+      let name = parts[parts.length - 1];
+      // Remove the prefix "1\" from the track name
+      name = name.replace(/^\d+\\/, "");
+      return name.replace(/\.[^.]+$/, "");
+    } else {
+      console.error("File name is null");
+      return "Unknown"; // Return a placeholder value or handle the null case appropriately
+    }
   };
 
   useEffect(() => {
@@ -54,9 +57,7 @@ const Player = memo(({ currentSong, coverUrl,}) => {
 
   const handlePlay = () => {
     setIsPlaying(true);
-    return(
-      <audio ref={audioRef}></audio>
-    )
+    return <audio ref={audioRef}></audio>;
   };
 
   const handlePause = () => {
@@ -82,30 +83,28 @@ const Player = memo(({ currentSong, coverUrl,}) => {
   return (
     <div className="flex flex-col items-center mt-10">
       <div className="fixed bottom-0 bg-transparent backdrop-blur-md w-full h-20 flex justify-center items-center z-[1000]">
-       
-          <main className="flex mx-6">
-            <img
-              src={coverUrl}
-              alt="Album Cover"
-              className="w-10 h-10 rounded-md mx-6"
-            />
-            <div className="hidden md:block">
-              <h1 className="text-white">{tidyFileName(currentSong)}</h1>
-              <h1 className="text-gray-400">{artist}</h1>
-            </div>
-          </main>
-        
+        <main className="flex mx-6">
+          <img
+            src={coverUrl}
+            alt="Album Cover"
+            className="w-10 h-10 rounded-md mx-6"
+          />
+          <div className="hidden md:block">
+            <h1 className="text-white">{tidyFileName(currentSong)}</h1>
+            <h1 className="text-gray-400">{artist}</h1>
+          </div>
+        </main>
         <audio ref={audioRef}></audio>
-        {isPlaying &&
-        <input
-          type="range"
-          min="0"
-          max="100"
-          value={progress}
-          onChange={handleSeek}
-          className="mx-10"
-        />
-        }
+        {isPlaying && (
+          <input
+            type="range"
+            min="0"
+            max="100"
+            value={progress}
+            onChange={handleSeek}
+            className="mx-10"
+          />
+        )}
         {!isPlaying && (
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -155,11 +154,11 @@ const Player = memo(({ currentSong, coverUrl,}) => {
         >
           <path d="M6 6h12v12H6z" />
         </svg>{" "}
-        {isPlaying && 
-        <h1 className="text-white">
-          {remainingTime != 0 && formatTime(remainingTime)}
-        </h1>
-        }
+        {isPlaying && (
+          <h1 className="text-white">
+            {remainingTime != 0 && formatTime(remainingTime)}
+          </h1>
+        )}
       </div>
     </div>
   );

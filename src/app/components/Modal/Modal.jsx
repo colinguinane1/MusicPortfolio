@@ -26,7 +26,8 @@ const Modal = ({
   };
 
   const handleItemClick = (fileName, index) => {
-    const filePath = `https://storage.googleapis.com/music-portfolio-67eb6.appspot.com/${fileName}`;
+    const encodedFileName = encodeURIComponent(fileName); // Encode special characters in the file name
+    const filePath = `https://storage.googleapis.com/music-portfolio-67eb6.appspot.com/${encodedFileName}`;
     setCurrentSong(filePath);
     setCurrentSongIndex(index);
     handlePlay(); // Call handlePlay to start playback
@@ -94,7 +95,7 @@ const Modal = ({
         </div>
         <ul
           className={`grid grid-cols-${
-            folderContents.length > 5 ? "3" : "1"
+            folderContents.length > 5 ? "3" : "2"
           } gap-4`}
         >
           {folderContents.map((item, index) => (
