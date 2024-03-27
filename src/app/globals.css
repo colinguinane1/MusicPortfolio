@@ -10,6 +10,10 @@
   transition: none;
 }
 
+.yellow_gradient{
+  @apply from-yellow-500 to-yellow-300
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
