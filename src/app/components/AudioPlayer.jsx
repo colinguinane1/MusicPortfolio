@@ -106,12 +106,11 @@ const MusicPlayer = () => {
         `https://cors-anywhere.herokuapp.com/https://storage.googleapis.com/music-portfolio-67eb6.appspot.com/music/${folderName}/metadata.json`,
         {
           headers: {
-            Accept: "application/json", // Specify the desired content type
-            Origin: "http://localhost:3003", // Set the Origin header
-            // You can add more custom headers if needed
+            Origin: ["http://localhost:3000", "https://music.colinguinane.com"],
           },
         }
       );
+      console.log(response);
       if (!response.ok) {
         throw new Error("Failed to fetch metadata");
       }

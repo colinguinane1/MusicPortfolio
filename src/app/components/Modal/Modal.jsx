@@ -53,7 +53,7 @@ const Modal = ({
             <a href={spotifyLink} className="max-w-fit rounded-full mt-3">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="icon icon-tabler icon-tabler-brand-spotify stroke-green-400 hover:scale-105 hover:stroke-green-200 active:scale-95 transition-all duration-300"
+                className="icon icon-tabler icon-tabler-brand-spotify stroke-green-400 hover:scale-105 hover:stroke-green-200 active:scale-95 transition-all duration-300"
                 width="44"
                 height="44"
                 viewBox="0 0 24 24"
@@ -75,7 +75,7 @@ const Modal = ({
             <a href={appleMusicLink} className="max-w-fit rounded-full mt-3">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="icon icon-tabler icon-tabler-brand-apple stroke-pink-800"
+                className="icon icon-tabler icon-tabler-brand-apple stroke-pink-800"
                 width="44"
                 height="44"
                 viewBox="0 0 24 24"
