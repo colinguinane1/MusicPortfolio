@@ -50,6 +50,7 @@ const Modal = ({
         <h1 className="text-gray-300 font-extrabol">{yearReleased}</h1>
         <div className="flex">
           <h1 className="text-white max-w-[28rem] py-2">{albumDescription}</h1>
+
           {spotifyLink && (
             <a href={spotifyLink} className="max-w-fit rounded-full mt-3">
               <svg
@@ -93,6 +94,12 @@ const Modal = ({
             </a>
           )}
         </div>
+        {artistChoice && (
+          <h1 className="text-yellow-300 border-2 border-yellow-600  max-w-fit px-3 rounded-full my-2">
+            Artist's Choice:{" "}
+            <span className="font-extrabold">{artistChoice}</span>
+          </h1>
+        )}
         <ul
           className={`grid grid-cols-${
             folderContents.length > 5 ? "3" : "2"

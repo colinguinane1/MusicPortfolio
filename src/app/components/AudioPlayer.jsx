@@ -106,7 +106,12 @@ const MusicPlayer = () => {
         `https://cors-anywhere.herokuapp.com/https://storage.googleapis.com/music-portfolio-67eb6.appspot.com/music/${folderName}/metadata.json`,
         {
           headers: {
-            Origin: ["http://localhost:3000", "https://music.colinguinane.com"],
+            Origin: [
+              "http://localhost:3000",
+              "https://music.colinguinane.com",
+              "http://music.colinguinane.com",
+              "http://colinguinane.com",
+            ],
           },
         }
       );
