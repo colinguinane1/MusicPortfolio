@@ -167,7 +167,7 @@ const Modal = ({
         <div className="border-b border-gray-500 pb-2 border-opacity-50">
           {artistChoice && (
             <h1 className="text-yellow-300 border-2 border-yellow-600 max-w-fit px-3 rounded-full my-2">
-              Artist's Choice:{" "}
+              Artist&apos;s Choice:{" "}
               <span className="font-extrabold">{artistChoice}</span>
             </h1>
           )}
