@@ -170,7 +170,7 @@ const MusicPlayer = () => {
                 whileTap={{ scale: 0.95 }}
                 transition={{ type: spring }}
                 onClick={() => handleFolderSelect(folder.name)}
-                className="block w-full h-full bg-gray-200 rounded-md overflow-hidden focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                className="block w-full h-full bg-gray-200 rounded-md overflow-hidden focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 no_transition"
               >
                 <img
                   src={folder.coverUrl}
@@ -216,6 +216,7 @@ const MusicPlayer = () => {
           handlePlay={handlePlay}
           // Pass metadata to the Modal component
           artistChoice={metadata ? metadata.artistChoice : ""}
+          websiteExclusive={metadata ? metadata.websiteExclusive : ""}
           albumDescription={metadata ? metadata.albumDescription : ""}
           yearReleased={metadata ? metadata.yearReleased : ""}
           spotifyLink={metadata ? metadata.spotifyLink : ""}

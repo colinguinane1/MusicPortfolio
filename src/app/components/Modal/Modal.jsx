@@ -15,6 +15,7 @@ const Modal = ({
   spotifyLink,
   appleMusicLink,
   artistChoice,
+  websiteExclusive,
 }) => {
   const artist = "Colin Guinane";
   const [currentSongIndex, setCurrentSongIndex] = useState(-1);
@@ -39,7 +40,7 @@ const Modal = ({
       animate={{ scale: 1 }}
       exit={{ scale: 0 }}
       transition={{ type: spring, duration: 0.3 }}
-      className="md:inset-0 md:flex md:items-center md:justify-center md:fixed absolute max-w-full min-w-full top-0"
+      className="md:inset-0 md:flex md:items-center md:justify-center md:fixed absolute max-w-full min-w-full top-0 no_transition"
       onClick={handleClickOutside}
     >
       <div className="p-8 rounded-lg shadow-md modal-content scale-75 md:scale-100 background-transparent backdrop-blur-3xl z-50">
@@ -98,6 +99,11 @@ const Modal = ({
           <h1 className="text-yellow-300 border-2 border-yellow-600  max-w-fit px-3 rounded-full my-2">
             Artist's Choice:{" "}
             <span className="font-extrabold">{artistChoice}</span>
+          </h1>
+        )}
+        {websiteExclusive && (
+          <h1 className="text-green-400 border-2 border-green-600  max-w-fit px-3 rounded-full my-2">
+            <span className="font-extrabold">Website Exclusive</span>
           </h1>
         )}
         <ul
