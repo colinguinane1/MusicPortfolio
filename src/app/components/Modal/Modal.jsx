@@ -56,12 +56,12 @@ const Modal = ({
         <div className="flex">
           <h2 className="font-bold mb-4 text-4xl text-white">{folderName}</h2>{" "}
           <div
-            className="group border rounded-full max-h-fit mt-1 ml-5"
+            className="group border max-w-fit h-8 rounded-full mt-1 ml-5"
             onClick={dropdownList}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="icon icon-tabler icon-tabler-dots stroke-white cursor-pointer"
+              class="icon icon-tabler icon-tabler-dots stroke-white cursor-pointer max-h-fit"
               width="30"
               height="30"
               viewBox="0 0 24 24"
@@ -80,11 +80,13 @@ const Modal = ({
           {dropdown && (
             <motion.div
               initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
+              animate={{ scale: 1}}
+              exit={{scale:0}}
+              transition={{duration: 0.2}}
               className="flex -mt-1 mx-2"
             >
               {spotifyLink && (
-                <a href={spotifyLink} className="max-w-fit rounded-full mt-3">
+                <a href={spotifyLink} className="max-w-fit mt-2 rounded-full border bg-black border-black h-8">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="icon icon-tabler icon-tabler-brand-spotify stroke-green-400 hover:scale-105 hover:stroke-green-200 active:scale-95 transition-all duration-300"
@@ -108,7 +110,7 @@ const Modal = ({
               {appleMusicLink && (
                 <a
                   href={appleMusicLink}
-                  className="max-w-fit rounded-full mt-3"
+                  className="max-w-fit rounded-full bg-white h-8 mt-2 mx-2"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
