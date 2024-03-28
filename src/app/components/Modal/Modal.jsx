@@ -220,7 +220,7 @@ const Modal = ({
                 <h3 className="">{tidyFileName(item.name)}</h3>
                 <p className="text-gray-400">{artist}</p>
                 {item.name === artistChoice && (
-                  <h1 className="text-yellow-300">Artist's Choice</h1>
+                  <h1 className="text-yellow-300">Artist&apos;s Choice</h1>
                 )}
               </div>
             </li>
