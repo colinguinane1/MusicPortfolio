@@ -46,10 +46,10 @@ const Modal = ({
       animate={{ scale: 1 }}
       exit={{ scale: 0 }}
       transition={{ type: spring, duration: 0.3 }}
-      className="md:inset-0 md:flex md:items-center md:justify-center md:fixed absolute max-w-full min-w-full top-0 no_transition"
+      className="md:inset-0 md:flex md:items-center md:justify-center md:fixed absolute top-0 left-0 w-full h-full z-50"
       onClick={handleClickOutside}
     >
-      <div className="p-8 rounded-lg shadow-md modal-content scale-75 md:scale-100 background-transparent backdrop-blur-3xl z-50">
+      <div className="p-3 rounded-lg shadow-md modal-content md:scale-100 background-transparent backdrop-blur-3xl z-50">
         <span className="absolute right-0 p-2 cursor-pointer" onClick={onClose}>
           &times;
         </span>
@@ -179,7 +179,7 @@ const Modal = ({
         </div>
         <ul
           className={`pt-3 grid grid-cols-${
-            folderContents.length > 5 ? "3" : "2"
+            folderContents.length > 5 ? "1" : "2"
           } gap-4`}
         >
           {folderContents.map((item, index) => (
@@ -204,6 +204,9 @@ const Modal = ({
               <div className="min-w-fit">
                 <h3 className="">{tidyFileName(item.name)}</h3>
                 <p className="text-gray-400">{artist}</p>
+                {item.name === artistChoice && (
+                  <h1 className="text-yellow-300">Artist's Choice</h1>
+                )}
               </div>
             </li>
           ))}
