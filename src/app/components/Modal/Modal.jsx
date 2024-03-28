@@ -17,6 +17,7 @@ const Modal = ({
   appleMusicLink,
   artistChoice,
   websiteExclusive,
+  youtubeLink,
 }) => {
   const artist = "Colin Guinane";
   const [currentSongIndex, setCurrentSongIndex] = useState(-1);
@@ -164,6 +165,7 @@ const Modal = ({
                     </svg>
                   </a>
                 )}
+
                 <a className="mt-2 max-h-fit rounded-full pt-[8px]">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -193,7 +195,7 @@ const Modal = ({
             </h1>
           </div>
 
-          <div className="border-b border-gray-500 pb-2 border-opacity-50">
+          <div className="border-b border-gray-500 pb-2 border-opacity-50 flex gap-3">
             {artistChoice && (
               <h1 className="text-yellow-300 border-2 border-yellow-600 max-w-fit px-3 rounded-full my-2">
                 Artist&apos;s Choice:{" "}
@@ -204,7 +206,16 @@ const Modal = ({
               <h1 className="text-green-400 border-2 border-green-600  max-w-fit px-3 rounded-full my-2">
                 <span className="font-extrabold">Website Exclusive</span>
               </h1>
-            )}
+            )}                
+            {youtubeLink && (
+              <a href={youtubeLink} className="text-red-500 border-2 border-red-800  max-w-fit px-3 rounded-full my-2 flex">
+              <span className="font-extrabold">Youtube Video</span>
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-up-right stroke-red-800 ml-1 mt-[1px]" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M17 7l-10 10" />
+  <path d="M8 7l9 0l0 9" />
+</svg>
+            </a>)}
           </div>
           <ul
             className={`pt-3 grid grid-cols-1 ${

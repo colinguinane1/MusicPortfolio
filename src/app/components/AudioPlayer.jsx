@@ -221,6 +221,7 @@ const MusicPlayer = () => {
           yearReleased={metadata ? metadata.yearReleased : ""}
           spotifyLink={metadata ? metadata.spotifyLink : ""}
           appleMusicLink={metadata ? metadata.appleMusicLink : ""}
+          youtubeLink={metadata ? metadata.youtubeLink : ""}
         />
       )}
     </div>
