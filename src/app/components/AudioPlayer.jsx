@@ -103,7 +103,7 @@ const MusicPlayer = () => {
     // Fetch metadata for the selected album
     try {
       const response = await fetch(
-        `https://cors-anywhere.herokuapp.com/https://storage.googleapis.com/music-portfolio-67eb6.appspot.com/music/${folderName}/metadata.json`,
+        `https://storage.googleapis.com/music-portfolio-67eb6.appspot.com/music/${folderName}/metadata.json`,
         {
           headers: {
             Origin: [
