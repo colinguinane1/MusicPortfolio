@@ -8,6 +8,13 @@ const Player = memo(({ currentSong, coverUrl }) => {
   const [remainingTime, setRemainingTime] = useState(null);
   const [progress, setProgress] = useState(0);
   const [duration, setDuration] = useState(0);
+  const [prevSong, setPrevSong] = useState(null);
+  const [bigPlayer, enableBigPlayer] = useState(false);
+
+  const playerToggle = () => {
+    enableBigPlayer(!bigPlayer);
+    console.log(playerToggle);
+  };
 
   const artist = "Colin Guinane";
 
@@ -80,6 +87,11 @@ const Player = memo(({ currentSong, coverUrl }) => {
     return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
   };
 
+  useEffect(() => {
+    // Update previous song when currentSong changes
+    setPrevSong(currentSong);
+  }, [currentSong]);
+
   return (
     <div className="flex flex-col items-center mt-10">
       <div className="fixed bottom-0 bg-transparent backdrop-blur-md w-full h-20 flex justify-center items-center z-[1000]">
@@ -87,7 +99,8 @@ const Player = memo(({ currentSong, coverUrl }) => {
           <img
             src={coverUrl}
             alt="Album Cover"
-            className="w-10 h-10 rounded-md mx-6"
+            className="w-10 h-10 rounded-md mx-6 cursor-pointer"
+            onClick={playerToggle}
           />
           <div className="hidden md:block">
             <h1 className="text-white">{tidyFileName(currentSong)}</h1>
@@ -160,6 +173,36 @@ const Player = memo(({ currentSong, coverUrl }) => {
           </h1>
         )}
       </div>
+      {bigPlayer && (
+        <div className="fixed z-[1000] flex justify-center items-center w-full h-full top-0">
+          <div className="backdrop-blur-3xl w-full h-full flex justify-center items-center">
+            <div className="grid">
+              <img
+                src={coverUrl}
+                alt="Album Cover"
+                className="-mt-60 scale-125 rounded-md mx-10 my-10"
+              />
+              <div className="block">
+                <h1 className="text-white">{tidyFileName(currentSong)}</h1>
+                <h1 className="text-gray-400">{artist}</h1>
+              </div>
+              <div className="flex">
+                <input
+                  type="range"
+                  min="0"
+                  max="100"
+                  value={progress}
+                  onChange={handleSeek}
+                  className="mx-10"
+                />
+                <h1 className="text-white">
+                  {remainingTime != 0 && formatTime(remainingTime)}
+                </h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 });

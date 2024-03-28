@@ -49,16 +49,34 @@ const Modal = ({
       className="md:inset-0 md:flex md:items-center md:justify-center md:fixed absolute top-0 left-0 w-full h-full z-50"
       onClick={handleClickOutside}
     >
-      <div className="p-3 rounded-lg shadow-md modal-content md:scale-100 background-transparent backdrop-blur-3xl z-50">
-        <span className="absolute right-0 p-2 cursor-pointer" onClick={onClose}>
-          &times;
+      <div className="p-8 rounded-lg shadow-md modal-content md:scale-100 h-[148vh] md:h-fit background-transparent backdrop-blur-3xl z-50">
+        <span
+          className="absolute right-0 p-2 mt-6 top-0 cursor-pointer"
+          onClick={onClose}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-circle-x stroke-white hover:stroke-red-500 hover:scale-105 active:scale-95"
+            width="40"
+            height="40"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="#2c3e50"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+            <path d="M10 10l4 4m0 -4l-4 4" />
+          </svg>
         </span>
         <div className="flex">
           <h2 className="font-bold mb-4 text-4xl text-white">{folderName}</h2>{" "}
           <div
             className={`group border max-w-fit h-8 hover:scale-105 active:scale-95 ${
               dropdown ? "bg-white" : ""
-            } rounded-full mt-1 ml-5`}
+            } rounded-full border-2 mt-1 ml-5`}
             onClick={dropdownList}
           >
             <svg
@@ -90,13 +108,10 @@ const Modal = ({
               className="flex -mt-1 mx-2"
             >
               {spotifyLink && (
-                <a
-                  href={spotifyLink}
-                  className="max-w-fit mt-2 rounded-full border bg-black border-black h-8"
-                >
+                <a href={spotifyLink} className="max-w-fit mt-2  h-8">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="icon icon-tabler icon-tabler-brand-spotify stroke-green-400 hover:scale-105 hover:stroke-green-200 active:scale-95 transition-all duration-300"
+                    className="icon icon-tabler icon-tabler-brand-spotify stroke-white hover:scale-105 hover:stroke-green-200 active:scale-95 transition-all duration-300"
                     width="30"
                     height="30"
                     viewBox="0 0 24 24"
@@ -117,11 +132,11 @@ const Modal = ({
               {appleMusicLink && (
                 <a
                   href={appleMusicLink}
-                  className="max-w-fit rounded-full bg-white h-8 mt-2 mx-2"
+                  className="max-w-fit rounded-fullh-8 mt-2 mx-2"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="icon icon-tabler icon-tabler-brand-apple stroke-pink-800"
+                    className="icon icon-tabler icon-tabler-brand-apple stroke-white"
                     width="30"
                     height="30"
                     viewBox="0 0 24 24"
@@ -137,10 +152,10 @@ const Modal = ({
                   </svg>
                 </a>
               )}
-              <a className="mt-2 bg-white max-h-fit rounded-full p-[6px] mx-1">
+              <a className="mt-2 max-h-fit rounded-full pt-[8px]">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="icon icon-tabler icon-tabler-download stroke-blue-400 cursor-pointer"
+                  class="icon icon-tabler icon-tabler-download stroke-white cursor-pointer"
                   width="20"
                   height="20"
                   viewBox="0 0 24 24"
@@ -178,8 +193,8 @@ const Modal = ({
           )}
         </div>
         <ul
-          className={`pt-3 grid grid-cols-${
-            folderContents.length > 5 ? "1" : "2"
+          className={`pt-3 grid grid-cols-1 ${
+            folderContents.length > 4 ? "md:grid-cols-2" : ""
           } gap-4`}
         >
           {folderContents.map((item, index) => (
@@ -199,7 +214,7 @@ const Modal = ({
               <img
                 src={`https://storage.googleapis.com/music-portfolio-67eb6.appspot.com/music/${folderName}/cover.jpg`}
                 alt="Icon"
-                className="md:h-16 md:w-16 h-10 w-10" // Increase image size as needed
+                className="h-14 w-14" // Increase image size as needed
               />
               <div className="min-w-fit">
                 <h3 className="">{tidyFileName(item.name)}</h3>
