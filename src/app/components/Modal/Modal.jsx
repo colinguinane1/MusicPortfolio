@@ -79,7 +79,7 @@ const Modal = ({
       >
         <div
           onClick={dropdownModalCheck}
-          className="p-8 rounded-lg shadow-lg modal-content md:scale-100 md:min-h-fit min-h-[100%]  md:h-fit  backdrop-blur-3xl z-50"
+          className="p-8 rounded-lg shadow-lg modal-content md:min-h-fit min-h-[160%] backdrop-blur-3xl z-50"
         >
           <div className="flex flex-col items-center md:hidden">
             <img
@@ -94,7 +94,7 @@ const Modal = ({
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="icon icon-tabler icon-tabler-circle-x stroke-white hover:stroke-red-500 hover:scale-105 active:scale-95"
+              class="md:hidden icon icon-tabler icon-tabler-circle-x stroke-white hover:stroke-red-500 hover:scale-105 active:scale-95"
               width="40"
               height="40"
               viewBox="0 0 24 24"
@@ -142,7 +142,7 @@ const Modal = ({
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ duration: 0.2, type: spring }}
-                className="absolute md:ml-[13rem]  mt-1 mx-3 bg-white px-3 rounded-lg z-[1000] no_transition"
+                className="absolute md:ml-[11rem]  mt-1 mx-3 bg-white px-3 rounded-lg z-[1000] no_transition"
               >
                 {spotifyLink && (
                   <li className="border-b border-black">
@@ -262,7 +262,7 @@ const Modal = ({
             )}
           </div>
           <h1 className="text-gray-300 font-extrabol">{yearReleased}</h1>
-          <div className="flex">
+          <div className="md:flex">
             <h1 className="text-white max-w-[28rem] py-2">
               {albumDescription}
             </h1>
@@ -306,7 +306,7 @@ const Modal = ({
             )}
           </div>
           <ul
-            className={`pt-3 pb-[20%] grid grid-cols-1 ${
+            className={`pt-3 pb-[10%] md:pb-0 grid grid-cols-1 ${
               folderContents.length > 4 ? "md:grid-cols-2" : ""
             } gap-4`}
           >
