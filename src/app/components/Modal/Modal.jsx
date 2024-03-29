@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import { motion, spring } from "framer-motion";
 import Player from "../Player";
 import Backdrop from "./Backdrop";
+import { useMediaQuery } from "@react-hook/media-query";
+import { useGesture } from "react-use-gesture";
 
 const Modal = ({
   folderName,
@@ -48,22 +50,36 @@ const Modal = ({
     handlePlay(); // Call handlePlay to start playback
   };
 
+  const bind = useGesture({
+    onDragEnd: (state) => {
+      if (state.down && state.movement[1] > 100) {
+        onClose(); // Close the modal if swiped down by at least 100px
+      }
+    },
+  });
+
+  const isLargeScreen = useMediaQuery("(min-width: 768px)");
+
   return (
     <div>
       <div className="w-full h-full">
         <Backdrop />
       </div>
       <motion.div
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        exit={{ scale: 0 }}
-        transition={{ type: spring, duration: 0.3 }}
+        {...bind()} // Attach the gesture bindings to the motion.div
+        initial={{
+          scale: isLargeScreen ? 0 : 1,
+          y: isLargeScreen ? 0 : "100%",
+        }}
+        animate={{ scale: 1, y: isLargeScreen ? 0 : 0 }}
+        exit={{ scale: isLargeScreen ? 0 : 1, y: isLargeScreen ? 0 : "100%" }}
+        transition={{ type: isLargeScreen ? spring : "tween", duration: 0.3 }}
         className="md:inset-0 md:flex md:items-center md:justify-center md:fixed absolute top-0 left-0 w-full h-full z-50"
         onClick={handleClickOutside}
       >
         <div
           onClick={dropdownModalCheck}
-          className="p-8 rounded-lg shadow-lg modal-content md:scale-100 h-[148vh] md:h-fit  backdrop-blur-3xl z-50"
+          className="p-8 rounded-lg shadow-lg modal-content md:scale-100 md:min-h-fit min-h-[100%]  md:h-fit  backdrop-blur-3xl z-50"
         >
           <div className="flex flex-col items-center md:hidden">
             <img
@@ -125,7 +141,8 @@ const Modal = ({
               <motion.ul
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
-                className="absolute ml-[13rem] mt-1 mx-3 bg-white px-3 rounded-lg z-[1000]"
+                transition={{ duration: 0.2, type: spring }}
+                className="absolute md:ml-[13rem]  mt-1 mx-3 bg-white px-3 rounded-lg z-[1000] no_transition"
               >
                 {spotifyLink && (
                   <li className="border-b border-black">
@@ -149,7 +166,7 @@ const Modal = ({
                         <path d="M7 9c2 -1 6 -2 10 .5" />
                       </svg>
                       <label className="mx-1 mt-[2px] cursor-pointer">
-                        Spotify Link
+                        Spotify
                       </label>
 
                       <svg
@@ -195,7 +212,7 @@ const Modal = ({
                       </svg>
 
                       <label className="mx-1 mt-[3px] py-1 cursor-pointer">
-                        Apple Music
+                        Apple
                       </label>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -289,7 +306,7 @@ const Modal = ({
             )}
           </div>
           <ul
-            className={`pt-3 grid grid-cols-1 ${
+            className={`pt-3 pb-[20%] grid grid-cols-1 ${
               folderContents.length > 4 ? "md:grid-cols-2" : ""
             } gap-4`}
           >

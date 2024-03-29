@@ -94,8 +94,8 @@ const Player = memo(({ currentSong, coverUrl }) => {
 
   return (
     <div className="flex flex-col items-center mt-10">
-      <div className="fixed bottom-0 bg-transparent md:backdrop-blur-3xl backdrop-blur-sm md:border-none border-t border-gray-700 w-full h-20 flex justify-center items-center z-[1000]">
-        <main className="flex mx-6">
+      <div className="fixed md:ml-2 bottom-0 bg-transparent md:backdrop-blur-3xl backdrop-blur-sm md:border-none border-t border-gray-700 w-full h-20 flex justify-center items-center z-[1000]">
+        <main className="flex mx-6 -ml-6">
           <img
             src={coverUrl}
             alt="Album Cover"

@@ -16,9 +16,7 @@ const MusicPlayer = () => {
   const [error, setError] = useState(null);
   const [folderLoading, setFolderLoading] = useState({});
   const [metadata, setMetadata] = useState(null); // State for metadata
-  const [currentSong, setCurrentSong] = useState(
-    "https://storage.googleapis.com/music-portfolio-67eb6.appspot.com/music/Isolated/Isolated.mp3"
-  );
+  const [currentSong, setCurrentSong] = useState(null);
 
   const handlePlay = () => {
     setIsPlaying(false);
