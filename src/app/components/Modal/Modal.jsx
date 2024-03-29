@@ -262,7 +262,7 @@ const Modal = ({
             )}
           </div>
           <h1 className="text-gray-300 font-extrabol">{yearReleased}</h1>
-          <div className="md:flex">
+          <div className="md:flex grid grid-flow-row">
             <h1 className="text-white max-w-[28rem] py-2">
               {albumDescription}
             </h1>
