@@ -28,6 +28,12 @@ const Modal = ({
     console.log(dropdown); // Output the current state (before the toggle)
   };
 
+  const dropdownModalCheck = () => {
+    if (dropdown) {
+      enableDropdown(false);
+    }
+  };
+
   const handleClickOutside = (event) => {
     if (!event.target.closest(".modal-content")) {
       onClose();
@@ -55,7 +61,10 @@ const Modal = ({
         className="md:inset-0 md:flex md:items-center md:justify-center md:fixed absolute top-0 left-0 w-full h-full z-50"
         onClick={handleClickOutside}
       >
-        <div className="p-8 rounded-lg shadow-lg modal-content md:scale-100 h-[148vh] md:h-fit  backdrop-blur-3xl z-50">
+        <div
+          onClick={dropdownModalCheck}
+          className="p-8 rounded-lg shadow-lg modal-content md:scale-100 h-[148vh] md:h-fit  backdrop-blur-3xl z-50"
+        >
           <div className="flex flex-col items-center md:hidden">
             <img
               src={`https://storage.googleapis.com/music-portfolio-67eb6.appspot.com/music/${folderName}/cover.jpg`}
@@ -113,43 +122,105 @@ const Modal = ({
               </svg>
             </div>
             {dropdown && (
-              <motion.div
+              <motion.ul
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
-                exit={{ scale: 0 }}
-                transition={{ duration: 0.2 }}
-                className="flex -mt-1 mx-2"
+                className="absolute ml-[13rem] mt-1 mx-3 bg-white px-3 rounded-lg z-[1000]"
               >
                 {spotifyLink && (
-                  <a href={spotifyLink} className="max-w-fit mt-2  h-8">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="icon icon-tabler icon-tabler-brand-spotify stroke-white hover:scale-105 hover:stroke-green-200 active:scale-95 transition-all duration-300"
-                      width="30"
-                      height="30"
-                      viewBox="0 0 24 24"
-                      stroke-width="1.5"
-                      stroke="#2c3e50"
-                      fill="none"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    >
-                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                      <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
-                      <path d="M8 11.973c2.5 -1.473 5.5 -.973 7.5 .527" />
-                      <path d="M9 15c1.5 -1 4 -1 5 .5" />
-                      <path d="M7 9c2 -1 6 -2 10 .5" />
-                    </svg>
-                  </a>
+                  <li className="border-b border-black">
+                    <a href={spotifyLink} className=" flex max-w-fit mt-2  h-8">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="icon icon-tabler icon-tabler-brand-spotify stroke-black group:stroke-green-500 -mt-[2px]"
+                        width="30"
+                        height="30"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="#2c3e50"
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+                        <path d="M8 11.973c2.5 -1.473 5.5 -.973 7.5 .527" />
+                        <path d="M9 15c1.5 -1 4 -1 5 .5" />
+                        <path d="M7 9c2 -1 6 -2 10 .5" />
+                      </svg>
+                      <label className="mx-1 mt-[2px] cursor-pointer">
+                        Spotify Link
+                      </label>
+
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="icon icon-tabler icon-tabler-arrow-up-right stroke-black mt-1"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="#2c3e50"
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M17 7l-10 10" />
+                        <path d="M8 7l9 0l0 9" />
+                      </svg>
+                    </a>
+                  </li>
                 )}
                 {appleMusicLink && (
-                  <a
-                    href={appleMusicLink}
-                    className="max-w-fit rounded-fullh-8 mt-2 mx-2"
-                  >
+                  <li className="flex border-b border-black cursor-pointer">
+                    <a
+                      href={appleMusicLink}
+                      className="flex max-w-fit rounded-full mt-[5px] cursor-pointer"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="icon icon-tabler icon-tabler-brand-apple stroke-black"
+                        width="30"
+                        height="30"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="#2c3e50"
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M8.286 7.008c-3.216 0 -4.286 3.23 -4.286 5.92c0 3.229 2.143 8.072 4.286 8.072c1.165 -.05 1.799 -.538 3.214 -.538c1.406 0 1.607 .538 3.214 .538s4.286 -3.229 4.286 -5.381c-.03 -.011 -2.649 -.434 -2.679 -3.23c-.02 -2.335 2.589 -3.179 2.679 -3.228c-1.096 -1.606 -3.162 -2.113 -3.75 -2.153c-1.535 -.12 -3.032 1.077 -3.75 1.077c-.729 0 -2.036 -1.077 -3.214 -1.077z" />
+                        <path d="M12 4a2 2 0 0 0 2 -2a2 2 0 0 0 -2 2" />
+                      </svg>
+
+                      <label className="mx-1 mt-[3px] py-1 cursor-pointer">
+                        Apple Music
+                      </label>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="icon icon-tabler icon-tabler-arrow-up-right stroke-black mt-[9px]"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="#2c3e50"
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M17 7l-10 10" />
+                        <path d="M8 7l9 0l0 9" />
+                      </svg>
+                    </a>
+                  </li>
+                )}
+                <li className="flex">
+                  <a className="flex -mt-1 max-h-fit rounded-full pt-[8px] cursor-pointer">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      className="icon icon-tabler icon-tabler-brand-apple stroke-white"
+                      class="icon icon-tabler icon-tabler-download stroke-black cursor-pointer"
                       width="30"
                       height="30"
                       viewBox="0 0 24 24"
@@ -160,32 +231,17 @@ const Modal = ({
                       stroke-linejoin="round"
                     >
                       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                      <path d="M8.286 7.008c-3.216 0 -4.286 3.23 -4.286 5.92c0 3.229 2.143 8.072 4.286 8.072c1.165 -.05 1.799 -.538 3.214 -.538c1.406 0 1.607 .538 3.214 .538s4.286 -3.229 4.286 -5.381c-.03 -.011 -2.649 -.434 -2.679 -3.23c-.02 -2.335 2.589 -3.179 2.679 -3.228c-1.096 -1.606 -3.162 -2.113 -3.75 -2.153c-1.535 -.12 -3.032 1.077 -3.75 1.077c-.729 0 -2.036 -1.077 -3.214 -1.077z" />
-                      <path d="M12 4a2 2 0 0 0 2 -2a2 2 0 0 0 -2 2" />
+                      <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" />
+                      <path d="M7 11l5 5l5 -5" />
+                      <path d="M12 4l0 12" />
                     </svg>
-                  </a>
-                )}
 
-                <a className="mt-2 max-h-fit rounded-full pt-[8px]">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="icon icon-tabler icon-tabler-download stroke-white cursor-pointer"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="#2c3e50"
-                    fill="none"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                    <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" />
-                    <path d="M7 11l5 5l5 -5" />
-                    <path d="M12 4l0 12" />
-                  </svg>
-                </a>
-              </motion.div>
+                    <label className="mt-[7px] mx-1 my-2 cursor-pointer">
+                      Download
+                    </label>
+                  </a>
+                </li>
+              </motion.ul>
             )}
           </div>
           <h1 className="text-gray-300 font-extrabol">{yearReleased}</h1>
@@ -206,16 +262,31 @@ const Modal = ({
               <h1 className="text-green-400 border-2 border-green-600  max-w-fit px-3 rounded-full my-2">
                 <span className="font-extrabold">Website Exclusive</span>
               </h1>
-            )}                
+            )}
             {youtubeLink && (
-              <a href={youtubeLink} className="text-red-500 border-2 border-red-800  max-w-fit px-3 rounded-full my-2 flex">
-              <span className="font-extrabold">Youtube Video</span>
-              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-up-right stroke-red-800 ml-1 mt-[1px]" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-  <path d="M17 7l-10 10" />
-  <path d="M8 7l9 0l0 9" />
-</svg>
-            </a>)}
+              <a
+                href={youtubeLink}
+                className="text-red-500 border-2 border-red-800  max-w-fit px-3 rounded-full my-2 flex"
+              >
+                <span className="font-extrabold">Youtube</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="icon icon-tabler icon-tabler-arrow-up-right stroke-red-800 ml-1 mt-[1px]"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="#2c3e50"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M17 7l-10 10" />
+                  <path d="M8 7l9 0l0 9" />
+                </svg>
+              </a>
+            )}
           </div>
           <ul
             className={`pt-3 grid grid-cols-1 ${
