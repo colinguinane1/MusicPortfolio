@@ -97,7 +97,7 @@ const Player = memo(({ currentSong, coverUrl }) => {
     currentSong && (
       <motion.main>
         <div className="flex flex-col items-center mt-10 ">
-          <div className="fixed md:ml-2 bottom-0 bg-transparent backdrop-blur-3xl md:scale-100 scale-90 rounded-lg w-full h-20 flex justify-center items-center z-[1000]">
+          <div className="fixed md:ml-2 bottom-0 bg-transparent backdrop-blur-3xl md:scale-100 scale-90 px-4 rounded-lg w-full h-20 flex justify-center items-center z-[1000]">
             <main className="flex mx-6 -ml-6">
               <img
                 src={coverUrl}
