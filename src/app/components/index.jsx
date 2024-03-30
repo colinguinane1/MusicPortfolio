@@ -3,9 +3,9 @@ import Player from "./Player";
 
 const Index = () => {
   return (
-    <>
+    <main className="">
       <AudioPlayer />
-    </>
+    </main>
   );
 };
 

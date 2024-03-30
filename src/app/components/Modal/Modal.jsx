@@ -1,5 +1,5 @@
 // Modal.jsx
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, spring } from "framer-motion";
 import Player from "../Player";
 import Backdrop from "./Backdrop";
@@ -24,6 +24,25 @@ const Modal = ({
   const artist = "Colin Guinane";
   const [currentSongIndex, setCurrentSongIndex] = useState(-1);
   const [dropdown, enableDropdown] = useState(false);
+  const [dominantColors, setDominantColors] = useState([]);
+
+  useEffect(() => {
+    const fetchColors = async () => {
+      try {
+        const imageUrl = `https://storage.googleapis.com/music-portfolio-67eb6.appspot.com/music/${folderName}/cover.jpg`;
+        const colors = await extractColors(imageUrl);
+        setDominantColors(colors);
+      } catch (error) {
+        console.error("Error extracting colors:", error);
+      }
+    };
+
+    fetchColors();
+  }, [folderName]);
+
+  const modalStyle = {
+    backgroundColor: dominantColors[0], // Use the first dominant color as the background color
+  };
 
   const dropdownList = () => {
     enableDropdown(!dropdown); // Toggle the dropdown state
@@ -68,7 +87,7 @@ const Modal = ({
         <Backdrop />
       </div>
       <motion.div
-        {...bind()} // Attach the gesture bindings to the motion.div
+        {...bind()}
         initial={{
           scale: isLargeScreen ? 0 : 1,
           y: isLargeScreen ? 0 : "100%",
@@ -76,18 +95,19 @@ const Modal = ({
         animate={{ scale: 1, y: isLargeScreen ? 0 : 0 }}
         exit={{ scale: isLargeScreen ? 0 : 1, y: isLargeScreen ? 0 : "100%" }}
         transition={{ type: isLargeScreen ? spring : "tween", duration: 0.3 }}
+        style={modalStyle}
         className="md:inset-0 md:flex md:items-center md:justify-center md:fixed absolute top-0 left-0 w-full h-full z-50"
         onClick={handleClickOutside}
       >
         <div
           onClick={dropdownModalCheck}
-          className="p-8 rounded-lg shadow-lg modal-content md:min-h-fit min-h-[160%] backdrop-blur-3xl z-50"
+          className="p-8 rounded-lg shadow-lg modal-content md:min-h-fit min-h-[160%] backdrop-blur-[30px] z-50"
         >
           <div className="flex flex-col items-center md:hidden">
             <img
               src={`https://storage.googleapis.com/music-portfolio-67eb6.appspot.com/music/${folderName}/cover.jpg`}
               alt="Icon"
-              className="h-2/3 w-2/3 px-2 py-6" // Increase image size as needed
+              className="h-2/3 w-2/3 px-2 py-6"
             />
           </div>
           <span
@@ -144,7 +164,7 @@ const Modal = ({
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ duration: 0.2, type: spring }}
-                  className="absolute mt-2 bg-white px-3 rounded-lg z-[1000] no_transition"
+                  className="absolute mt-2 -ml-[6.5rem] bg-white px-3 rounded-lg z-[1000] no_transition"
                 >
                   {spotifyLink && (
                     <li className="border-b border-black">
