@@ -101,7 +101,7 @@ const Modal = ({
       >
         <div
           onClick={dropdownModalCheck}
-          className="p-8 rounded-lg shadow-lg modal-content md:min-h-fit min-h-[160%] backdrop-blur-[30px] z-50"
+          className="p-8 rounded-lg shadow-lg modal-content md:min-h-fit min-h-[160%] gradient  backdrop-blur-3xl z-50"
         >
           <div className="flex flex-col items-center md:hidden">
             <img

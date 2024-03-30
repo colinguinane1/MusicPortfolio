@@ -14,7 +14,27 @@
           body {
             margin: 0;
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(45deg, #8a8f8f, #12123e, #189797, #0000ff6b);
+            background: linear-gradient(45deg, #8a8f8f, #12123e, #0c4e4e, #0000ff6b);
+            background-size: 400% 400%;
+            animation: gradientAnimation 8s ease infinite;
+          }
+
+          @keyframes gradientAnimation {
+            0% {
+              background-position: 0% 50%;
+            }
+            50% {
+              background-position: 100% 50%;
+            }
+            100% {
+              background-position: 0% 50%;
+            }
+          }
+
+          .gradient{
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(45deg, #8a8f8f, #12123e, #115555, #0000ff6b);
             background-size: 400% 400%;
             animation: gradientAnimation 8s ease infinite;
           }
