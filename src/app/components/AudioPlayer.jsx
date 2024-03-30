@@ -159,51 +159,49 @@ const MusicPlayer = () => {
         }
       />
       <div className="flex justify-center items-center flex-col">
-        {!isModalOpen && ( // Conditionally render the grid only if the modal is not open
-          <div className="grid grid-cols-3 gap-4 pt-4 items-center pb-[24%] md:pb-[10%]">
-            {folders.map((folder, index) => (
-              <div key={index} className="relative">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  transition={{ type: spring }}
-                  onClick={() => handleFolderSelect(folder.name)}
-                  className="block w-full h-full bg-gray-200 rounded-md overflow-hidden focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 no_transition"
-                >
-                  <img
-                    src={folder.coverUrl}
-                    alt={`Cover for ${folder.name}`}
-                    className="w-full h-auto"
-                  />
-                  {folderLoading[folder.name] && (
-                    <div className="absolute inset-0 flex justify-center items-center bg-gray-500 bg-opacity-50">
-                      <svg
-                        className="animate-spin h-8 w-8 text-white"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                      >
-                        <circle
-                          className="opacity-25"
-                          cx="12"
-                          cy="12"
-                          r="10"
-                          stroke="currentColor"
-                          strokeWidth="4"
-                        ></circle>
-                        <path
-                          className="opacity-75"
-                          fill="currentColor"
-                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A8.001 8.001 0 0120 12h-4a4 4 0 00-4-4V0C8.727 0 4.155 3.669 4 8.291z"
-                        ></path>
-                      </svg>
-                    </div>
-                  )}
-                </motion.button>
-              </div>
-            ))}
-          </div>
-        )}
+        <div className="grid grid-cols-3 gap-4 pt-4 items-center pb-[24%] md:pb-[10%]">
+          {folders.map((folder, index) => (
+            <div key={index} className="relative">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: spring }}
+                onClick={() => handleFolderSelect(folder.name)}
+                className="block w-full h-full bg-gray-200 rounded-md overflow-hidden focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 no_transition"
+              >
+                <img
+                  src={folder.coverUrl}
+                  alt={`Cover for ${folder.name}`}
+                  className="w-full h-auto"
+                />
+                {folderLoading[folder.name] && (
+                  <div className="absolute inset-0 flex justify-center items-center bg-gray-500 bg-opacity-50">
+                    <svg
+                      className="animate-spin h-8 w-8 text-white"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      ></circle>
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A8.001 8.001 0 0120 12h-4a4 4 0 00-4-4V0C8.727 0 4.155 3.669 4 8.291z"
+                      ></path>
+                    </svg>
+                  </div>
+                )}
+              </motion.button>
+            </div>
+          ))}
+        </div>
       </div>
       {isModalOpen && (
         <Modal
