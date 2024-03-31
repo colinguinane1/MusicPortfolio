@@ -5,6 +5,7 @@ import Modal from "./Modal/Modal";
 import { motion, spring } from "framer-motion";
 import Player from "./Player";
 import { Playball } from "next/font/google";
+import { useMediaQuery } from "@react-hook/media-query";
 
 const MusicPlayer = () => {
   const [folders, setFolders] = useState([]);
@@ -17,6 +18,7 @@ const MusicPlayer = () => {
   const [folderLoading, setFolderLoading] = useState({});
   const [metadata, setMetadata] = useState(null); // State for metadata
   const [currentSong, setCurrentSong] = useState(null);
+  const isLargeScreen = useMediaQuery("(min-width: 768px)");
   let playButtonPressed = false;
 
   const handlePlay = () => {
@@ -97,11 +99,14 @@ const MusicPlayer = () => {
   };
 
   const handleFolderSelect = async (folderName) => {
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: "smooth", // Smooth scrolling
-    });
+    if (!isLargeScreen) {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth",
+        // Smooth scrolling
+      });
+    }
     setSelectedFolder(folderName);
     fetchFolderContents(folderName);
     setIsModalOpen(true);

@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect, useRef, memo } from "react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import Modal from "./Modal/Modal";
 
 const Player = memo(({ currentSong, coverUrl }) => {
@@ -78,7 +78,6 @@ const Player = memo(({ currentSong, coverUrl }) => {
 
   const handleStop = () => {
     setIsPlaying(false);
-    currentSong(null);
     audioRef.current.currentTime = 0;
   };
 
@@ -100,8 +99,16 @@ const Player = memo(({ currentSong, coverUrl }) => {
 
   return (
     currentSong && (
-      <div className="flex flex-col items-center">
-        <div className="fixed md:ml-2 md:mb-0 mb-4 bottom-0 bg-transparent md:w-full w-[32rem] backdrop-blur-3xl md:scale-100 scale-90 px-6 rounded-lg h-20 flex justify-center items-center z-[1000]">
+      <motion.div
+        key="player"
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        exit={{ scale: 0 }}
+        className={`flex flex-col items-center scale-1 ${
+          currentSong ? "" : ""
+        }`}
+      >
+        <div className="fixed md:ml-2 md:mb-0 mb-4 bottom-0 bg shadow-lg-transparent md:w-full w-[28rem] backdrop-blur-3xl md:scale-100 scale-90 px-6 rounded-lg h-20 flex justify-center items-center z-[1000]">
           <main className="flex mx-6 -ml-6 z-10">
             <img
               src={coverUrl}
@@ -116,7 +123,9 @@ const Player = memo(({ currentSong, coverUrl }) => {
           </main>
           <audio ref={audioRef}></audio>
           {isPlaying && (
-            <div className="pt-[71px] absolute">
+            <div className="pt-[67px] md:mt-[-153px] absolute">
+              {" "}
+              {/* {nice} */}
               <input
                 type="range"
                 min="0"
@@ -130,7 +139,7 @@ const Player = memo(({ currentSong, coverUrl }) => {
           {!isPlaying && (
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="icon icon-tabler icon-tabler-player-play-filled mx-4 stroke-white hover:scale-105 active:scale-95 cursor-pointer hover:stroke-blue-400"
+              className="icon icon-tabler icon-tabler-player-play-filled stroke-black rounded-full p-2 bg-white hover:scale-105 active:scale-95 cursor-pointer hover:stroke-blue-400 z-[100]"
               width="44"
               height="44"
               viewBox="0 0 24 24"
@@ -147,7 +156,7 @@ const Player = memo(({ currentSong, coverUrl }) => {
           {isPlaying && (
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="icon icon-tabler icon-tabler-player-pause-filled mx-4 stroke-white hover:scale-105 active:scale-95 cursor-pointer hover:stroke-blue-400"
+              className="icon icon-tabler icon-tabler-player-pause-filled stroke-black bg-white rounded-full p-2 hover:scale-105 active:scale-95 cursor-pointer hover:stroke-blue-400 z-[100]"
               width="44"
               height="44"
               viewBox="0 0 24 24"
@@ -163,7 +172,7 @@ const Player = memo(({ currentSong, coverUrl }) => {
           )}
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="icon icon-tabler icon-tabler-player-stop-filled mx-4 stroke-white"
+            className="icon icon-tabler icon-tabler-player-stop-filled mx-4 stroke-black bg-white rounded-full p-2 hover:stroke-blue-400 hover:scale-105 active:scale-95 cursor-pointer z-[100]"
             width="44"
             height="44"
             viewBox="0 0 24 24"
@@ -262,7 +271,7 @@ const Player = memo(({ currentSong, coverUrl }) => {
             </div>
           </div>
         )}
-      </div>
+      </motion.div>
     )
   );
 });
