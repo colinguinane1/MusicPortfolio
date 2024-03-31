@@ -182,7 +182,7 @@ const MusicPlayer = () => {
                 <img
                   src={folder.coverUrl}
                   alt={`Cover for ${folder.name}`}
-                  className="w-full h-auto"
+                  className="w-60"
                 />
                 {folderLoading[folder.name] && (
                   <div className="absolute inset-0 flex justify-center items-center bg-gray-500 bg-opacity-50">
