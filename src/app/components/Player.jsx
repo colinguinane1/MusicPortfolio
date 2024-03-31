@@ -108,7 +108,7 @@ const Player = memo(({ currentSong, coverUrl }) => {
           currentSong ? "" : ""
         }`}
       >
-        <div className="fixed md:ml-2 md:mb-0 mb-4 bottom-0 bg shadow-lg-transparent md:w-full w-[26rem] backdrop-blur-3xl md:scale-100 scale-90 px-6 rounded-lg h-20 flex justify-center items-center z-[1000]">
+        <div className="fixed md:ml-2 md:mb-0 mb-8 bottom-0 bg shadow-lg-transparent md:w-full w-[26rem] backdrop-blur-3xl md:scale-100 scale-90 px-6 rounded-lg h-20 flex justify-center items-center z-[1000]">
           <main className="flex mx-6 -ml-6 z-10">
             <img
               src={coverUrl}
