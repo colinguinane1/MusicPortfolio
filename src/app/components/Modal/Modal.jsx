@@ -6,6 +6,7 @@ import Backdrop from "./Backdrop";
 import { useMediaQuery } from "@react-hook/media-query";
 import { useGesture } from "react-use-gesture";
 import { Island_Moments, Playball } from "next/font/google";
+/* import { extractColorsFromImage } from "../utils/colorExtractor"; */
 
 const Modal = ({
   playButtonPressed,
@@ -85,6 +86,12 @@ const Modal = ({
   const isLargeScreen = useMediaQuery("(min-width: 768px)");
 
   const downloadLink = `https://storage.googleapis.com/music-portfolio-67eb6.appspot.com/music/${folderName}`;
+
+  async function getServerSideProps() {
+    const imageUrl = `https://storage.googleapis.com/music-portfolio-67eb6.appspot.com/music/${folderName}/cover.jpg`;
+    const colors = await extractColorsFromImage(imageUrl);
+    console.log(colors);
+  }
 
   return (
     <div>

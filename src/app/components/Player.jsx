@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef, memo } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Modal from "./Modal/Modal";
+import Image from "next/image";
 
 const Player = memo(({ currentSong, coverUrl }) => {
   const audioRef = useRef(new Audio());
@@ -108,7 +109,7 @@ const Player = memo(({ currentSong, coverUrl }) => {
           currentSong ? "" : ""
         }`}
       >
-        <div className="fixed md:ml-2 md:mb-0 mb-8 bottom-0 bg shadow-lg-transparent md:w-full w-[26rem] backdrop-blur-3xl md:scale-100 scale-90 px-6 rounded-lg h-20 flex justify-center items-center z-[1000]">
+        <div className="fixed md:ml-2 md:mb-0 mb-8 bottom-0 bg shadow-lg-transparent md:w-full w-full backdrop-blur-3xl md:scale-100 scale-90 rounded-lg h-20 flex justify-center items-center z-[1000]">
           <main className="flex mx-6 -ml-6 z-10">
             <img
               src={coverUrl}
@@ -116,14 +117,14 @@ const Player = memo(({ currentSong, coverUrl }) => {
               className="w-12 h-12 rounded-md mx-6 cursor-pointer"
               onClick={playerToggle}
             />
-            <div className="">
+            <div onclick={playerToggle} className="">
               <h1 className="text-white">{tidyFileName(currentSong)}</h1>
               <h1 className="text-gray-400">{artist}</h1>
             </div>
           </main>
           <audio ref={audioRef}></audio>
           {isPlaying && (
-            <div className="pt-[67px] md:mt-[-148px] absolute">
+            <div className="pt-[67px] md:mt-[-150px] absolute">
               {" "}
               {/* {nice} */}
               <input
@@ -192,7 +193,13 @@ const Player = memo(({ currentSong, coverUrl }) => {
           )}
         </div>
         {bigPlayer && (
-          <div className="fixed z-[1000] flex justify-center items-center w-full h-full top-0">
+          <motion.div
+            initial={{ y: "100%" }}
+            animate={{ y: 0 }}
+            transition={{ duration: 0.3 }}
+            exit={{ y: "100%" }}
+            className="fixed z-[1000] flex justify-center items-center w-full h-full top-0 no_transition"
+          >
             <div className="backdrop-blur-3xl w-full h-full flex justify-center items-center">
               <button onClick={playerToggle} className="absolute top-2 right-2">
                 {" "}
@@ -291,7 +298,7 @@ const Player = memo(({ currentSong, coverUrl }) => {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         )}
       </motion.div>
     )
