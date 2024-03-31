@@ -16,7 +16,7 @@
             font-family: 'Inter', sans-serif;
             background: linear-gradient(45deg, #8a8f8f, #12123e, #0c4e4e, #0000ff6b);
             background-size: 400% 400%;
-            animation: gradientAnimation 8s ease infinite;
+            /* animation: gradientAnimation 8s ease infinite; */
           }
 
           @keyframes gradientAnimation {
@@ -36,8 +36,12 @@
             font-family: 'Inter', sans-serif;
             background: linear-gradient(45deg, #8a8f8f7a, #12123e, #11555588, #0000ff6b);
             background-size: 400% 400%;
-            animation: gradientAnimation 8s ease infinite;
+            /* animation: gradientAnimation 8s ease infinite; */
           }
+
+          /* .animate {   -- ANIMATION DISABLED DURING DEVELOPMENT FOR PERFORMANCE
+            animation: gradientAnimation 8s ease infinite;
+          } */
           
           @keyframes gradientAnimation {
             0% {
@@ -77,11 +81,43 @@
 }
 
 input[type="range"] {
-  height: 2px;
+  height: 3px;
+  width: 28rem;
   -webkit-appearance: none;
   margin: 10px 0;
 }
 
+input[type="range"]:hover{
+  padding-top: 6px;
+}
+
 input[type="range"]:focus {
   outline: none;
+  background-color: #0c4e4e;
+}
+/* Track */
+input[type="range"]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 2px;
+  cursor: pointer;
+  background-color: #ccc; /* Default color for the part before the thumb */
+}
+
+/* Colored part of the track */
+input[type="range"]::-webkit-slider-runnable-track::before {
+  content: "";
+  display: block;
+  position: absolute;
+  height: 100%;
+  width: calc((100% - var(--value)) * 1px); /* Calculate width based on the value */
+  background-color: #5cd5eb; /* Color for the passed part */
+}
+
+input[type="range"]::-webkit-slider-thumb{
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  margin-top: -1px;
+  background-color: #001eff;
+  height: 3.8px;
+  width: 1rem;    
 }

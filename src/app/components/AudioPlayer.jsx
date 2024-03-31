@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import Modal from "./Modal/Modal";
 import { motion, spring } from "framer-motion";
 import Player from "./Player";
+import { Playball } from "next/font/google";
 
 const MusicPlayer = () => {
   const [folders, setFolders] = useState([]);
@@ -16,9 +17,12 @@ const MusicPlayer = () => {
   const [folderLoading, setFolderLoading] = useState({});
   const [metadata, setMetadata] = useState(null); // State for metadata
   const [currentSong, setCurrentSong] = useState(null);
+  let playButtonPressed = false;
 
   const handlePlay = () => {
     setIsPlaying(false);
+    playButtonPressed = true;
+    console.log(playButtonPressed);
   };
 
   const handlePause = () => {
@@ -93,6 +97,11 @@ const MusicPlayer = () => {
   };
 
   const handleFolderSelect = async (folderName) => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth", // Smooth scrolling
+    });
     setSelectedFolder(folderName);
     fetchFolderContents(folderName);
     setIsModalOpen(true);
@@ -148,6 +157,7 @@ const MusicPlayer = () => {
   return (
     <div>
       <Player
+        playButtonPressed={playButtonPressed}
         currentSong={currentSong}
         isPlaying={isPlaying}
         setIsPlaying={setIsPlaying}
@@ -205,12 +215,14 @@ const MusicPlayer = () => {
       </div>
       {isModalOpen && (
         <Modal
+          playButtonPressed={playButtonPressed}
           folderName={selectedFolder}
           folderContents={folderContents}
           tidyFileName={tidyFileName}
           onClose={handleCloseModal}
           setCurrentSong={setCurrentSong}
           handlePlay={handlePlay}
+          isPlaying={isPlaying}
           // Pass metadata to the Modal component
           artistChoice={metadata ? metadata.artistChoice : ""}
           websiteExclusive={metadata ? metadata.websiteExclusive : ""}

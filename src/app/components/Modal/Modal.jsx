@@ -5,10 +5,12 @@ import Player from "../Player";
 import Backdrop from "./Backdrop";
 import { useMediaQuery } from "@react-hook/media-query";
 import { useGesture } from "react-use-gesture";
-import { Island_Moments } from "next/font/google";
+import { Island_Moments, Playball } from "next/font/google";
 
 const Modal = ({
+  playButtonPressed,
   folderName,
+  isPlaying,
   folderContents,
   tidyFileName,
   onClose,
@@ -67,7 +69,7 @@ const Modal = ({
     const filePath = `https://storage.googleapis.com/music-portfolio-67eb6.appspot.com/${encodedFileName}`;
     setCurrentSong(filePath);
     setCurrentSongIndex(index);
-    handlePlay(); // Call handlePlay to start playback
+    playButtonPressed = true;
   };
 
   const bind = useGesture({
@@ -77,6 +79,8 @@ const Modal = ({
       }
     },
   });
+
+  console.log(playButtonPressed);
 
   const isLargeScreen = useMediaQuery("(min-width: 768px)");
 
@@ -102,7 +106,10 @@ const Modal = ({
       >
         <div
           onClick={dropdownModalCheck}
-          className={`p-8 rounded-lg shadow-lg modal-content md:min-h-fit min-h-[160%] backdrop-blur-3xl z-50 ${isLargeScreen ? "" : "gradient"}`}
+          id="modal"
+          className={`p-8 rounded-lg shadow-lg modal-content md:min-h-fit min-h-[200%] backdrop-blur-3xl z-50 ${
+            isLargeScreen ? "" : "gradient"
+          } ${playButtonPressed ? "" : ""}`}
         >
           <div className="flex flex-col items-center md:hidden">
             <img
@@ -112,7 +119,7 @@ const Modal = ({
             />
           </div>
           <span
-            className="absolute right-0 p-2 mt-6 top-0 cursor-pointer"
+            className="absolute right-0 p-2 mt-0 top-0  cursor-pointer"
             onClick={onClose}
           >
             <svg
@@ -137,7 +144,7 @@ const Modal = ({
             <div
               className={`group border max-w-fit h-8 ${
                 dropdown ? "bg-white" : ""
-              } rounded-full border-2 mt-1 ml-5`}
+              } ${spotifyLink ? "" : "hidden"} rounded-full border-2 mt-1 ml-5`}
               onClick={dropdownList}
             >
               <svg
