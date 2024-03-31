@@ -108,12 +108,12 @@ const Player = memo(({ currentSong, coverUrl }) => {
           currentSong ? "" : ""
         }`}
       >
-        <div className="fixed md:ml-2 md:mb-0 mb-4 bottom-0 bg shadow-lg-transparent md:w-full w-[28rem] backdrop-blur-3xl md:scale-100 scale-90 px-6 rounded-lg h-20 flex justify-center items-center z-[1000]">
+        <div className="fixed md:ml-2 md:mb-0 mb-4 bottom-0 bg shadow-lg-transparent md:w-full w-[26rem] backdrop-blur-3xl md:scale-100 scale-90 px-6 rounded-lg h-20 flex justify-center items-center z-[1000]">
           <main className="flex mx-6 -ml-6 z-10">
             <img
               src={coverUrl}
               alt="Album Cover"
-              className="w-10 h-10 rounded-md mx-6 cursor-pointer"
+              className="w-12 h-12 rounded-md mx-6 cursor-pointer"
               onClick={playerToggle}
             />
             <div className="">
@@ -123,7 +123,7 @@ const Player = memo(({ currentSong, coverUrl }) => {
           </main>
           <audio ref={audioRef}></audio>
           {isPlaying && (
-            <div className="pt-[67px] md:mt-[-153px] absolute">
+            <div className="pt-[67px] md:mt-[-148px] absolute">
               {" "}
               {/* {nice} */}
               <input
@@ -194,34 +194,56 @@ const Player = memo(({ currentSong, coverUrl }) => {
         {bigPlayer && (
           <div className="fixed z-[1000] flex justify-center items-center w-full h-full top-0">
             <div className="backdrop-blur-3xl w-full h-full flex justify-center items-center">
-              <div className="grid">
+              <button onClick={playerToggle} className="absolute top-2 right-2">
+                {" "}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="icon icon-tabler icon-tabler-circle-x stroke-white hover:stroke-red-500 hover:scale-105 active:scale-95"
+                  width="40"
+                  height="40"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="#2c3e50"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+                  <path d="M10 10l4 4m0 -4l-4 4" />
+                </svg>
+              </button>
+              <div className="text-center">
                 <img
                   src={coverUrl}
                   alt="Album Cover"
-                  className="-mt-60 scale-125 rounded-md mx-10 my-10"
+                  className="w-[80%] md:w-[80%] h-auto md:mt-12 mx-auto my-6"
                 />
-                <div className="block">
+                <div className="text-left ml-12">
                   <h1 className="text-white">{tidyFileName(currentSong)}</h1>
                   <h1 className="text-gray-400">{artist}</h1>
                 </div>
-                <div className="flex">
-                  <div>
+                <div className="">
+                  <div className="flex justify-center my-3 items-center">
                     <input
                       type="range"
                       min="0"
                       max="100"
                       value={progress}
                       onChange={handleSeek}
-                      className="mx-10"
+                      className="max-w-[65%] cursor-pointer"
                     />
+                    <h1 className="text-white px-3">
+                      {remainingTime != 0 && formatTime(remainingTime)}
+                    </h1>
                   </div>
-                  <div className="flex">
+                  <div className="flex items-center justify-center my-4">
                     {!isPlaying && (
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="icon icon-tabler icon-tabler-player-play-filled mx-4 stroke-white hover:scale-105 active:scale-95 cursor-pointer hover:stroke-blue-400"
-                        width="44"
-                        height="44"
+                        className="icon icon-tabler icon-tabler-player-play-filled stroke-black rounded-full p-2 bg-white hover:scale-105 active:scale-95 cursor-pointer hover:stroke-blue-400 z-[100]"
+                        width="50"
+                        height="50"
                         viewBox="0 0 24 24"
                         strokeWidth="1.5"
                         stroke="#2c3e50"
@@ -236,9 +258,9 @@ const Player = memo(({ currentSong, coverUrl }) => {
                     {isPlaying && (
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="icon icon-tabler icon-tabler-player-pause-filled mx-4 stroke-white hover:scale-105 active:scale-95 cursor-pointer hover:stroke-blue-400"
-                        width="44"
-                        height="44"
+                        className="icon icon-tabler icon-tabler-player-pause-filled stroke-black bg-white rounded-full p-2 hover:scale-105 active:scale-95 cursor-pointer hover:stroke-blue-400 z-[100]"
+                        width="50"
+                        height="50"
                         viewBox="0 0 24 24"
                         strokeWidth="1.5"
                         stroke="#2c3e50"
@@ -252,7 +274,7 @@ const Player = memo(({ currentSong, coverUrl }) => {
                     )}
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      className="icon icon-tabler icon-tabler-player-stop-filled mx-4 stroke-white"
+                      className="icon icon-tabler icon-tabler-player-stop-filled mx-4 stroke-black bg-white rounded-full p-2 hover:stroke-blue-400 hover:scale-105 active:scale-95 cursor-pointer z-[100]"
                       width="44"
                       height="44"
                       viewBox="0 0 24 24"
