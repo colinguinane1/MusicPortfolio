@@ -81,8 +81,6 @@ const Modal = ({
     },
   });
 
-  console.log(playButtonPressed);
-
   const isLargeScreen = useMediaQuery("(min-width: 768px)");
 
   const downloadLink = `https://storage.googleapis.com/music-portfolio-67eb6.appspot.com/music/${folderName}`;

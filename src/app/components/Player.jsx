@@ -68,9 +68,17 @@ const Player = memo(({ currentSong, coverUrl }) => {
 
   const handlePlay = () => {
     setIsPlaying(true);
-    playButtonPressed = true;
-    console.log(playButtonPressed);
-    return <audio ref={audioRef}></audio>;
+    audioRef.current.muted = true; // Mute the audio initially
+    audioRef.current
+      .play()
+      .then(() => {
+        // After the play promise resolves, unmute the audio
+        audioRef.current.muted = false;
+      })
+      .catch((error) => {
+        console.error("Playback error:", error);
+        playButtonPressed = true;
+      });
   };
 
   const handlePause = () => {
@@ -105,12 +113,10 @@ const Player = memo(({ currentSong, coverUrl }) => {
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         exit={{ scale: 0 }}
-        className={`flex flex-col items-center scale-1 ${
-          currentSong ? "" : ""
-        }`}
+        className={`flex flex-col items-center ${currentSong ? "" : ""}`}
       >
         <div className="fixed md:ml-2 md:mb-0 mb-8 bottom-0 bg shadow-lg-transparent md:w-full w-full backdrop-blur-3xl md:scale-100 scale-90 rounded-lg h-20 flex justify-center items-center z-[1000]">
-          <main className="flex mx-6 -ml-6 z-10">
+          <main className="flex mx-2 z-10">
             <img
               src={coverUrl}
               alt="Album Cover"
@@ -127,20 +133,23 @@ const Player = memo(({ currentSong, coverUrl }) => {
             <div className="pt-[67px] md:mt-[-150px] absolute">
               {" "}
               {/* {nice} */}
-              <input
-                type="range"
-                min="0"
-                max="100"
-                value={progress}
-                onChange={handleSeek}
-                className="w-full max-h-fit bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-300 z-0"
-              />
+              {isPlaying && (
+                <input
+                  type="range"
+                  min="0"
+                  max="100"
+                  value={progress}
+                  onChange={handleSeek}
+                  className="w-full max-h-fit bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-300 z-0"
+                />
+              )}
             </div>
           )}
           {!isPlaying && (
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="icon icon-tabler icon-tabler-player-play-filled stroke-black rounded-full p-2 bg-white hover:scale-105 active:scale-95 cursor-pointer hover:stroke-blue-400 z-[100]"
+              id="play"
+              className="icon icon-tabler icon-tabler-player-play-filled stroke-black rounded-full ml-2 p-2 bg-white hover:scale-105 active:scale-95 cursor-pointer hover:stroke-blue-400 z-[100]"
               width="44"
               height="44"
               viewBox="0 0 24 24"
@@ -157,7 +166,7 @@ const Player = memo(({ currentSong, coverUrl }) => {
           {isPlaying && (
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="icon icon-tabler icon-tabler-player-pause-filled stroke-black bg-white rounded-full p-2 hover:scale-105 active:scale-95 cursor-pointer hover:stroke-blue-400 z-[100]"
+              className="icon icon-tabler icon-tabler-player-pause-filled stroke-black bg-white rounded-full ml-2 p-2 hover:scale-105 active:scale-95 cursor-pointer hover:stroke-blue-400 z-[100]"
               width="44"
               height="44"
               viewBox="0 0 24 24"
@@ -173,7 +182,7 @@ const Player = memo(({ currentSong, coverUrl }) => {
           )}
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="icon icon-tabler icon-tabler-player-stop-filled mx-4 stroke-black bg-white rounded-full p-2 hover:stroke-blue-400 hover:scale-105 active:scale-95 cursor-pointer z-[100]"
+            className="icon icon-tabler icon-tabler-player-stop-filled mx-4 stroke-black bg-white rounded-full ml-2 p-2 hover:stroke-blue-400 hover:scale-105 active:scale-95 cursor-pointer z-[100]"
             width="44"
             height="44"
             viewBox="0 0 24 24"
