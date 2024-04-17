@@ -10,13 +10,17 @@
   transition: none;
 }
 
+body{
+  background-color: rgb(55, 55, 55);
+}
 
-          body {
+
+/*           body {
             margin: 0;
             font-family: 'Inter', sans-serif;
             background: linear-gradient(45deg, #8a8f8f, #12123e, #0c4e4e, #0000ff6b);
             background-size: 400% 400%;
-            /* animation: gradientAnimation 8s ease infinite; */
+            animation: gradientAnimation 8s ease infinite; 
           }
 
           @keyframes gradientAnimation {
@@ -29,19 +33,18 @@
             100% {
               background-position: 0% 50%;
             }
-          }
+          } */
 
           .gradient {
             margin: 0;
             font-family: 'Inter', sans-serif;
             background: linear-gradient(45deg, #8a8f8f7a, #12123e, #11555588, #0000ff6b);
             background-size: 400% 400%;
-            /* animation: gradientAnimation 8s ease infinite; */
           }
 
           /* .animate {   -- ANIMATION DISABLED DURING DEVELOPMENT FOR PERFORMANCE
             animation: gradientAnimation 8s ease infinite;
-          } */
+          } 
           
           @keyframes gradientAnimation {
             0% {
@@ -54,7 +57,7 @@
               background-position: 0% 50%;
             }
           }
-
+ */
 
 .yellow_gradient{
   @apply from-yellow-500 to-yellow-300
@@ -66,13 +69,6 @@
   --background-end-rgb: 255, 255, 255;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
 
 @layer utilities {
   .text-balance {
@@ -80,7 +76,7 @@
   }
 }
 
-input[type='range'] {
+input[id='songDuration'] {
   overflow: hidden;
   width: 24rem;
   height: 5px;
@@ -89,7 +85,7 @@ input[type='range'] {
   transition: 1s all ease-out;
 }
 
-input[type='range']::-webkit-slider-runnable-track {
+input[id='songDuration']::-webkit-slider-runnable-track {
   height: 10px;
   -webkit-appearance: none;
   transition: 1s all ease-out;
@@ -97,7 +93,7 @@ input[type='range']::-webkit-slider-runnable-track {
   margin-top: -1px;
 }
 
-input[type='range']::-webkit-slider-thumb {
+input[id='songDuration']::-webkit-slider-thumb {
   width: 10px;
   -webkit-appearance: none;
   height: 10px;

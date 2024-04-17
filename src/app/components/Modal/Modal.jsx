@@ -120,7 +120,7 @@ const Modal = ({
             <img
               src={`https://storage.googleapis.com/music-portfolio-67eb6.appspot.com/music/${folderName}/cover.jpg`}
               alt="Icon"
-              className="h-2/3 w-2/3 px-2 py-6"
+              className="h-auto w-auto max-h-fit my-6 bg-black rounded-[20px]"
             />
           </div>
           <span
@@ -145,11 +145,15 @@ const Modal = ({
             </svg>
           </span>
           <div className="flex">
-            <h2 className="font-bold mb-4 text-4xl text-white">{folderName}</h2>{" "}
+            <h2 className="font-bold mb-2 md:text-4xl text-2xl text-white">
+              {folderName}
+            </h2>{" "}
             <div
-              className={`group border max-w-fit h-8 ${
+              className={`group border max-w-fit h-6 md:mt-[9.5px] ${
                 dropdown ? "bg-white" : ""
-              } ${spotifyLink ? "" : "hidden"} rounded-full border-2 mt-1 ml-5`}
+              } ${
+                spotifyLink ? "" : "hidden"
+              } rounded-full border-2 mt-[2px] ml-2`}
               onClick={dropdownList}
             >
               <svg
@@ -157,8 +161,8 @@ const Modal = ({
                 class={`icon icon-tabler icon-tabler-dots ${
                   dropdown ? "stroke-black" : "stroke-white"
                 } cursor-pointer max-h-fit`}
-                width="30"
-                height="30"
+                width="20"
+                height="20"
                 viewBox="0 0 24 24"
                 stroke-width="1.5"
                 stroke="#2c3e50"
@@ -275,14 +279,16 @@ const Modal = ({
               )}
             </div>
           </div>
-          <h1 className="text-gray-300 font-extrabol">{yearReleased}</h1>
+          <h1 className="text-gray-300 font-extrabold md:text-base text-sm">
+            {yearReleased}
+          </h1>
           <div className="md:flex grid grid-flow-row">
-            <h1 className="text-white max-w-[28rem] py-2">
+            <h1 className="text-white max-w-[28rem] md:text-base text-sm py-2">
               {albumDescription}
             </h1>
           </div>
 
-          <div className="border-b border-gray-500 pb-2 border-opacity-50 md:flex gap-3">
+          <div className="border-b border-gray-500 pb-2 border-opacity-50 md:flex gap-3 md:text-base text-sm">
             {artistChoice && (
               <h1 className="text-yellow-300 border-2 border-yellow-600 max-w-fit px-3 rounded-full my-2">
                 Artist&apos;s Choice:{" "}
@@ -290,19 +296,23 @@ const Modal = ({
               </h1>
             )}
             {websiteExclusive && (
-              <h1 className="text-green-400 border-2 border-green-600  max-w-fit px-3 rounded-full my-2">
-                <span className="font-extrabold">Website Exclusive</span>
+              <h1 className="text-green-400 border-2 border-green-600  max-w-fit px-3 my-2 rounded-full">
+                <span className="font-extrabold md:text-base text-sm">
+                  Website Exclusive
+                </span>
               </h1>
             )}
             {youtubeLink && (
               <a
                 href={youtubeLink}
-                className="text-red-500 border-2 border-red-800  max-w-fit px-3 rounded-full my-2 flex"
+                className="text-red-500 border-2 border-red-800 my-2  max-w-fit px-3 rounded-full flex"
               >
-                <span className="font-extrabold">Youtube</span>
+                <span className="font-extrabold md:text-base text-sm">
+                  Youtube
+                </span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="icon icon-tabler icon-tabler-arrow-up-right stroke-red-800 ml-1 mt-[1px]"
+                  class="icon icon-tabler icon-tabler-arrow-up-right stroke-red-500"
                   width="20"
                   height="20"
                   viewBox="0 0 24 24"
@@ -320,14 +330,14 @@ const Modal = ({
             )}
           </div>
           <ul
-            className={`pt-3 pb-[10%] md:pb-0 grid grid-cols-1 ${
+            className={`pt-3 pb-[30%] md:pb-0 grid grid-cols-1 ${
               folderContents.length > 4 ? "md:grid-cols-2" : ""
             } gap-4`}
           >
             {folderContents.map((item, index) => (
               <li
                 key={index}
-                className="flex items-center text-white space-x-4 py-2 px-2 hover:bg-blue-500 rounded-md hover:scale-105 active:scale-95 transition-all duration-400 cursor-pointer"
+                className="flex items-center text-white md:text-base text-sm space-x-4 py-2 px-2 hover:bg-blue-500 rounded-md hover:scale-105 active:scale-95 transition-all duration-400 cursor-pointer"
                 onClick={() => handleItemClick(item.name, index)}
               >
                 {index === currentSongIndex && (
@@ -341,7 +351,7 @@ const Modal = ({
                 <img
                   src={`https://storage.googleapis.com/music-portfolio-67eb6.appspot.com/music/${folderName}/cover.jpg`}
                   alt="Icon"
-                  className="h-16 w-16" // Increase image size as needed
+                  className="md:h-16 rounded-lg md:w-16 h-14 w-14" // Increase image size as needed
                 />
                 <div className="min-w-fit">
                   <h3 className="">{tidyFileName(item.name)}</h3>

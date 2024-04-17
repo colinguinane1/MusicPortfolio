@@ -167,6 +167,7 @@ const MusicPlayer = () => {
         isPlaying={isPlaying}
         setIsPlaying={setIsPlaying}
         handlePlay={handlePlay}
+        songs={folderContents.map((item) => item.name)}
         coverUrl={
           selectedFolder
             ? folders.find((folder) => folder.name === selectedFolder).coverUrl
