@@ -175,7 +175,7 @@ const MusicPlayer = () => {
         }
       />
       <div className="flex justify-center items-center flex-col mx-[1rem]">
-        <div className="grid grid-cols-3 gap-4 pt-4 items-center pb-[24%] md:pb-[10%]">
+        <div className="grid grid-cols-3 gap-4 pt-4 items-center pb-[35%] md:pb-[10%]">
           {folders.map((folder, index) => (
             <div key={index} className="relative">
               <motion.button
