@@ -8,11 +8,11 @@ import { Poppins } from "next/font/google";
 import { Raleway } from "next/font/google";
 
 const poppins = Poppins({ subsets: ["latin"], weight: "900" });
-const mont = Raleway({ subsets: ["latin"] });
+const raleway = Raleway({ subsets: ["latin"] });
 
 const Index = () => {
   return (
-    <main className={mont.className}>
+    <main className={raleway.className}>
       <motion.div
         initial={{ y: -100 }} // Start from off-screen (above)
         animate={{ y: 0 }} // Animate to y: 0 (on-screen)
@@ -22,7 +22,8 @@ const Index = () => {
         <Navbar />
       </motion.div>
       <div className="">
-        <AudioPlayer />
+        <AudioPlayer
+        raleway={raleway} />
       </div>
     </main>
   );

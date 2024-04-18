@@ -42,8 +42,8 @@ body{
 
           .gradient {
             margin: 0;
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(45deg, #8a8f8f7a, #12123e, #11555588, #0000ff6b);
+/*             background: linear-gradient(45deg, #8a8f8f7a, #12123e, #11555588, #0000ff6b); */
+background-color: rgb(0, 0, 0);
             background-size: 400% 400%;
           }
 

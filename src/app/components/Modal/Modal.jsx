@@ -5,8 +5,6 @@ import Player from "../Player";
 import Backdrop from "./Backdrop";
 import { useMediaQuery } from "@react-hook/media-query";
 import { useGesture } from "react-use-gesture";
-import { Island_Moments, Playball } from "next/font/google";
-import { extractColors } from "extract-colors";
 
 const Modal = ({
   setCurrentCover,
@@ -110,15 +108,15 @@ const Modal = ({
         exit={{ scale: isLargeScreen ? 0 : 1, y: isLargeScreen ? 0 : "100%" }}
         transition={{ type: isLargeScreen ? spring : "tween", duration: 0.3 }}
         style={modalStyle}
-        className="md:inset-0 md:flex md:items-center md:justify-center md:fixed absolute top-0 left-0 w-full h-full z-50 pt-14"
+        className="md:inset-0 md:flex md:items-center md:justify-center md:fixed absolute md:-mt-10 top-0 left-0 w-full h-full z-50 pt-14"
         onClick={handleClickOutside}
       >
         <div
           onClick={dropdownModalCheck}
           id="modal"
-          className={`p-8 rounded-lg shadow-lg modal-content md:min-h-fit min-h-[500%] backdrop-blur-3xl z-50 ${
-            isLargeScreen ? "" : "gradient"
-          }`}
+          className={`p-8 rounded-lg shadow-lg modal-content md:min-h-fit min-h-[500%] backdrop-blur-3xl z-50 
+          ${isLargeScreen ? "" : "gradient"}
+          `}
         >
           <div className="flex flex-col items-center md:hidden">
             {" "}
@@ -364,14 +362,14 @@ const Modal = ({
             )}
           </div>
           <ul
-            className={`pt-3 pb-[30%] md:pb-0 grid grid-cols-1 ${
+            className={`pt-3 pb-[30%] md:pb-0  grid grid-cols-1 ${
               folderContents.length > 4 ? "md:grid-cols-2" : ""
             } gap-4`}
           >
             {folderContents.map((item, index) => (
               <li
                 key={index}
-                className="flex items-center text-white md:text-base text-sm space-x-4 py-2 px-2 hover:bg-blue-500 rounded-md hover:scale-105 active:scale-95 transition-all duration-400 cursor-pointer"
+                className="flex items-center text-white md:text-base text-sm space-x-4 py-2 md:py-1 px-2 hover:bg-blue-500 rounded-md hover:scale-105 active:scale-95 transition-all duration-400 cursor-pointer"
                 onClick={() => handleItemClick(item.name, index)}
               >
                 {index === currentSongIndex && (
@@ -385,7 +383,7 @@ const Modal = ({
                 <img
                   src={`https://storage.googleapis.com/music-portfolio-67eb6.appspot.com/music/${folderName}/cover.jpg`}
                   alt="Icon"
-                  className="md:h-16 rounded-lg md:w-16 h-14 w-14" // Increase image size as needed
+                  className="md:h-14 rounded-lg md:w-14 h-14 w-14" // Increase image size as needed
                 />
                 <div className="min-w-fit">
                   <h3 className="">{tidyFileName(item.name)}</h3>

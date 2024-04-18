@@ -4,10 +4,11 @@ import React, { useEffect, useState } from "react";
 import Modal from "./Modal/Modal";
 import { motion, spring } from "framer-motion";
 import Player from "./Player";
-import { Playball } from "next/font/google";
 import { useMediaQuery } from "@react-hook/media-query";
+import { Raleway } from "next/font/google";
 
 const MusicPlayer = () => {
+
   const [folders, setFolders] = useState([]);
   const [selectedFolder, setSelectedFolder] = useState(null);
   const [folderContents, setFolderContents] = useState([]);
