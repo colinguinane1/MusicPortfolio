@@ -18,13 +18,12 @@ const MusicPlayer = () => {
   const [folderLoading, setFolderLoading] = useState({});
   const [metadata, setMetadata] = useState(null); // State for metadata
   const [currentSong, setCurrentSong] = useState(null);
+  const [currentCover, setCurrentCover] = useState(null);
   const isLargeScreen = useMediaQuery("(min-width: 768px)");
-  let playButtonPressed = false;
+  const [selectedSong, setSelectedSong] = useState(null);
 
   const handlePlay = () => {
     setIsPlaying(false);
-    playButtonPressed = true;
-    console.log(playButtonPressed);
   };
 
   const handlePause = () => {
@@ -103,11 +102,10 @@ const MusicPlayer = () => {
       window.scrollTo({
         top: 0,
         left: 0,
-        behavior: "smooth",
-        // Smooth scrolling
       });
     }
     setSelectedFolder(folderName);
+    //console.log(currentCover); DEBUGGING
     fetchFolderContents(folderName);
     setIsModalOpen(true);
 
@@ -126,13 +124,13 @@ const MusicPlayer = () => {
           },
         }
       );
-      console.log(response);
+      //console.log(response); DEBUGGING
       if (!response.ok) {
         throw new Error("Failed to fetch metadata");
       }
       const metadataJson = await response.json();
       setMetadata(metadataJson);
-      console.log(metadataJson);
+      //console.log(metadataJson); DEBUGGING
     } catch (error) {
       console.error("Error fetching metadata:", error);
       setMetadata(null);
@@ -158,12 +156,16 @@ const MusicPlayer = () => {
   if (error) {
     return <div>Error: {error}</div>;
   }
+  const handleSongSelect = (song) => {
+    setSelectedSong(song);
+    setCurrentSong(song.name); // Assuming song.name holds the file path of the song
+  };
 
   return (
     <div>
       <Player
-        playButtonPressed={playButtonPressed}
         currentSong={currentSong}
+        currentCover={currentCover}
         isPlaying={isPlaying}
         setIsPlaying={setIsPlaying}
         handlePlay={handlePlay}
@@ -175,7 +177,7 @@ const MusicPlayer = () => {
         }
       />
       <div className="flex justify-center items-center flex-col mx-[1rem]">
-        <div className="grid grid-cols-3 gap-4 pt-4 items-center pb-[35%] md:pb-[10%]">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 items-center pt-20 pb-[35%] md:pb-[10%] z-[1]">
           {folders.map((folder, index) => (
             <div key={index} className="relative">
               <motion.button
@@ -221,7 +223,8 @@ const MusicPlayer = () => {
       </div>
       {isModalOpen && (
         <Modal
-          playButtonPressed={playButtonPressed}
+          setCurrentCover={setCurrentCover}
+          currentCover={currentCover}
           folderName={selectedFolder}
           folderContents={folderContents}
           tidyFileName={tidyFileName}
@@ -237,6 +240,7 @@ const MusicPlayer = () => {
           spotifyLink={metadata ? metadata.spotifyLink : ""}
           appleMusicLink={metadata ? metadata.appleMusicLink : ""}
           youtubeLink={metadata ? metadata.youtubeLink : ""}
+          inspirationLink={metadata ? metadata.inspiration : ""}
         />
       )}
     </div>

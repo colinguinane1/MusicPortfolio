@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Modal from "./Modal/Modal";
 import Image from "next/image";
 
-const Player = memo(({ currentSong, coverUrl, songs }) => {
+const Player = memo(({ currentSong, currentCover, coverUrl, songs }) => {
   const audioRef = useRef(new Audio());
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentSongIndex, setCurrentSongIndex] = useState(0);
@@ -15,7 +15,6 @@ const Player = memo(({ currentSong, coverUrl, songs }) => {
   const [bigPlayer, enableBigPlayer] = useState(false);
   const [volume, setVolume] = useState(50); // Step 1: Volume state with initial value
   const [showVolSlider, setShowVolSlider] = useState(false);
-  let playButtonPressed = false;
 
   const playerToggle = () => {
     enableBigPlayer(!bigPlayer);
@@ -69,7 +68,6 @@ const Player = memo(({ currentSong, coverUrl, songs }) => {
     if (isPlaying) {
       audio.play().catch((error) => {
         console.error("Playback error:", error);
-        playButtonPressed = true;
       });
     } else {
       audio.pause();
@@ -94,8 +92,6 @@ const Player = memo(({ currentSong, coverUrl, songs }) => {
 
   const handlePlay = () => {
     setIsPlaying(true);
-    playButtonPressed = true;
-    console.log(playButtonPressed);
   };
 
   const handlePause = () => {
@@ -137,7 +133,7 @@ const Player = memo(({ currentSong, coverUrl, songs }) => {
         <div className="fixed md:ml-2 md:mb-0 mb-8 bottom-0 bg shadow-lg-transparent md:w-full w-full backdrop-blur-3xl md:scale-100 scale-90 rounded-lg h-20 flex justify-center items-center z-[1000]">
           <main className="flex mx-4 -ml-1 z-10">
             <img
-              src={coverUrl}
+              src={currentCover}
               alt="Album Cover"
               className="w-12 h-12 rounded-md mx-3 cursor-pointer"
               onClick={playerToggle}
@@ -152,7 +148,7 @@ const Player = memo(({ currentSong, coverUrl, songs }) => {
           </main>
           <audio ref={audioRef}></audio>
           {isPlaying && (
-            <div className="pt-[67px] md:mt-[-151px] absolute">
+            <div className="pt-[67px] md:mt-[-147px] absolute">
               {" "}
               {/* {nice} */}
               <input

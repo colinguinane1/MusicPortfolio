@@ -6,17 +6,18 @@ import Backdrop from "./Backdrop";
 import { useMediaQuery } from "@react-hook/media-query";
 import { useGesture } from "react-use-gesture";
 import { Island_Moments, Playball } from "next/font/google";
-/* import { extractColorsFromImage } from "../utils/colorExtractor"; */
+import { extractColors } from "extract-colors";
 
 const Modal = ({
-  playButtonPressed,
+  setCurrentCover,
+  currentCover,
   folderName,
   isPlaying,
   folderContents,
   tidyFileName,
   onClose,
   setCurrentSong,
-  handlePlay, // Receive handlePlay as a prop
+  handlePlay,
   albumDescription,
   yearReleased,
   spotifyLink,
@@ -24,25 +25,25 @@ const Modal = ({
   artistChoice,
   websiteExclusive,
   youtubeLink,
+  inspirationLink,
 }) => {
   const artist = "Colin Guinane";
   const [currentSongIndex, setCurrentSongIndex] = useState(-1);
   const [dropdown, enableDropdown] = useState(false);
   const [dominantColors, setDominantColors] = useState([]);
 
-  useEffect(() => {
+  /*   useEffect(() => {
     const fetchColors = async () => {
       try {
         const imageUrl = `https://storage.googleapis.com/music-portfolio-67eb6.appspot.com/music/${folderName}/cover.jpg`;
-        const colors = await extractColors(imageUrl);
-        setDominantColors(colors);
+        extractColors(imageUrl).then(console.log);
       } catch (error) {
         console.error("Error extracting colors:", error);
       }
     };
 
     fetchColors();
-  }, [folderName]);
+  }, [folderName]); */
 
   const modalStyle = {
     backgroundColor: dominantColors[0], // Use the first dominant color as the background color
@@ -69,8 +70,11 @@ const Modal = ({
     const encodedFileName = encodeURIComponent(fileName); // Encode special characters in the file name
     const filePath = `https://storage.googleapis.com/music-portfolio-67eb6.appspot.com/${encodedFileName}`;
     setCurrentSong(filePath);
+    setCurrentCover(
+      `https://storage.googleapis.com/music-portfolio-67eb6.appspot.com/music/${folderName}/cover.jpg`
+    );
+    //console.log(currentCover); DEBUGGING
     setCurrentSongIndex(index);
-    playButtonPressed = true;
   };
 
   const bind = useGesture({
@@ -106,25 +110,25 @@ const Modal = ({
         exit={{ scale: isLargeScreen ? 0 : 1, y: isLargeScreen ? 0 : "100%" }}
         transition={{ type: isLargeScreen ? spring : "tween", duration: 0.3 }}
         style={modalStyle}
-        className="md:inset-0 md:flex md:items-center md:justify-center md:fixed absolute top-0 left-0 w-full h-full z-50"
+        className="md:inset-0 md:flex md:items-center md:justify-center md:fixed absolute top-0 left-0 w-full h-full z-50 pt-14"
         onClick={handleClickOutside}
       >
         <div
           onClick={dropdownModalCheck}
           id="modal"
-          className={`p-8 rounded-lg shadow-lg modal-content md:min-h-fit min-h-[200%] backdrop-blur-3xl z-50 ${
+          className={`p-8 rounded-lg shadow-lg modal-content md:min-h-fit min-h-[300%] backdrop-blur-3xl z-50 ${
             isLargeScreen ? "" : "gradient"
-          } ${playButtonPressed ? "" : ""}`}
+          }`}
         >
           <div className="flex flex-col items-center md:hidden">
             <img
               src={`https://storage.googleapis.com/music-portfolio-67eb6.appspot.com/music/${folderName}/cover.jpg`}
               alt="Icon"
-              className="h-auto w-auto max-h-fit my-6 bg-black rounded-[20px]"
+              className="h-auto w-auto max-h-fit my-6 rounded-[20px]"
             />
           </div>
           <span
-            className="absolute right-0 p-2 mt-0 top-0  cursor-pointer"
+            className="absolute right-0 p-2 mt-0 top-0 pt-16 cursor-pointer"
             onClick={onClose}
           >
             <svg
@@ -186,6 +190,7 @@ const Modal = ({
                   {spotifyLink && (
                     <li className="border-b border-black">
                       <a
+                        target="_blank"
                         href={spotifyLink}
                         className=" flex max-w-fit mt-2  h-8"
                       >
@@ -233,6 +238,7 @@ const Modal = ({
                   {appleMusicLink && (
                     <li className="flex py-[2px] cursor-pointer">
                       <a
+                        target="_blank"
                         href={appleMusicLink}
                         className="flex max-w-fit rounded-full mt-[4px] cursor-pointer"
                       >
@@ -304,6 +310,7 @@ const Modal = ({
             )}
             {youtubeLink && (
               <a
+                target="_blank"
                 href={youtubeLink}
                 className="text-red-500 border-2 border-red-800 my-2  max-w-fit px-3 rounded-full flex"
               >
@@ -312,7 +319,35 @@ const Modal = ({
                 </span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="icon icon-tabler icon-tabler-arrow-up-right stroke-red-500"
+                  class="icon icon-tabler icon-tabler-arrow-up-right stroke-red-500 md:mt-[2.5px]"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="#2c3e50"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M17 7l-10 10" />
+                  <path d="M8 7l9 0l0 9" />
+                </svg>
+              </a>
+            )}
+            {inspirationLink && (
+              <a
+                target="_blank"
+                href={inspirationLink}
+                className="text-blue-400 flex border-2 border-blue-600  max-w-fit px-3 my-2 rounded-full"
+              >
+                <span className="font-extrabold md:text-base text-sm">
+                  {" "}
+                  Inspiration
+                </span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="icon icon-tabler icon-tabler-arrow-up-right stroke-blue-500 md:mt-[3px]"
                   width="20"
                   height="20"
                   viewBox="0 0 24 24"
