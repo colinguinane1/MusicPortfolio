@@ -1,5 +1,8 @@
+"use client";
 import AudioPlayer from "./AudioPlayer";
+
 import Navbar from "./Navbar";
+import { motion, spring } from "framer-motion";
 import Player from "./Player";
 import { Poppins } from "next/font/google";
 import { Raleway } from "next/font/google";
@@ -10,9 +13,14 @@ const mont = Raleway({ subsets: ["latin"] });
 const Index = () => {
   return (
     <main className={mont.className}>
-      <div className="fixed z-[1000]">
+      <motion.div
+        initial={{ y: -100 }} // Start from off-screen (above)
+        animate={{ y: 0 }} // Animate to y: 0 (on-screen)
+        transition={{ duration: 0.6, type: spring }}
+        className="fixed z-[1000]"
+      >
         <Navbar />
-      </div>
+      </motion.div>
       <div className="">
         <AudioPlayer />
       </div>

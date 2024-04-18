@@ -116,38 +116,37 @@ const Modal = ({
         <div
           onClick={dropdownModalCheck}
           id="modal"
-          className={`p-8 rounded-lg shadow-lg modal-content md:min-h-fit min-h-[300%] backdrop-blur-3xl z-50 ${
+          className={`p-8 rounded-lg shadow-lg modal-content md:min-h-fit min-h-[500%] backdrop-blur-3xl z-50 ${
             isLargeScreen ? "" : "gradient"
           }`}
         >
           <div className="flex flex-col items-center md:hidden">
+            {" "}
+            <span className="absolute right-1 -mt-5" onClick={onClose}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="md:hidden icon icon-tabler icon-tabler-circle-x stroke-white hover:stroke-red-500 hover:scale-105 active:scale-95"
+                width="40"
+                height="40"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="#2c3e50"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+                <path d="M10 10l4 4m0 -4l-4 4" />
+              </svg>
+            </span>
             <img
               src={`https://storage.googleapis.com/music-portfolio-67eb6.appspot.com/music/${folderName}/cover.jpg`}
               alt="Icon"
               className="h-auto w-auto max-h-fit my-6 rounded-[20px]"
             />
           </div>
-          <span
-            className="absolute right-0 p-2 mt-0 top-0 pt-16 cursor-pointer"
-            onClick={onClose}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="md:hidden icon icon-tabler icon-tabler-circle-x stroke-white hover:stroke-red-500 hover:scale-105 active:scale-95"
-              width="40"
-              height="40"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="#2c3e50"
-              fill="none"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
-              <path d="M10 10l4 4m0 -4l-4 4" />
-            </svg>
-          </span>
+
           <div className="flex">
             <h2 className="font-bold mb-2 md:text-4xl text-2xl text-white">
               {folderName}

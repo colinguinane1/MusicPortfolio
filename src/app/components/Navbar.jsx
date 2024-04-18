@@ -1,7 +1,7 @@
 const Navbar = () => {
   return (
     <main className="fixed w-full border-b py-4 bg-black">
-      <ul className="text-white flex justify-between mx-20 z-[100]">
+      <ul className="text-white flex justify-between mx-4 z-[100]">
         <li>
           <a className="border p-2" href="#">
             CG
@@ -28,7 +28,7 @@ const Navbar = () => {
           </a>
         </li>
         <li>
-          <a>
+          <a className="">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="icon icon-tabler icon-tabler-arrow-bar-left md:hidden"
