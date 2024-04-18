@@ -3,7 +3,7 @@ const Navbar = () => {
     <main className="fixed w-full border-b py-4 bg-black">
       <ul className="text-white flex justify-between mx-4 z-[100]">
         <li>
-          <a className="border p-2" href="#">
+          <a className="border p-2 font-extrabold" href="#">
             CG
           </a>
         </li>
