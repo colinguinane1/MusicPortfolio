@@ -130,7 +130,7 @@ const Page = () => {
                   <div class="mb-6">
                     <button
                       type="submit"
-                      class="flex items-center justify-center text-center w-full px-3 py-4 text-white bg-blue-500 rounded-md focus:bg-blue-800 hover:bg-blue-800 focus:outline-none"
+                      class="flex items-center justify-center text-center button-blue-gradient w-full"
                     >
                       Send Message{" "}
                       {isSubmitting &&
