@@ -22,8 +22,7 @@ const Index = () => {
         <Navbar />
       </motion.div>
       <div className="">
-        <AudioPlayer
-        raleway={raleway} />
+        <AudioPlayer raleway={raleway} />
       </div>
     </main>
   );

@@ -108,7 +108,7 @@ const Modal = ({
         exit={{ scale: isLargeScreen ? 0 : 1, y: isLargeScreen ? 0 : "100%" }}
         transition={{ type: isLargeScreen ? spring : "tween", duration: 0.3 }}
         style={modalStyle}
-        className="md:inset-0 md:flex md:items-center md:justify-center md:fixed absolute md:-mt-10 top-0 left-0 w-full h-full z-50 pt-14"
+        className="md:inset-0 md:flex md:items-center no_transition md:justify-center md:fixed absolute md:-mt-10 top-0 left-0 w-full h-full z-50 pt-14"
         onClick={handleClickOutside}
       >
         <div

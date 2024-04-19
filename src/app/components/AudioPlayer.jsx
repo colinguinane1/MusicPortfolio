@@ -2,13 +2,12 @@
 import React, { useEffect, useState } from "react";
 
 import Modal from "./Modal/Modal";
-import { motion, spring } from "framer-motion";
+import { motion, spring, AnimatePresence } from "framer-motion";
 import Player from "./Player";
 import { useMediaQuery } from "@react-hook/media-query";
 import { Raleway } from "next/font/google";
 
 const MusicPlayer = () => {
-
   const [folders, setFolders] = useState([]);
   const [selectedFolder, setSelectedFolder] = useState(null);
   const [folderContents, setFolderContents] = useState([]);
@@ -222,28 +221,30 @@ const MusicPlayer = () => {
           ))}
         </div>
       </div>
-      {isModalOpen && (
-        <Modal
-          setCurrentCover={setCurrentCover}
-          currentCover={currentCover}
-          folderName={selectedFolder}
-          folderContents={folderContents}
-          tidyFileName={tidyFileName}
-          onClose={handleCloseModal}
-          setCurrentSong={setCurrentSong}
-          handlePlay={handlePlay}
-          isPlaying={isPlaying}
-          // Pass metadata to the Modal component
-          artistChoice={metadata ? metadata.artistChoice : ""}
-          websiteExclusive={metadata ? metadata.websiteExclusive : ""}
-          albumDescription={metadata ? metadata.albumDescription : ""}
-          yearReleased={metadata ? metadata.yearReleased : ""}
-          spotifyLink={metadata ? metadata.spotifyLink : ""}
-          appleMusicLink={metadata ? metadata.appleMusicLink : ""}
-          youtubeLink={metadata ? metadata.youtubeLink : ""}
-          inspirationLink={metadata ? metadata.inspiration : ""}
-        />
-      )}
+      <AnimatePresence>
+        {isModalOpen && (
+          <Modal
+            setCurrentCover={setCurrentCover}
+            currentCover={currentCover}
+            folderName={selectedFolder}
+            folderContents={folderContents}
+            tidyFileName={tidyFileName}
+            onClose={handleCloseModal}
+            setCurrentSong={setCurrentSong}
+            handlePlay={handlePlay}
+            isPlaying={isPlaying}
+            // Pass metadata to the Modal component
+            artistChoice={metadata ? metadata.artistChoice : ""}
+            websiteExclusive={metadata ? metadata.websiteExclusive : ""}
+            albumDescription={metadata ? metadata.albumDescription : ""}
+            yearReleased={metadata ? metadata.yearReleased : ""}
+            spotifyLink={metadata ? metadata.spotifyLink : ""}
+            appleMusicLink={metadata ? metadata.appleMusicLink : ""}
+            youtubeLink={metadata ? metadata.youtubeLink : ""}
+            inspirationLink={metadata ? metadata.inspiration : ""}
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 };
