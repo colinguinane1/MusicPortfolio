@@ -21,7 +21,7 @@ const Navbar = () => {
           <li>
             <a
               className="navbar_text border hover:rounded-full  p-2 font-extrabold"
-              href="#"
+              href="home"
             >
               CG
             </a>
