@@ -27,22 +27,22 @@ const Navbar = () => {
             </a>
           </li>
           <li>
-            <a className="navbar_text hidden md:block" href="#">
+            <a className="navbar_text hidden md:block" href="home">
               Home
             </a>
           </li>
           <li>
-            <a className="navbar_text hidden md:block" href="#">
+            <a className="navbar_text hidden md:block" href="listen">
               Listen
             </a>
           </li>
           <li>
-            <a className="navbar_text hidden md:block" href="#">
+            <a className="navbar_text hidden md:block" href="blog">
               Blog
             </a>
           </li>
           <li>
-            <a className="navbar_text hidden md:block" href="#">
+            <a className="navbar_text hidden md:block" href="contact">
               Contact
             </a>
           </li>
@@ -79,28 +79,28 @@ const Navbar = () => {
             className="fixed no_transition top-[57px] right-0 w-screen h-screen bg-black bg-opacity-25 z-[10000]"
             initial="hidden"
             animate="visible"
-            transition={{ duration: 0.6, type: "spring" }}
+            transition={{ duration: 0.3, type: "spring" }}
             exit="hidden"
             variants={menuVariants}
           >
             <ul className="text-6xl bg-black ml-4 bg-opacity-50 h-screen">
               <li className="pt-8 pb-4">
-                <a className="navbar_text" href="#" onClick={toggleMenu}>
+                <a className="navbar_text" href="home" onClick={toggleMenu}>
                   Home
                 </a>
               </li>
               <li className="py-4">
-                <a className="navbar_text" href="#" onClick={toggleMenu}>
+                <a className="navbar_text" href="listen" onClick={toggleMenu}>
                   Listen
                 </a>
               </li>
               <li className="py-4">
-                <a className="navbar_text" href="#" onClick={toggleMenu}>
+                <a className="navbar_text" href="blog" onClick={toggleMenu}>
                   Blog
                 </a>
               </li>
               <li className="py-4">
-                <a className="navbar_text" href="#" onClick={toggleMenu}>
+                <a className="navbar_text" href="contact" onClick={toggleMenu}>
                   Contact
                 </a>
               </li>
