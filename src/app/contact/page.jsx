@@ -19,6 +19,7 @@ const Page = () => {
         access_key: "1e2e32a1-7b64-4030-a532-7d2515ebe939",
         name: e.target.name.value,
         email: e.target.email.value,
+        phone: e.target.phone.value,
         message: e.target.message.value,
       }),
     });
@@ -95,6 +96,8 @@ const Page = () => {
                   <div class="mb-6">
                     <label
                       for="phone"
+                      id="phone"
+                      type="phone"
                       class="text-sm mb-2 font-medium text-gray-600 dark:text-gray-400"
                     >
                       Phone Number
