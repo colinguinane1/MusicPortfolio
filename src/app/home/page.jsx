@@ -14,7 +14,7 @@ const Home = () => {
         <Navbar />
       </motion.div>
       <div className="flex flex-col ">
-        <div className="mt-20 ml-12 absolute text-white">
+        <div className="mt-20 ml-4 absolute text-white">
           <img
             className="rounded-full w-60 border-white border-2"
             src="hero.jpg"
