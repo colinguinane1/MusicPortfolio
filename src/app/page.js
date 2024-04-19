@@ -1,16 +1,17 @@
+"use client"
 import Image from "next/image";
-import Page from "./listen/page";
 import Navbar from "./components/Navbar";
+import Home from "./home/page";
 import { Analytics } from "@vercel/analytics/react"
 
 
-export default function Home() {
+export default function Page() {
 
    
   return (
     <>
       <Analytics />
-      <Home />
+      <Home/>
     </>
   );
 }
