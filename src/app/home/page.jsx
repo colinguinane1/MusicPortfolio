@@ -22,8 +22,8 @@ const Home = () => {
           <h1 className="text-4xl font-extrabold py-2">Colin Guinane</h1>
           <p className="font-bold text-2xl py-2">Composer</p>
           <p className="max-w-96 py-2">
-            I'm a completely self-taught musician that has been making music for
-            over 6 years.
+            I&apos;m a completely self-taught musician that has been making
+            music for over 6 years.
           </p>
           <a href="listen">
             <button className="button-blue-gradient  py-2">Listen</button>
