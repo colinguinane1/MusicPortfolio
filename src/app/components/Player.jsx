@@ -287,7 +287,7 @@ const Player = memo(({ currentSong, currentCover, coverUrl, songs }) => {
                   </button>
                   <div className="">
                     <img
-                      src={coverUrl}
+                      src={currentCover}
                       alt="Album Cover"
                       className="w-[80%] md:w-[80%] max-w-[600px] rounded-lg h-auto md:mt-12 mx-auto my-6"
                     />
