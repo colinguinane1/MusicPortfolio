@@ -1,13 +1,20 @@
+"use client";
 import Navbar from "../components/Navbar";
+import { motion, spring } from "framer-motion";
 const Page = () => {
   return (
     <>
-      <div>
+      <div className="z-[1000]">
         <Navbar />
       </div>
-      <div>
+      <motion.div
+        initial={{ y: "100%" }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.5, type: "spring" }}
+        className="no_transition z-0"
+      >
         <div class="flex items-center min-h-screen bg-gray-100 dark:bg-black">
-          <div class="container mx-auto">
+          <div class="container mx-auto my-auto max-h-fit">
             <div class="max-w-md mx-auto my-10 bg-black p-5 rounded-md shadow-sm">
               <div class="text-center">
                 <h1 class="my-3 text-3xl font-semibold text-black dark:text-gray-200">
@@ -116,7 +123,7 @@ const Page = () => {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 };
