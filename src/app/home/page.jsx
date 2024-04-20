@@ -22,7 +22,7 @@ const Home = () => {
       >
         <div className="absolute mt-20 text-white">
           <img
-            className="rounded-full w-60 border-white border-2 ml-[70px]"
+            className="rounded-full w-60 border-white border-2 ml-[145px]"
             src="hero.jpg"
           ></img>
           <h1 className="text-4xl font-extrabold py-2">Colin Guinane</h1>
