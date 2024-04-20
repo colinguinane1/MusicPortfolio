@@ -176,7 +176,7 @@ const Page = () => {
           </div>
         </div>
       </motion.div>
-      <div className="fixed bottom-0 w-full pb-2">
+      <div className="bottom-0 w-full pb-2">
         <Footer />
       </div>
     </>

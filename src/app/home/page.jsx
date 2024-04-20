@@ -5,7 +5,7 @@ import { motion, spring } from "framer-motion";
 
 const Home = () => {
   return (
-    <main>
+    <main className="">
       <motion.div
         initial={{ y: -100 }} // Start from off-screen (above)
         animate={{ y: 0 }} // Animate to y: 0 (on-screen)
@@ -20,9 +20,9 @@ const Home = () => {
         transition={{ duration: 0.5, type: "spring" }}
         className="flex flex-col no_transition items-center"
       >
-        <div className="absolute mt-20 text-white">
+        <div className="absolute mt-20 items-center mx-10  text-white">
           <img
-            className="rounded-full w-60 border-white border-2 ml-[145px]"
+            className="rounded-full w-60 border-white border-2"
             src="hero.jpg"
           ></img>
           <h1 className="text-4xl font-extrabold py-2">Colin Guinane</h1>
@@ -182,7 +182,7 @@ const Home = () => {
             </a>
           </div>
           <div className="py-2">
-            <h1 className="font-extrabold text-3xl pb-4">About Me</h1>
+            <h1 className="font-extrabold text-3xl pb-4 py-4">About Me</h1>
             <p className="max-w-[32rem]">
               Welcome to my music page! I specialize in crafting emotive and
               cinematic orchestral film score-style music that transports
@@ -197,7 +197,7 @@ const Home = () => {
           </div>
         </div>
       </motion.div>
-      <div className="mt-[1000px] w-full absolute">
+      <div className="mt-[1100px] w-full absolute">
         <Footer />
       </div>
     </main>

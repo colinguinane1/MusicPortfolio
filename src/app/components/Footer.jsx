@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <main className="w-full h-24 border-t text-white">
+    <main className="w-full h-24 border-t text-white text-sm">
       <div className="flex flex-col items-center pt-2 pb-32">
         <h1>Colin Guinane 2024© All Rights Reserved</h1>
         <h1 className="flex border-b py-1">
