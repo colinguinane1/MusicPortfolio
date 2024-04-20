@@ -1,5 +1,6 @@
 "use client";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import { motion, spring } from "framer-motion";
 
 const Home = () => {
@@ -14,14 +15,14 @@ const Home = () => {
         <Navbar />
       </motion.div>
       <motion.div
-        initial={{ y: 1000 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.4, type: "spring" }}
-        className="flex flex-col no_transition "
+        initial={{ y: 1000, opacity: -1 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5, type: "spring" }}
+        className="flex flex-col no_transition items-center"
       >
-        <div className="mt-20 ml-4 absolute text-white">
+        <div className="absolute mt-20 text-white">
           <img
-            className="rounded-full w-60 border-white border-2"
+            className="rounded-full w-60 border-white border-2 ml-[70px]"
             src="hero.jpg"
           ></img>
           <h1 className="text-4xl font-extrabold py-2">Colin Guinane</h1>
@@ -32,15 +33,43 @@ const Home = () => {
           </p>
           <div className="border-b py-2">
             <a className="" href="listen">
-              <button className="button-blue-gradient">Listen</button>
-            </a>
-          </div>
-          <div className="py-2 flex">
-            <a>
-              <button className="button-spotify">
+              <motion.button
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ duration: 1.5, type: "spring" }}
+                className="button-blue-gradient"
+              >
+                Listen{" "}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="icon icon-tabler icon-tabler-brand-spotify stroke-black"
+                  class="icon icon-tabler icon-tabler-arrow-bar-right ml-1 stroke-white"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="#2c3e50"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M20 12l-10 0" />
+                  <path d="M20 12l-4 4" />
+                  <path d="M20 12l-4 -4" />
+                  <path d="M4 4l0 16" />
+                </svg>
+              </motion.button>
+            </a>
+          </div>
+          <div className="py-2 border-b border-white flex pt-3 justify-between">
+            <a
+              href="https://open.spotify.com/artist/6GyssrUS3aQUTHtczcm3IY"
+              target="_blank"
+            >
+              <button className="px-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="icon icon-tabler icon-tabler-brand-spotify stroke-white hover:scale-105 active:scale-95 hover:stroke-green-500"
                   width="40"
                   height="40"
                   viewBox="0 0 24 24"
@@ -58,11 +87,14 @@ const Home = () => {
                 </svg>
               </button>
             </a>
-            <a>
-              <button className="button-apple">
+            <a
+              href="https://music.apple.com/us/artist/colin-guinane/1525091289"
+              target="_blank"
+            >
+              <button className="px-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="icon icon-tabler icon-tabler-brand-apple stroke-black"
+                  class="icon icon-tabler icon-tabler-brand-apple stroke-white hover:scale-105 active:scale-95 hover:stroke-pink-500 hover:fill-black"
                   width="40"
                   height="40"
                   viewBox="0 0 24 24"
@@ -78,11 +110,14 @@ const Home = () => {
                 </svg>
               </button>
             </a>
-            <a>
-              <button className="button-youtube">
+            <a
+              href="https://www.youtube.com/channel/UC-EKgpKHMRdJOfblAK6go1g"
+              target="_blank"
+            >
+              <button className="px-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="icon icon-tabler icon-tabler-brand-youtube-filled"
+                  class="icon icon-tabler icon-tabler-brand-youtube-filled stroke-white hover:scale-105 active:scale-95 hover:fill-red-500"
                   width="40"
                   height="40"
                   viewBox="0 0 24 24"
@@ -101,8 +136,74 @@ const Home = () => {
                 </svg>
               </button>
             </a>
+            <a
+              href="https://www.instagram.com/colingmusic/?hl=en"
+              target="_blank"
+            >
+              <button className="px-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="icon icon-tabler icon-tabler-brand-instagram stroke-white hover:scale-105 active:scale-95 hover:fill-pink-500"
+                  width="40"
+                  height="40"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="#2c3e50"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M4 4m0 4a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4z" />
+                  <path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
+                  <path d="M16.5 7.5l0 .01" />
+                </svg>
+              </button>
+            </a>
+            <a href="https://twitter.com/colinguinane" target="_blank">
+              <button>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="icon icon-tabler icon-tabler-brand-x stroke-white hover:scale-105 active:scale-95"
+                  width="40"
+                  height="40"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="#2c3e50"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M4 4l11.733 16h4.267l-11.733 -16z" />
+                  <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" />
+                </svg>
+              </button>
+            </a>
+          </div>
+          <div className="py-2">
+            <h1 className="font-extrabold text-3xl pb-4">About Me</h1>
+            <p className="max-w-[32rem]">
+              Welcome to my music page! I specialize in crafting emotive and
+              cinematic orchestral film score-style music that transports
+              listeners to captivating worlds of sound. With a passion for
+              storytelling through melody and harmony.<br></br>
+              <br></br>I've been honing my craft since the age of 14. Each
+              composition is a journey, weaving together intricate arrangements
+              and evocative themes to evoke powerful emotions and paint vivid
+              musical landscapes. Join me on this sonic adventure as we explore
+              the boundless possibilities of music together.
+            </p>
           </div>
         </div>
+      </motion.div>
+      <motion.div
+        initial={{ y: 1000, opacity: -1 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 1, type: "spring" }}
+        className="fixed bottom-0 no_transition w-full pb-2"
+      >
+        <Footer />
       </motion.div>
     </>
   );

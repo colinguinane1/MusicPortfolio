@@ -1,5 +1,6 @@
 "use client";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import { useState } from "react";
 import { motion, spring } from "framer-motion";
 const Page = () => {
@@ -175,6 +176,9 @@ const Page = () => {
           </div>
         </div>
       </motion.div>
+      <div className="fixed bottom-0 w-full pb-2">
+        <Footer />
+      </div>
     </>
   );
 };

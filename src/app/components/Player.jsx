@@ -262,7 +262,7 @@ const Player = memo(({ currentSong, currentCover, coverUrl, songs }) => {
                 exit={{ y: "100%" }}
                 className="fixed z-[1000] flex justify-center items-center w-full h-full top-0 no_transition"
               >
-                <div className="backdrop-blur-3xl w-full h-full flex text-center justify-center items-center">
+                <div className="backdrop-blur-xl bg-black bg-opacity-50 w-full h-full flex text-center justify-center items-center">
                   <button
                     onClick={playerToggle}
                     className="absolute top-2 right-2"

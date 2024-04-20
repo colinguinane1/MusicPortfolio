@@ -76,7 +76,7 @@ const Navbar = () => {
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            className="fixed no_transition top-[57px] right-0 w-screen h-screen bg-black bg-opacity-25 z-[10000]"
+            className="fixed no_transition top-[57px] right-0 w-screen h-screen bg-black bg-opacity-75 z-[10000]"
             initial="hidden"
             animate="visible"
             transition={{ duration: 0.3, type: "spring" }}
@@ -85,23 +85,39 @@ const Navbar = () => {
           >
             <ul className="text-6xl bg-black ml-4 bg-opacity-50 h-screen">
               <li className="pt-8 pb-4">
-                <a className="navbar_text" href="home" onClick={toggleMenu}>
-                  Home
+                <a
+                  className="navbar_text font-extrabold"
+                  href="home"
+                  onClick={toggleMenu}
+                >
+                  HOME
                 </a>
               </li>
               <li className="py-4">
-                <a className="navbar_text" href="listen" onClick={toggleMenu}>
-                  Listen
+                <a
+                  className="navbar_text font-extrabold"
+                  href="listen"
+                  onClick={toggleMenu}
+                >
+                  LISTEN
                 </a>
               </li>
               <li className="py-4">
-                <a className="navbar_text" href="blog" onClick={toggleMenu}>
-                  Blog
+                <a
+                  className="navbar_text font-extrabold"
+                  href="blog"
+                  onClick={toggleMenu}
+                >
+                  BLOG
                 </a>
               </li>
               <li className="py-4">
-                <a className="navbar_text" href="contact" onClick={toggleMenu}>
-                  Contact
+                <a
+                  className="navbar_text font-extrabold"
+                  href="contact"
+                  onClick={toggleMenu}
+                >
+                  CONTACT
                 </a>
               </li>
             </ul>

@@ -1,6 +1,7 @@
 "use client";
 import AudioPlayer from "../components/AudioPlayer";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import { Raleway } from "next/font/google";
 
 const raleway = Raleway({ subsets: ["latin"] });
@@ -13,6 +14,9 @@ const Listen = () => {
       </div>
       <div>
         <AudioPlayer />
+      </div>
+      <div>
+        <Footer />
       </div>
     </main>
   );
