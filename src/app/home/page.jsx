@@ -5,7 +5,7 @@ import { motion, spring } from "framer-motion";
 
 const Home = () => {
   return (
-    <>
+    <main>
       <motion.div
         initial={{ y: -100 }} // Start from off-screen (above)
         animate={{ y: 0 }} // Animate to y: 0 (on-screen)
@@ -188,7 +188,7 @@ const Home = () => {
               cinematic orchestral film score-style music that transports
               listeners to captivating worlds of sound. With a passion for
               storytelling through melody and harmony.<br></br>
-              <br></br>I've been honing my craft since the age of 14. Each
+              <br></br>I&apos;ve been honing my craft since the age of 14. Each
               composition is a journey, weaving together intricate arrangements
               and evocative themes to evoke powerful emotions and paint vivid
               musical landscapes. Join me on this sonic adventure as we explore
@@ -197,15 +197,10 @@ const Home = () => {
           </div>
         </div>
       </motion.div>
-      <motion.div
-        initial={{ y: 1000, opacity: -1 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 1, type: "spring" }}
-        className="fixed bottom-0 no_transition w-full pb-2"
-      >
+      <div className="mt-[1000px] w-full absolute">
         <Footer />
-      </motion.div>
-    </>
+      </div>
+    </main>
   );
 };
 
