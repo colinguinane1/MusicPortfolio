@@ -2,6 +2,7 @@
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { motion, spring } from "framer-motion";
+import Post1 from "../blog/posts/21.04.2024";
 
 const Home = () => {
   return (
@@ -183,7 +184,7 @@ const Home = () => {
           </div>
           <div className="py-2">
             <h1 className="font-extrabold text-3xl pb-4 py-4">About Me</h1>
-            <p className="max-w-[32rem]">
+            <p className="max-w-[32rem] border-b pb-4">
               Welcome to my music page! I specialize in crafting emotive and
               cinematic orchestral film score-style music that transports
               listeners to captivating worlds of sound. With a passion for
@@ -194,10 +195,21 @@ const Home = () => {
               musical landscapes. Join me on this sonic adventure as we explore
               the boundless possibilities of music together.
             </p>
+            <h1 className="font-extrabold text-3xl pb-4 py-4">Recent Post:</h1>
+            <div className="w-[32rem] border p-4 rounded-md">
+              <motion.a
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                href="blog"
+                className=""
+              >
+                <Post1 />
+              </motion.a>
+            </div>
           </div>
         </div>
       </motion.div>
-      <div className="mt-[1100px] w-full absolute">
+      <div className="mt-[2000px] w-full absolute">
         <Footer />
       </div>
     </main>

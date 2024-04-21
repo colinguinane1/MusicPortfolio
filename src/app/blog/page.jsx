@@ -1,19 +1,27 @@
-"use client";
+"use";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import Post1 from "./posts/21.04.2024";
 const Page = () => {
   return (
-    <>
+    <main>
       <div>
         <Navbar />
-      </div>
-      <div>
-        <h1 className="mt-20 absolute text-white">blog test</h1>
+        <div className="flex flex-col items-center justify-center text-center">
+          <div className="mt-20 w-full">
+            <h1 className=" text-white text-4xl pb-4  ont-extrabold">
+              Blog Entries
+            </h1>
+            <div className="text-white font-extrabold text-left py-4 px-4 border rounded-md mx-10 md:text-base text-sm">
+              <Post1 />
+            </div>
+          </div>
+        </div>
       </div>
       <div className="fixed bottom-0 w-full pb-2">
         <Footer />
       </div>
-    </>
+    </main>
   );
 };
 
