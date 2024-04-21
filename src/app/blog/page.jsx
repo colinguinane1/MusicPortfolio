@@ -12,7 +12,7 @@ const Page = () => {
             <h1 className=" text-white text-4xl pb-4  ont-extrabold">
               Blog Entries
             </h1>
-            <div className="text-white font-extrabold text-left py-4 px-4 border rounded-md mx-10 md:text-base text-sm">
+            <div className="text-white font-extrabold text-left py-4 px-4 border rounded-md mx-4 md:text-base text-sm">
               <Post1 />
             </div>
           </div>
