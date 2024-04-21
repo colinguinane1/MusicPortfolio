@@ -15,7 +15,7 @@ const Listen = () => {
       <div>
         <AudioPlayer />
       </div>
-      <div>
+      <div className="pb-32">
         <Footer />
       </div>
     </main>

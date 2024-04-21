@@ -85,38 +85,22 @@ const Navbar = () => {
           >
             <ul className="text-6xl bg-black ml-4 bg-opacity-50 h-screen">
               <li className="pt-8 pb-4">
-                <a
-                  className="navbar_text font-extrabold"
-                  href="home"
-                  onClick={toggleMenu}
-                >
+                <a className="navbar_text font-extrabold" href="home">
                   HOME
                 </a>
               </li>
               <li className="py-4">
-                <a
-                  className="navbar_text font-extrabold"
-                  href="listen"
-                  onClick={toggleMenu}
-                >
+                <a className="navbar_text font-extrabold" href="listen">
                   LISTEN
                 </a>
               </li>
               <li className="py-4">
-                <a
-                  className="navbar_text font-extrabold"
-                  href="blog"
-                  onClick={toggleMenu}
-                >
+                <a className="navbar_text font-extrabold" href="blog">
                   BLOG
                 </a>
               </li>
               <li className="py-4">
-                <a
-                  className="navbar_text font-extrabold"
-                  href="contact"
-                  onClick={toggleMenu}
-                >
+                <a className="navbar_text font-extrabold" href="contact">
                   CONTACT
                 </a>
               </li>
