@@ -20,21 +20,23 @@ const Home = () => {
           initial={{ y: 1000, opacity: -1 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, type: "spring" }}
-          className="flex flex-col no_transition items-center"
+          className="flex flex-col no_transition items-center "
         >
-          <div className="absolute mt-20 items-center mx-4   text-white">
-            <img
-              className="rounded-full w-60 border-white border-2"
-              src="hero.jpg"
-            ></img>
+          <div className="absolute mt-20 items-center mx-4 text-center max-w-[900px]   text-white">
+            <div className="flex flex-col items-center">
+              <img
+                className="rounded-full w-60 border-white border-2 "
+                src="hero.jpg"
+              ></img>
+            </div>
             <h1 className="text-4xl font-extrabold py-2">Colin Guinane</h1>
             <p className="font-bold text-2xl py-2">Composer</p>
-            <p className="max-w-96 py-2">
+            <p className=" py-2">
               I&apos;m a completely self-taught musician that has been making
               music for over 6 years.
             </p>
             <div className="border-b py-4">
-              <a className="" href="listen">
+              <a className="flex flex-col items-center" href="listen">
                 <motion.button
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
@@ -184,7 +186,7 @@ const Home = () => {
             </div>
             <div className="py-2">
               <h1 className="font-extrabold text-3xl pb-4 py-4">About Me</h1>
-              <p className="max-w-[32rem] border-b pb-4">
+              <p className=" border-b pb-4">
                 Welcome to my music page! I specialize in crafting emotive and
                 cinematic orchestral film score-style music that transports
                 listeners to captivating worlds of sound. With a passion for
@@ -398,7 +400,7 @@ const Home = () => {
               <h1 className="font-extrabold text-3xl pb-4 py-4">
                 Recent Post:
               </h1>
-              <div className="flex flex-col items-center max-w-[32rem] border p-4 rounded-md">
+              <div className="flex flex-col items-center  border p-4 rounded-md">
                 <a className="text-sm" href="blog">
                   <main>
                     <Post1 />

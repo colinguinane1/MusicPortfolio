@@ -1,6 +1,6 @@
 // Modal.jsx
 import React, { useState, useEffect } from "react";
-import { motion, spring } from "framer-motion";
+import { AnimatePresence, motion, spring } from "framer-motion";
 import Player from "../Player";
 import Backdrop from "./Backdrop";
 import { useMediaQuery } from "@react-hook/media-query";
