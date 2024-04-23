@@ -33,7 +33,7 @@ const Home = () => {
               I&apos;m a completely self-taught musician that has been making
               music for over 6 years.
             </p>
-            <div className="border-b py-2">
+            <div className="border-b py-4">
               <a className="" href="listen">
                 <motion.button
                   initial={{ scale: 0 }}
@@ -70,7 +70,7 @@ const Home = () => {
                 href="https://open.spotify.com/artist/6GyssrUS3aQUTHtczcm3IY"
                 target="_blank"
               >
-                <button className="px-2">
+                <button className="">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     class="icon icon-tabler icon-tabler-brand-spotify stroke-white hover:scale-105 active:scale-95 hover:stroke-green-500"
@@ -121,22 +121,19 @@ const Home = () => {
                 <button className="px-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    class="icon icon-tabler icon-tabler-brand-youtube-filled stroke-white hover:scale-105 active:scale-95 hover:fill-red-500"
+                    class="icon icon-tabler icon-tabler-brand-youtube stroke-white hover:scale-105 active:scale-95 hover:stroke-red-500 hover:fill-black"
                     width="40"
                     height="40"
                     viewBox="0 0 24 24"
                     stroke-width="1.5"
-                    stroke="#2c3e50"
+                    stroke="#ffffff"
                     fill="none"
                     stroke-linecap="round"
                     stroke-linejoin="round"
                   >
                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                    <path
-                      d="M18 3a5 5 0 0 1 5 5v8a5 5 0 0 1 -5 5h-12a5 5 0 0 1 -5 -5v-8a5 5 0 0 1 5 -5zm-9 6v6a1 1 0 0 0 1.514 .857l5 -3a1 1 0 0 0 0 -1.714l-5 -3a1 1 0 0 0 -1.514 .857z"
-                      stroke-width="0"
-                      fill="currentColor"
-                    />
+                    <path d="M2 8a4 4 0 0 1 4 -4h12a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-12a4 4 0 0 1 -4 -4v-8z" />
+                    <path d="M10 9l5 3l-5 3z" />
                   </svg>
                 </button>
               </a>
@@ -147,7 +144,7 @@ const Home = () => {
                 <button className="px-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    class="icon icon-tabler icon-tabler-brand-instagram stroke-white hover:scale-105 active:scale-95 hover:fill-pink-500"
+                    class="icon icon-tabler icon-tabler-brand-instagram stroke-white hover:scale-105 active:scale-95 hover:stroke-pink-300"
                     width="40"
                     height="40"
                     viewBox="0 0 24 24"
@@ -168,7 +165,7 @@ const Home = () => {
                 <button>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    class="icon icon-tabler icon-tabler-brand-x stroke-white hover:scale-105 active:scale-95"
+                    class="icon icon-tabler icon-tabler-brand-x stroke-white hover:scale-105 active:scale-95 hover:stroke-blue-500"
                     width="40"
                     height="40"
                     viewBox="0 0 24 24"
@@ -198,16 +195,218 @@ const Home = () => {
                 paint vivid musical landscapes. Join me on this sonic adventure
                 as we explore the boundless possibilities of music together.
               </p>
+              {/*  --------------------- FAVORITE ARTISTS + SCORES ---------------------- */}
+              <div className="border-b py-4">
+                <h1 className="font-extrabold text-3xl">
+                  Favorite Artists & Scores:
+                </h1>
+                <p>And my favorite score from them</p>
+                {/* Artist 1 */}
+                <div className="flex items-center py-3">
+                  <div className="flex items-center">
+                    <a
+                      href="https://open.spotify.com/artist/692KvxElsJHIJQCS6Eoc32?si=pkwD2L_DSyCg3uPs7xHx3Q"
+                      target="_blank"
+                      className="flex items-center"
+                    >
+                      <img
+                        src="https://static.wixstatic.com/media/26f451_b9384b46685f4aaa954285c72d0bb2e0~mv2.jpg/v1/fill/w_1264,h_1264,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/26f451_b9384b46685f4aaa954285c72d0bb2e0~mv2.jpg"
+                        className="w-14 h-14 rounded-md"
+                      />
+                      <h1 className="text-xl font-extrabold px-3">
+                        Sarah Schachner
+                      </h1>
+                    </a>
+                  </div>
+                  <div className="flex gap-2 ml-auto">
+                    <a
+                      href="https://open.spotify.com/album/4eUfjPGaHBA3AuR3gGdct0?autoplay=true"
+                      target="_blank"
+                    >
+                      <img
+                        src="https://i.scdn.co/image/ab67616d0000b273992ad8ffefc03006f08cc3f8"
+                        className="w-12 h-12 border rounded-md"
+                      />
+                    </a>
+                    <a
+                      href="https://open.spotify.com/album/3eDpDVt0I1RGasXf4b0r4k?si=FW2VFCT-RPWiTIwqdzvb1w"
+                      target="_blank"
+                    >
+                      <img
+                        src="https://i.scdn.co/image/ab67616d0000b273edfb9417f1a80732792f7c18"
+                        className="w-12 h-12 border rounded-md"
+                      />
+                    </a>
+                  </div>
+                </div>
+
+                {/* Artist 2 */}
+                <div className="flex items-center py-3">
+                  <div className="flex items-center">
+                    <a
+                      href="https://open.spotify.com/artist/6dU7gPN2BhEPfO5QHLt7es?si=_UOeu8T0Rj2wLRi7gOtPpQ"
+                      target="_blank"
+                      className="flex items-center"
+                    >
+                      <img
+                        src="https://yt3.googleusercontent.com/ytc/AIdro_k1zZniCdW3HwZOVE8PtpYbpJG5o4rPc5qacB5R-sC92w=s900-c-k-c0x00ffffff-no-rj"
+                        className="w-14 h-14 rounded-md"
+                      />
+                      <h1 className="text-xl font-extrabold px-3">
+                        Lorne Balfe
+                      </h1>
+                    </a>
+                  </div>
+                  <div className="flex gap-2 ml-auto">
+                    <a
+                      href="https://open.spotify.com/album/3tjIKRAPBy5Qu4z8F5HmBz?si=_LGXxI3CQ3KorY_rkM-b7A"
+                      target="_blank"
+                    >
+                      <img
+                        src="https://upload.wikimedia.org/wikipedia/en/f/f5/Top_gun_maverick_soundtrack.jpeg"
+                        className="w-12 h-12 border rounded-md"
+                      />
+                    </a>
+                    <a
+                      href="https://open.spotify.com/album/4QPkPa4bxs08SvFTpLwt1T?si=3VMzrAP3RU-eXcBJ9X-Grg"
+                      target="_blank"
+                    >
+                      <img
+                        src="https://upload.wikimedia.org/wikipedia/en/7/77/Mission_Impossible_Fallout.jpg"
+                        className="w-12 h-12 border rounded-md"
+                      />
+                    </a>
+                  </div>
+                </div>
+                {/* Artist 3 */}
+                <div className="flex items-center py-3">
+                  <div className="flex items-center">
+                    <a
+                      href="https://open.spotify.com/artist/0YC192cP3KPCRWx8zr8MfZ?si=FNbmG_6tSOWRzDXA_gUfPw"
+                      target="_blank"
+                      className="flex items-center"
+                    >
+                      <img
+                        src="https://i.scdn.co/image/ab6761610000e5eb371632043a8c12bb7eeeaf9d"
+                        className="w-14 h-14 rounded-md"
+                      />
+                      <h1 className="text-xl font-extrabold px-3">
+                        Hans Zimmer
+                      </h1>
+                    </a>
+                  </div>
+                  <div className="flex gap-2 ml-auto">
+                    <a
+                      href="https://open.spotify.com/album/5WmlAFcF8ERAnUvYrwJt91?si=MdfU6VioTkWq-yq5fXOZdQ"
+                      target="_blank"
+                    >
+                      <img
+                        src="https://upload.wikimedia.org/wikipedia/en/b/bf/Man_of_Steel_Soundtrack_Cover.jpg"
+                        className="w-12 h-12 border rounded-md"
+                      />
+                    </a>
+                    <a
+                      href="https://open.spotify.com/album/63uFfOZpC7jrV7wfuBY2lX?si=boEmOwGhRK-QY6yckvj4Mw"
+                      target="_blank"
+                    >
+                      <img
+                        src="https://upload.wikimedia.org/wikipedia/en/c/c9/Darkknight_cd.jpg"
+                        className="w-12 h-12 border rounded-md"
+                      />
+                    </a>
+                  </div>
+                </div>
+
+                {/* Artist 4 */}
+                <div className="flex items-center py-3">
+                  <div className="flex items-center">
+                    <a
+                      href="https://open.spotify.com/artist/3MhnTc9AODdRGMrtntEqIz?si=M0petTWhTgadQEuvL1ntkQ"
+                      target="_blank"
+                      className="flex items-center"
+                    >
+                      <img
+                        src="https://p16-tm-sg.tiktokmusic.me/img/tos-alisg-i-0000/52025400b97b4fb5a02bd30b842fe653~c5_750x750.image"
+                        className="w-14 h-14 rounded-md"
+                      />
+                      <h1 className="text-xl font-extrabold px-3">
+                        John Paesano
+                      </h1>
+                    </a>
+                  </div>
+                  <div className="flex gap-2 ml-auto">
+                    <a
+                      href="https://open.spotify.com/album/4HprkLzO577tGz5JFlg5uV?si=MNnN4wgMQuaJjaAaW863ig"
+                      target="_blank"
+                    >
+                      <img
+                        src="https://upload.wikimedia.org/wikipedia/en/1/10/The_Maze_Runner_%28Original_Motion_Picture_Soundtrack%29.jpg"
+                        className="w-12 h-12 border rounded-md"
+                      />
+                    </a>
+                    <a
+                      href="https://open.spotify.com/album/0FzfO0ApQMiPSFMGjsNanb?si=lMIrFtcPT_yNeUKeRCRCeg"
+                      target="_blank"
+                    >
+                      <img
+                        src="https://i.scdn.co/image/ab67616d00001e0226241676a90ad94d2978825b"
+                        className="w-12 h-12 border rounded-md"
+                      />
+                    </a>
+                  </div>
+                </div>
+
+                {/* Artist 5 */}
+                <div className="flex items-center py-3">
+                  <div className="flex items-center">
+                    <a
+                      href="https://open.spotify.com/artist/5svDnd8joFhbpbA3Ar0CfN?si=Txy6XjCiTgWkjmFqPuoUEg"
+                      target="_blank"
+                      className="flex items-center"
+                    >
+                      <img
+                        src="https://kraft-engel.com/wp-content/uploads/clients/tom-holkenborg/holkenborg.jpg"
+                        className="w-14 h-14 rounded-md"
+                      />
+                      <h1 className="text-xl font-extrabold px-3">
+                        Tom Holkenborg
+                      </h1>
+                    </a>
+                  </div>
+                  <div className="flex gap-2 ml-auto">
+                    <a
+                      href="https://open.spotify.com/album/61EYnZsY4PSE2uubb81wtB?si=0AayRfnEROuNRlezdcSt_A"
+                      target="_blank"
+                    >
+                      <img
+                        src="https://upload.wikimedia.org/wikipedia/en/2/2e/Tom_Holkenborg_-_Zack_Snyder%27s_Justice_League.jpg"
+                        className="w-12 h-12 border rounded-md"
+                      />
+                    </a>
+                    <a
+                      href="https://open.spotify.com/album/4PAHIwIasrswKSU5KDzROJ?si=dtS8coFwTx6ByaOUJYOQNg"
+                      target="_blank"
+                    >
+                      <img
+                        src="https://upload.wikimedia.org/wikipedia/en/9/98/Batman_v_Superman_-_Dawn_of_Justice_%28soundtrack%29.jpg"
+                        className="w-12 h-12 border rounded-md"
+                      />
+                    </a>
+                  </div>
+                </div>
+              </div>
               <h1 className="font-extrabold text-3xl pb-4 py-4">
                 Recent Post:
               </h1>
               <div className="flex flex-col items-center max-w-[32rem] border p-4 rounded-md">
-                <a href="blog" className="text-sm">
-                  <Post1 />
+                <a className="text-sm" href="blog">
+                  <main>
+                    <Post1 />
+                  </main>
                 </a>
               </div>
             </div>{" "}
-            <div className=" w-full bottom-0 mt-20">
+            <div className=" w-full bottom-0 mt-4">
               <Footer />
             </div>
           </div>
