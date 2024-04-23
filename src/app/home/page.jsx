@@ -22,7 +22,7 @@ const Home = () => {
           transition={{ duration: 0.5, type: "spring" }}
           className="flex flex-col no_transition items-center"
         >
-          <div className="absolute mt-20 items-center mx-10  text-white">
+          <div className="absolute mt-20 items-center mx-4   text-white">
             <img
               className="rounded-full w-60 border-white border-2"
               src="hero.jpg"
@@ -38,8 +38,10 @@ const Home = () => {
                 <motion.button
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
-                  transition={{ duration: 1.5, type: "spring" }}
-                  className="button-blue-gradient"
+                  transition={{ duration: 0.3, type: "spring" }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="button-blue-gradient no_transition"
                 >
                   Listen{" "}
                   <svg
@@ -200,21 +202,16 @@ const Home = () => {
                 Recent Post:
               </h1>
               <div className="flex flex-col items-center max-w-[32rem] border p-4 rounded-md">
-                <a
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                  href="blog"
-                  className=""
-                >
+                <a href="blog" className="text-sm">
                   <Post1 />
                 </a>
               </div>
+            </div>{" "}
+            <div className=" w-full bottom-0 mt-20">
+              <Footer />
             </div>
           </div>
         </motion.div>
-      </div>
-      <div className="mt-[2100px] absolute w-full">
-        <Footer />
       </div>
     </main>
   );

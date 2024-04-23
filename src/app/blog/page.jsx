@@ -1,4 +1,4 @@
-"use";
+"use client";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Post1 from "./posts/21.04.2024";

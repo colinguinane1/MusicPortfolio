@@ -1,9 +1,9 @@
 const Footer = () => {
   return (
-    <main className="w-full h-24 border-t text-white text-sm">
+    <main className="w-full h-24 border-t text-slate-500 border-slate-500 text-sm relative">
       <div className="flex flex-col items-center pt-2">
         <h1>Colin Guinane 2024© All Rights Reserved</h1>
-        <h1 className="flex border-b py-1">
+        <h1 className="flex border-b border-slate-500 py-1">
           Website Developed By Colin Guinane{" "}
           <span className="">
             <a
@@ -35,7 +35,7 @@ const Footer = () => {
         </h1>
         <ul className="text-base flex gap-3 py-2">
           <li className="">
-            <a className="navbar_text " href="home">
+            <a className="navbar_text text-slate-500" href="home">
               HOME
             </a>
           </li>
