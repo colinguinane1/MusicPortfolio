@@ -25,7 +25,7 @@ const Home = () => {
           <div className="absolute mt-20 items-center mx-4 text-center max-w-[900px]   dark:text-white text-black">
             <div className="flex flex-col items-center">
               <img
-                className="rounded-full w-60 border-white border-2 "
+                className="rounded-full w-60 dark:border-white border-black border-2 "
                 src="hero.jpg"
               ></img>
             </div>

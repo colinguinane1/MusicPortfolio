@@ -18,7 +18,7 @@ const Navbar = () => {
   return (
     <main>
       <ThemeSwitcher />
-      <div className="fixed w-screen border-b py-4 dark:bg-black bg-white">
+      <div className="fixed w-screen no_transition border-b py-4 dark:bg-black bg-white">
         <ul className="dark:text-white flex justify-between mx-4 z-[100]">
           <li>
             <a
@@ -29,7 +29,7 @@ const Navbar = () => {
             </a>
           </li>
           <li>
-            <a className="navbar_text hidden md:block" href="home">
+            <a className="navbar_text hidden md:block " href="home">
               Home
             </a>
           </li>
