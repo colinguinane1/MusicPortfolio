@@ -52,7 +52,7 @@ const Navbar = () => {
             <a className="">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className={`icon icon-tabler icon-tabler-arrow-bar-left md:hidden cursor-pointer hover:stroke-blue-500 ${
+                className={`icon icon-tabler icon-tabler-arrow-bar-left md:hidden cursor-pointer hover:stroke-blue-500 transition-all ${
                   menuOpen ? "rotate-180" : ""
                 }`}
                 width="24"
