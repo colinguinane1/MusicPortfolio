@@ -155,8 +155,8 @@ const Modal = ({
               {folderName}
             </h2>{" "}
             <div
-              className={`group border max-w-fit h-6 md:mt-[9.5px] ${
-                dropdown ? "dark:bg-white bg-slate-200" : ""
+              className={`group border dark:border-white border-black max-w-fit h-6 md:mt-[9.5px] ${
+                dropdown ? "dark:bg-white bg-black" : ""
               } ${
                 spotifyLink ? "" : "hidden"
               } rounded-full border-2 mt-[2px] ml-2`}
@@ -166,8 +166,8 @@ const Modal = ({
                 xmlns="http://www.w3.org/2000/svg"
                 class={`icon icon-tabler icon-tabler-dots ${
                   dropdown
-                    ? "dark:stroke-black md:stroke-white"
-                    : "dark:stroke-white md:stroke-white"
+                    ? "dark:stroke-black stroke-white  md:stroke-white"
+                    : "dark:stroke-white rounded-full md:stroke-white"
                 } cursor-pointer max-h-fit`}
                 width="20"
                 height="20"
@@ -216,7 +216,7 @@ const Modal = ({
                           <path d="M9 15c1.5 -1 4 -1 5 .5" />
                           <path d="M7 9c2 -1 6 -2 10 .5" />
                         </svg>
-                        <label className="mx-1 mt-[3px] cursor-pointer">
+                        <label className="mx-1 mt-[3px] cursor-pointer ">
                           Spotify
                         </label>
 
@@ -300,13 +300,13 @@ const Modal = ({
 
           <div className="border-b border-gray-500 pb-2 border-opacity-50 md:flex gap-3 md:text-base text-sm">
             {artistChoice && (
-              <h1 className="text-yellow-500 dark:text-yellow-300  border-2 border-yellow-600 max-w-fit px-3 rounded-full my-2">
+              <h1 className="text-yellow-500 dark:text-yellow-300  border-2 border-yellow-500 max-w-fit px-3 rounded-full my-2">
                 Artist&apos;s Choice:{" "}
                 <span className="font-extrabold">{artistChoice}</span>
               </h1>
             )}
             {websiteExclusive && (
-              <h1 className="text-green-400 border-2 border-green-600  max-w-fit px-3 my-2 rounded-full">
+              <h1 className="text-green-400 border-2 border-green-400  max-w-fit px-3 my-2 rounded-full">
                 <span className="font-extrabold md:text-base text-sm">
                   Website Exclusive
                 </span>
@@ -316,7 +316,7 @@ const Modal = ({
               <a
                 target="_blank"
                 href={youtubeLink}
-                className="text-red-500 border-2 border-red-800 my-2  max-w-fit px-3 rounded-full flex"
+                className="text-red-500 border-2 border-red-500 my-2  max-w-fit px-3 rounded-full flex"
               >
                 <span className="font-extrabold md:text-base text-sm">
                   Youtube
@@ -343,7 +343,7 @@ const Modal = ({
               <a
                 target="_blank"
                 href={inspirationLink}
-                className="text-blue-400 flex border-2 border-blue-600  max-w-fit px-3 my-2 rounded-full"
+                className="text-blue-600 flex border-2 border-blue-600  max-w-fit px-3 my-2 rounded-full"
               >
                 <span className="font-extrabold md:text-base text-sm">
                   {" "}
@@ -351,7 +351,7 @@ const Modal = ({
                 </span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="icon icon-tabler icon-tabler-arrow-up-right stroke-blue-500 md:mt-[3px]"
+                  class="icon icon-tabler icon-tabler-arrow-up-right stroke-blue-600 md:mt-[3px]"
                   width="20"
                   height="20"
                   viewBox="0 0 24 24"
