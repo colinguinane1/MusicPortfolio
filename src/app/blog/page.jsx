@@ -8,7 +8,7 @@ const Page = () => {
       <div>
         <Navbar />
         <div className="flex flex-col items-center justify-center text-center">
-          <div className="mt-20 w-full">
+          <div className="mt-20 w-full max-w-[900px]">
             <h1 className=" dark:text-white text-4xl pb-4  ont-extrabold">
               Blog Entries
             </h1>
