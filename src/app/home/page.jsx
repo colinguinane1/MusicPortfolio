@@ -22,7 +22,7 @@ const Home = () => {
           transition={{ duration: 0.5, type: "spring" }}
           className="flex flex-col no_transition items-center "
         >
-          <div className="absolute mt-20 items-center mx-4 text-center max-w-[900px]   text-white">
+          <div className="absolute mt-20 items-center mx-4 text-center max-w-[900px]   dark:text-white text-black">
             <div className="flex flex-col items-center">
               <img
                 className="rounded-full w-60 border-white border-2 "
@@ -48,7 +48,7 @@ const Home = () => {
                   Listen{" "}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    class="icon icon-tabler icon-tabler-arrow-bar-right ml-1 stroke-white"
+                    class="icon icon-tabler icon-tabler-arrow-bar-right ml-1 stroke-black dark:stroke-white"
                     width="20"
                     height="20"
                     viewBox="0 0 24 24"
@@ -67,7 +67,7 @@ const Home = () => {
                 </motion.button>
               </a>
             </div>
-            <div className="py-2 border-b border-white flex pt-3 justify-between">
+            <div className="py-2 border-b flex pt-3 justify-between">
               <a
                 href="https://open.spotify.com/artist/6GyssrUS3aQUTHtczcm3IY"
                 target="_blank"
@@ -75,7 +75,7 @@ const Home = () => {
                 <button className="">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    class="icon icon-tabler icon-tabler-brand-spotify stroke-white hover:scale-105 active:scale-95 hover:stroke-green-500"
+                    class="icon icon-tabler icon-tabler-brand-spotify stroke-black dark:stroke-white hover:scale-105 active:scale-95 hover:stroke-green-500"
                     width="40"
                     height="40"
                     viewBox="0 0 24 24"
@@ -100,7 +100,7 @@ const Home = () => {
                 <button className="px-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    class="icon icon-tabler icon-tabler-brand-apple stroke-white hover:scale-105 active:scale-95 hover:stroke-pink-500 hover:fill-black"
+                    class="icon icon-tabler icon-tabler-brand-apple stroke-black dark:stroke-white hover:scale-105 active:scale-95 hover:stroke-pink-500 hover:fill-black"
                     width="40"
                     height="40"
                     viewBox="0 0 24 24"
@@ -123,7 +123,7 @@ const Home = () => {
                 <button className="px-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    class="icon icon-tabler icon-tabler-brand-youtube stroke-white hover:scale-105 active:scale-95 hover:stroke-red-500 hover:fill-black"
+                    class="icon icon-tabler icon-tabler-brand-youtube stroke-black dark:stroke-white hover:scale-105 active:scale-95 hover:stroke-red-500 hover:fill-black"
                     width="40"
                     height="40"
                     viewBox="0 0 24 24"
@@ -146,7 +146,7 @@ const Home = () => {
                 <button className="px-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    class="icon icon-tabler icon-tabler-brand-instagram stroke-white hover:scale-105 active:scale-95 hover:stroke-pink-300"
+                    class="icon icon-tabler icon-tabler-brand-instagram stroke-black dark:stroke-white hover:scale-105 active:scale-95 hover:stroke-pink-300"
                     width="40"
                     height="40"
                     viewBox="0 0 24 24"
@@ -167,7 +167,7 @@ const Home = () => {
                 <button>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    class="icon icon-tabler icon-tabler-brand-x stroke-white hover:scale-105 active:scale-95 hover:stroke-blue-500"
+                    class="icon icon-tabler icon-tabler-brand-x stroke-black dark:stroke-white hover:scale-105 active:scale-95 hover:stroke-blue-500"
                     width="40"
                     height="40"
                     viewBox="0 0 24 24"
@@ -199,10 +199,7 @@ const Home = () => {
               </p>
               {/*  --------------------- FAVORITE ARTISTS + SCORES ---------------------- */}
               <div className="border-b py-4">
-                <h1 className="font-extrabold text-3xl">
-                  Favorite Artists & Scores:
-                </h1>
-                <p>And my favorite score from them</p>
+                <h1 className="font-extrabold text-3xl">Favorite Artists</h1>
                 {/* Artist 1 */}
                 <div className="flex items-center py-3">
                   <div className="flex items-center">
@@ -397,9 +394,7 @@ const Home = () => {
                   </div>
                 </div>
               </div>
-              <h1 className="font-extrabold text-3xl pb-4 py-4">
-                Recent Post:
-              </h1>
+              <h1 className="font-extrabold text-3xl pb-4 py-4">Recent Post</h1>
               <div className="flex flex-col items-center  border p-4 rounded-md">
                 <a className="text-sm" href="blog">
                   <main>

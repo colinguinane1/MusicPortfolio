@@ -5,6 +5,7 @@ import Player from "../Player";
 import Backdrop from "./Backdrop";
 import { useMediaQuery } from "@react-hook/media-query";
 import { useGesture } from "react-use-gesture";
+import Image from "next/image";
 
 const Modal = ({
   setCurrentCover,
@@ -107,22 +108,26 @@ const Modal = ({
         animate={{ scale: 1, y: isLargeScreen ? 0 : 0 }}
         exit={{ scale: isLargeScreen ? 0 : 1, y: isLargeScreen ? 0 : "100%" }}
         transition={{ type: "spring", duration: 0.4 }}
-        className="md:inset-0 md:flex md:items-center no_transition md:justify-center md:fixed absolute md:-mt-10 top-0 left-0 w-full h-full z-50 pt-14"
+        className="md:inset-0  md:flex  md:items-center no_transition md:justify-center md:fixed absolute  md:-mt-10 top-0 left-0 w-full h-full z-50 pt-14"
         onClick={handleClickOutside}
       >
         <div
           onClick={dropdownModalCheck}
           id="modal"
-          className={`p-8 rounded-lg shadow-lg modal-content md:min-h-fit min-h-[500%] backdrop-blur-3xl z-50 
-          ${isLargeScreen ? "" : "gradient"}
+          className={`p-8 rounded-lg shadow-lg modal-content dark:bg-black dark:bg-opacity-10 bg-white bg-opacity-20 md:min-h-fit min-h-[500%] backdrop-blur-3xl z-50 
+          ${
+            isLargeScreen
+              ? ""
+              : "bg-white dark:bg-black dark:bg-opacity-50 bg-opacity-90 text-black dark:text-white"
+          }
           `}
         >
-          <div className="flex flex-col items-center md:hidden">
+          <div className="flex flex-col  items-center md:hidden">
             {" "}
             <span className="absolute right-1 -mt-5" onClick={onClose}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="md:hidden icon icon-tabler icon-tabler-circle-x stroke-white hover:stroke-red-500 hover:scale-105 active:scale-95"
+                class="md:hidden icon icon-tabler icon-tabler-circle-x dark:stroke-white stroke-black hover:stroke-red-500 hover:scale-105 active:scale-95 cursor-pointer"
                 width="40"
                 height="40"
                 viewBox="0 0 24 24"
@@ -137,6 +142,7 @@ const Modal = ({
                 <path d="M10 10l4 4m0 -4l-4 4" />
               </svg>
             </span>
+            {/* image optimization doesnt work with automatic height nad width */}
             <img
               src={`https://storage.googleapis.com/music-portfolio-67eb6.appspot.com/music/${folderName}/cover.jpg`}
               alt="Icon"
@@ -145,12 +151,12 @@ const Modal = ({
           </div>
 
           <div className="flex">
-            <h2 className="font-bold mb-2 md:text-4xl text-2xl text-white">
+            <h2 className="font-bold mb-2 md:text-4xl text-2xl dark:text-white md:text-white">
               {folderName}
             </h2>{" "}
             <div
               className={`group border max-w-fit h-6 md:mt-[9.5px] ${
-                dropdown ? "bg-white" : ""
+                dropdown ? "dark:bg-white bg-slate-200" : ""
               } ${
                 spotifyLink ? "" : "hidden"
               } rounded-full border-2 mt-[2px] ml-2`}
@@ -159,7 +165,9 @@ const Modal = ({
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 class={`icon icon-tabler icon-tabler-dots ${
-                  dropdown ? "stroke-black" : "stroke-white"
+                  dropdown
+                    ? "dark:stroke-black md:stroke-white"
+                    : "dark:stroke-white md:stroke-white"
                 } cursor-pointer max-h-fit`}
                 width="20"
                 height="20"
@@ -281,18 +289,18 @@ const Modal = ({
               )}
             </div>
           </div>
-          <h1 className="text-gray-300 font-extrabold md:text-base text-sm">
+          <h1 className="dark:text-gray-300 md:text-white text-slate-600 font-extrabold md:text-base text-sm">
             {yearReleased}
           </h1>
           <div className="md:flex grid grid-flow-row">
-            <h1 className="text-white max-w-[28rem] md:text-base text-sm py-2">
+            <h1 className="dark:text-gray-300 md:text-white text-slate-600 max-w-[28rem] md:text-base text-sm py-2">
               {albumDescription}
             </h1>
           </div>
 
           <div className="border-b border-gray-500 pb-2 border-opacity-50 md:flex gap-3 md:text-base text-sm">
             {artistChoice && (
-              <h1 className="text-yellow-300 border-2 border-yellow-600 max-w-fit px-3 rounded-full my-2">
+              <h1 className="text-yellow-500 dark:text-yellow-300  border-2 border-yellow-600 max-w-fit px-3 rounded-full my-2">
                 Artist&apos;s Choice:{" "}
                 <span className="font-extrabold">{artistChoice}</span>
               </h1>
@@ -368,7 +376,7 @@ const Modal = ({
             {folderContents.map((item, index) => (
               <li
                 key={index}
-                className="flex items-center text-white md:text-base text-sm space-x-4 py-2 md:py-1 px-2 hover:bg-blue-500 rounded-md hover:scale-105 active:scale-95 transition-all duration-400 cursor-pointer"
+                className="flex items-center dark:text-white md:text-base text-sm space-x-4 py-2 md:py-1 px-2 hover:bg-blue-500 rounded-md hover:scale-105 active:scale-95 transition-all duration-400 cursor-pointer"
                 onClick={() => handleItemClick(item.name, index)}
               >
                 {index === currentSongIndex && (
@@ -379,13 +387,17 @@ const Modal = ({
                     className="w-4 h-4 rounded-full bg-blue-300 animate-pulse"
                   ></motion.div>
                 )}
-                <img
+                <Image
                   src={`https://storage.googleapis.com/music-portfolio-67eb6.appspot.com/music/${folderName}/cover.jpg`}
                   alt="Icon"
                   className="md:h-14 rounded-lg md:w-14 h-14 w-14" // Increase image size as needed
+                  width={56}
+                  height={56}
                 />
                 <div className="min-w-fit">
-                  <h3 className="">{tidyFileName(item.name)}</h3>
+                  <h3 className="dark:text-white md:text-white">
+                    {tidyFileName(item.name)}
+                  </h3>
                   <p className="text-gray-400">{artist}</p>
                   {item.name === artistChoice && (
                     <h1 className="text-yellow-300">Artist&apos;s Choice</h1>

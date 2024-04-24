@@ -10,13 +10,15 @@
   },
   "dependencies": {
     "@google-cloud/storage": "^7.9.0",
+    "@nextui-org/react": "^2.3.6",
     "@react-hook/media-query": "^1.1.1",
     "@vercel/analytics": "^1.2.2",
     "extract-colors": "^4.0.2",
     "firebase": "^10.9.0",
     "framer-motion": "^11.0.24",
     "next": "14.1.4",
-    "node-vibrant": "^3.2.1-alpha.1",
+    "next-themes": "^0.3.0",
+    "node-vibrant": "^3.1.6",
     "react": "^18",
     "react-dom": "^18",
     "react-use-gesture": "^9.1.3"

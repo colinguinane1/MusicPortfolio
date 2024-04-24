@@ -132,20 +132,24 @@ const Player = memo(({ currentSong, currentCover, coverUrl, songs }) => {
             currentSong ? "" : ""
           }`}
         >
-          <div className="fixed md:ml-2 md:mb-0 mb-8 bottom-0 bg shadow-lg-transparent md:w-full w-full backdrop-blur-3xl md:scale-100 scale-90 rounded-lg h-20 flex justify-center items-center z-[1000]">
+          <div className="fixed md:ml-2 md:mb-0 mb-8 bottom-0 bg dark:bg-black dark:bg-opacity-10 bg-white bg-opacity-30 shadow-lg-transparent md:w-full w-full backdrop-blur-3xl md:scale-100 scale-90 rounded-lg h-20 flex justify-center items-center z-[1000]">
             <main className="flex mx-4 -ml-1 z-10">
               <img
                 src={currentCover}
                 alt="Album Cover"
                 className="w-12 h-12 rounded-md mx-3 cursor-pointer"
+                width={48}
+                height={48}
                 onClick={playerToggle}
               />
               <div
                 onclick={playerToggle}
                 className="min-w-fit md:text-base text-sm md:mt-0 mt-1"
               >
-                <h1 className="text-white">{tidyFileName(currentSong)}</h1>
-                <h1 className="text-gray-400">{artist}</h1>
+                <h1 className="dark:text-white md:text-white  ">
+                  {tidyFileName(currentSong)}
+                </h1>
+                <h1 className="dark:text-gray-400 text-gray-500">{artist}</h1>
               </div>
             </main>
             <audio ref={audioRef}></audio>
@@ -167,7 +171,7 @@ const Player = memo(({ currentSong, currentCover, coverUrl, songs }) => {
             {!isPlaying && (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="icon icon-tabler icon-tabler-player-play-filled stroke-black rounded-full p-2 bg-white hover:scale-105 active:scale-95 cursor-pointer hover:stroke-blue-400 z-[100]"
+                className="icon icon-tabler icon-tabler-player-play-filled dark:stroke-black stroke-white rounded-full p-2 dark:bg-white bg-black hover:scale-105 active:scale-95 cursor-pointer hover:stroke-blue-400 z-[100]"
                 width="44"
                 height="44"
                 viewBox="0 0 24 24"
@@ -184,7 +188,7 @@ const Player = memo(({ currentSong, currentCover, coverUrl, songs }) => {
             {isPlaying && (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="icon icon-tabler icon-tabler-player-pause-filled stroke-black bg-white rounded-full p-2 hover:scale-105 active:scale-95 cursor-pointer hover:stroke-blue-400 z-[100]"
+                className="icon icon-tabler icon-tabler-player-pause-filled dark:stroke-black stroke-white dark:bg-white bg-black rounded-full p-2 hover:scale-105 active:scale-95 cursor-pointer hover:stroke-blue-400 z-[100]"
                 width="44"
                 height="44"
                 viewBox="0 0 24 24"
@@ -200,7 +204,7 @@ const Player = memo(({ currentSong, currentCover, coverUrl, songs }) => {
             )}
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="icon icon-tabler icon-tabler-player-stop-filled mx-4 stroke-black bg-white rounded-full p-2 hover:stroke-blue-400 hover:scale-105 active:scale-95 cursor-pointer z-[100]"
+              className="icon icon-tabler icon-tabler-player-stop-filled mx-4 dark:stroke-black stroke-white dark:bg-white bg-black rounded-full p-2 hover:stroke-blue-400 hover:scale-105 active:scale-95 cursor-pointer z-[100]"
               width="44"
               height="44"
               viewBox="0 0 24 24"
@@ -216,7 +220,7 @@ const Player = memo(({ currentSong, currentCover, coverUrl, songs }) => {
             <div className="md:block hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="icon icon-tabler icon-tabler-volume stroke-black bg-white rounded-full p-2 hover:stroke-blue-400 hover:scale-105 active:scale-95 cursor-pointer z-[100]"
+                className="icon icon-tabler icon-tabler-volume dark:stroke-black stroke-white dark:bg-white bg-black rounded-full p-2 hover:stroke-blue-400 hover:scale-105 active:scale-95 cursor-pointer z-[100]"
                 width="44"
                 height="44"
                 viewBox="0 0 24 24"
@@ -286,6 +290,7 @@ const Player = memo(({ currentSong, currentCover, coverUrl, songs }) => {
                     </svg>
                   </button>
                   <div className="">
+                    {/* image optimization doesn't seem to work with percentages */}
                     <img
                       src={currentCover}
                       alt="Album Cover"

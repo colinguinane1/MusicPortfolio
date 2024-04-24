@@ -44,7 +44,7 @@ const Page = () => {
       >
         <div class="flex items-center h-fit dark:bg-transparent">
           <div class="container mx-auto my-auto mt-32">
-            <div class="mx-auto bg-black pb-[40%] rounded-md shadow-sm">
+            <div class="mx-auto dark:bg-black pb-[40%] rounded-md shadow-sm">
               <div class="text-center ">
                 <h1 class="my-3 text-3xl font-semibold text-black dark:text-gray-200">
                   Contact

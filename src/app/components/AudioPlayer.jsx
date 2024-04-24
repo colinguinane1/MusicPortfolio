@@ -4,6 +4,7 @@ import Modal from "./Modal/Modal";
 import { motion, spring, AnimatePresence } from "framer-motion";
 import Player from "./Player";
 import { useMediaQuery } from "@react-hook/media-query";
+import Image from "next/image";
 
 const MusicPlayer = () => {
   const [folders, setFolders] = useState([]);
@@ -185,10 +186,13 @@ const MusicPlayer = () => {
                 onClick={() => handleFolderSelect(folder.name)}
                 className="w-full h-full rounded-md overflow-hidden focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 no_transition"
               >
-                <img
+                {/* optimized images using next/image -- not sure if i will keep */}
+                <Image
                   src={folder.coverUrl}
                   alt={`Cover for ${folder.name}`}
                   className="w-60"
+                  width={240}
+                  height={240}
                 />
                 {folderLoading[folder.name] && (
                   <div className="absolute inset-0 flex justify-center items-center bg-gray-500 bg-opacity-50">

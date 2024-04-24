@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { ThemeSwitcher } from "./ThemeSwitcher";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -16,11 +17,12 @@ const Navbar = () => {
 
   return (
     <main>
-      <div className="fixed w-screen border-b py-4 bg-black">
-        <ul className="text-white flex justify-between mx-4 z-[100]">
+      <ThemeSwitcher />
+      <div className="fixed w-screen border-b py-4 dark:bg-black bg-white">
+        <ul className="dark:text-white flex justify-between mx-4 z-[100]">
           <li>
             <a
-              className="navbar_text border hover:rounded-full  p-2 font-extrabold"
+              className="navbar_text border border-black dark:border-white hover:rounded-full  p-2 font-extrabold"
               href="home"
             >
               CG
@@ -83,7 +85,7 @@ const Navbar = () => {
             exit="hidden"
             variants={menuVariants}
           >
-            <ul className="text-6xl bg-black text-white ml-4 bg-opacity-50 h-screen">
+            <ul className="text-6xl dark:bg-black dark:bg-opacity-40 text-white bg-opacity-50 h-screen">
               <li className="pt-8 pb-4">
                 <a
                   className="navbar_text font-extrabold flex group"
@@ -91,7 +93,7 @@ const Navbar = () => {
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    class="icon icon-tabler icon-tabler-home-2 mt-[2px] mx-2 stroke-white"
+                    class="icon icon-tabler icon-tabler-home-2 mt-[2px] mx-2 stroke-white group:stroke-blue-500"
                     width="55"
                     height="55"
                     viewBox="0 0 24 24"

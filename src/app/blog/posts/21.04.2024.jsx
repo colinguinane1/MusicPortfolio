@@ -1,7 +1,7 @@
 "use client";
 const Post1 = () => {
   return (
-    <main>
+    <main className="text-black dark:text-white">
       <h1 className="text-3xl font-extrabold py-1">Website Launch</h1>
       <h1 className="font-extrabold py-1">21/04/2024</h1>
       <div className="font-light">
