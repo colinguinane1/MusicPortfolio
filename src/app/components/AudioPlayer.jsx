@@ -48,8 +48,10 @@ const MusicPlayer = () => {
         const uniqueFolders = new Map();
         data.items.forEach((item) => {
           const folderName = item.name.split("/")[1];
-          if (!uniqueFolders.has(folderName) && folderName !== "") {
-            const coverUrl = `https://storage.googleapis.com/music-portfolio-67eb6.appspot.com/music/${folderName}/cover.jpg`;
+          if (folderName) {
+            // Replace backslashes with forward slashes in folderName
+            const normalizedFolderName = folderName.replace(/\\/g, "/");
+            const coverUrl = `https://storage.googleapis.com/music-portfolio-67eb6.appspot.com/music/${normalizedFolderName}/cover.jpg`;
             uniqueFolders.set(folderName, {
               name: folderName,
               coverUrl: coverUrl,
@@ -148,6 +150,11 @@ const MusicPlayer = () => {
     return tidyName.replace(/\.[^.]+$/, "");
   };
 
+  const tidyAlbumName = (folderName) => {
+    // Remove leading numbers followed by a dot and trim any spaces
+    return folderName.replace(/^\d+\./, "").trim();
+  };
+
   if (loading) {
     return <div className="">Loading...</div>;
   }
@@ -231,6 +238,7 @@ const MusicPlayer = () => {
             folderName={selectedFolder}
             folderContents={folderContents}
             tidyFileName={tidyFileName}
+            tidyAlbumName={tidyAlbumName}
             onClose={handleCloseModal}
             setCurrentSong={setCurrentSong}
             handlePlay={handlePlay}

@@ -14,6 +14,7 @@ const Modal = ({
   isPlaying,
   folderContents,
   tidyFileName,
+  tidyAlbumName,
   onClose,
   setCurrentSong,
   handlePlay,
@@ -118,7 +119,7 @@ const Modal = ({
           ${
             isLargeScreen
               ? ""
-              : "bg-white dark:bg-black dark:bg-opacity-50 bg-opacity-90 text-black dark:text-white"
+              : "bg-white  dark:bg-black dark:bg-opacity-50 bg-opacity-90 text-black dark:text-white"
           }
           `}
         >
@@ -152,7 +153,7 @@ const Modal = ({
 
           <div className="flex">
             <h2 className="font-bold mb-2 md:text-4xl text-2xl dark:text-white md:text-white">
-              {folderName}
+              {tidyAlbumName(folderName)}
             </h2>{" "}
             <div
               className={`group border dark:border-white border-black max-w-fit h-6 md:mt-[9.5px] ${
@@ -376,7 +377,7 @@ const Modal = ({
             {folderContents.map((item, index) => (
               <li
                 key={index}
-                className="flex items-center dark:text-white md:text-base text-sm space-x-4 py-2 md:py-1 px-2 hover:bg-blue-500 rounded-md hover:scale-105 active:scale-95 transition-all duration-400 cursor-pointer"
+                className="flex items-center transition-all dark:text-white md:text-base text-sm space-x-4 py-2 md:py-1 px-2 hover:bg-blue-500 rounded-md hover:scale-105 active:scale-95 transition-all duration-400 cursor-pointer"
                 onClick={() => handleItemClick(item.name, index)}
               >
                 {index === currentSongIndex && (
@@ -384,7 +385,7 @@ const Modal = ({
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ duration: 0.3 }}
-                    className="w-4 h-4 rounded-full bg-blue-300 animate-pulse"
+                    className="w-4 h-4 transition-all rounded-full bg-blue-300 animate-pulse"
                   ></motion.div>
                 )}
                 <Image

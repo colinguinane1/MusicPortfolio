@@ -42,7 +42,7 @@ const Navbar = () => {
         <ul className="dark:text-white flex justify-between mx-4 z-[100]">
           <li>
             <a
-              className="navbar_text border border-black dark:border-white hover:rounded-full  p-2 font-extrabold"
+              className="navbar_text border border-black dark:border-white  p-2 font-extrabold"
               href="home"
             >
               CG
@@ -98,10 +98,10 @@ const Navbar = () => {
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            className="fixed md:hidden no_transition top-[57px] right-0 w-screen h-screen bg-black bg-opacity-75 z-[10000]"
+            className="fixed md:hidden no_transition top-[57px] right-0 w-screen  h-screen bg-black bg-opacity-75 z-[10000]"
             initial="hidden"
             animate="visible"
-            transition={{ duration: 0.3, type: "spring" }}
+            transition={{ duration: 0.2 }}
             exit="hidden"
             variants={menuVariants}
           >

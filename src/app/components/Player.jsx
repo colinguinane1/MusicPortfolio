@@ -132,7 +132,7 @@ const Player = memo(({ currentSong, currentCover, coverUrl, songs }) => {
             currentSong ? "" : ""
           }`}
         >
-          <div className="fixed md:ml-2 md:mb-0 mb-8 bottom-0 bg dark:bg-black dark:bg-opacity-10 bg-white bg-opacity-30 shadow-lg-transparent md:w-full w-full backdrop-blur-3xl md:scale-100 scale-90 rounded-lg h-20 flex justify-center items-center z-[1000]">
+          <div className="fixed md:ml-2 md:mb-0 mb-8 bottom-0 bg dark:bg-black dark:bg-opacity-20 bg-white bg-opacity-10 shadow-lg  w-full backdrop-blur-3xl md:scale-100 scale-[0.92] rounded-lg h-20 flex justify-center items-center z-[100]">
             <main className="flex mx-4 -ml-1 z-10">
               <img
                 src={currentCover}
@@ -149,7 +149,7 @@ const Player = memo(({ currentSong, currentCover, coverUrl, songs }) => {
                 <h1 className="dark:text-white md:text-white  ">
                   {tidyFileName(currentSong)}
                 </h1>
-                <h1 className="dark:text-gray-400 text-gray-500">{artist}</h1>
+                <h1 className="dark:text-gray-400 text-black">{artist}</h1>
               </div>
             </main>
             <audio ref={audioRef}></audio>
