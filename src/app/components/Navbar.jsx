@@ -31,11 +31,13 @@ const Navbar = () => {
 
   return (
     <main>
-      <ThemeSwitcher />
+      <div className="hidden md:block absolute top-[10px] left-24 z-[10000]">
+        <ThemeSwitcher />
+      </div>
       <div
         className={`fixed w-screen transition-all ${
           scrolled ? "border-b shadow-md" : ""
-        } py-4 dark:bg-black bg-white`}
+        } py-4 dark:bg-black bg-white oled:bg-black`}
       >
         <ul className="dark:text-white flex justify-between mx-4 z-[100]">
           <li>
@@ -96,7 +98,7 @@ const Navbar = () => {
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            className="fixed no_transition top-[57px] right-0 w-screen h-screen bg-black bg-opacity-75 z-[10000]"
+            className="fixed md:hidden no_transition top-[57px] right-0 w-screen h-screen bg-black bg-opacity-75 z-[10000]"
             initial="hidden"
             animate="visible"
             transition={{ duration: 0.3, type: "spring" }}
@@ -198,6 +200,9 @@ const Navbar = () => {
                   CONTACT
                 </a>
               </li>
+              <div className="ml-4">
+                <ThemeSwitcher />
+              </div>
             </ul>
           </motion.div>
         )}
