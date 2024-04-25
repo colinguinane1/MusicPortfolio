@@ -35,7 +35,7 @@ const Navbar = () => {
         <ThemeSwitcher />
       </div>
       <div
-        className={`fixed w-screen transition-all ${
+        className={`fixed w-screen transition-all bg-transparent backdrop-blur-lg ${
           scrolled ? "border-b shadow-md" : ""
         } py-4 dark:bg-black bg-white oled:bg-black`}
       >
