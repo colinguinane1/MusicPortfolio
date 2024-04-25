@@ -1,10 +1,24 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ThemeSwitcher } from "./ThemeSwitcher";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > 0;
+      setScrolled(isScrolled);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -18,7 +32,11 @@ const Navbar = () => {
   return (
     <main>
       <ThemeSwitcher />
-      <div className="fixed w-screen no_transition border-b py-4 dark:bg-black shadow-lg bg-white">
+      <div
+        className={`fixed w-screen transition-all ${
+          scrolled ? "border-b shadow-md" : ""
+        } py-4 dark:bg-black bg-white`}
+      >
         <ul className="dark:text-white flex justify-between mx-4 z-[100]">
           <li>
             <a

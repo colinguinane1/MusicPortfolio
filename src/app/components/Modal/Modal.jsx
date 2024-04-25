@@ -114,7 +114,7 @@ const Modal = ({
         <div
           onClick={dropdownModalCheck}
           id="modal"
-          className={`p-8 rounded-lg shadow-lg modal-content dark:bg-black dark:bg-opacity-10 bg-white bg-opacity-20 md:min-h-fit min-h-[500%] backdrop-blur-3xl z-50 
+          className={`p-8 md:rounded-lg shadow-lg modal-content dark:bg-black dark:bg-opacity-10 bg-white bg-opacity-20 md:min-h-fit min-h-[500%] backdrop-blur-3xl z-50 
           ${
             isLargeScreen
               ? ""
