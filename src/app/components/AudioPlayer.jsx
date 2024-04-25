@@ -192,7 +192,7 @@ const MusicPlayer = () => {
       />
       <div className="flex justify-center items-center flex-col mx-[1rem]"> 
       <div className="mt-16 flex gap-2 -mb-14">
-          <h1>Sort:</h1>
+          <h1 className="mt-1">Sort:</h1>
           <select id="sort" onChange={handleSortChange}>
             <option value="recent">Most Recent</option>
             <option value="oldest">Oldest</option>
