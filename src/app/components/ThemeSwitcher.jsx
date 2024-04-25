@@ -114,13 +114,14 @@ export function ThemeSwitcher() {
               >
                 Dark Mode
               </button>
-              {/* Display OLED mode button when the current theme is OLED */}
+             
+{/*  -- DISABLED FOR NOW UNTIL I FIGURE OUT HOW TO DO THIS SHIT
               <button
                 className=" w-full text-left px-4 py-2 text-sm text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-gray-100"
                 onClick={() => handleChangeTheme("oled")}
               >
                 OLED Mode
-              </button>
+              </button> */}
             </motion.div>
           )}
         </AnimatePresence>

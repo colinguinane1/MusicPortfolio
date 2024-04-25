@@ -32,11 +32,6 @@ body{
   background-color: rgb(0, 0, 0);
 }
 
-.reverse-order {
-  display: grid;
-  grid-auto-flow: row;
-}
-
 
 /*           body {
             margin: 0;

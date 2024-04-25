@@ -124,9 +124,9 @@ const Player = memo(({ currentSong, currentCover, coverUrl, songs }) => {
       <AnimatePresence>
         <motion.div
           key="player"
-          initial={{ y: "100%" }} // Initially position the player at the bottom of the screen
-          animate={{ y: 0 }} // Animate the player to move up to its original position
-          exit={{ y: "100%" }} // Animate the player to move back down to the bottom when exiting
+          initial={{ y: "100%" }} 
+          animate={{ y: 0 }} 
+          exit={{ y: "100%" }} 
           transition={{ duration: 1, type: "spring" }}
           className={`flex flex-col items-center scale-1 no-transition ${
             currentSong ? "" : ""
@@ -251,11 +251,11 @@ const Player = memo(({ currentSong, currentCover, coverUrl, songs }) => {
               )}
             </div>
 
-            {/*           {isPlaying && (            //DISABLED UNLESS IN BIG PLAYER - I THINK THAT LOOKS BETTER
-            <h1 className="text-white text-sm mt-[26px]">
+                      {isPlaying && (            //DISABLED UNLESS IN BIG PLAYER / MEDIUM SCREEN SIZE - I THINK THAT LOOKS BETTER
+            <h1 className="text-white hidden md:block items-center text-sm ml-4">
               {remainingTime != 0 && formatTime(remainingTime)}
             </h1>
-          )} */}
+          )} 
           </div>
           {bigPlayer && (
             <AnimatePresence>

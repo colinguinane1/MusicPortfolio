@@ -75,7 +75,7 @@ const Home = () => {
                 <button className="">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    class="icon icon-tabler icon-tabler-brand-spotify stroke-black dark:stroke-white hover:scale-105 active:scale-95 hover:stroke-green-500"
+                    class="icon icon-tabler icon-tabler-brand-spotify stroke-black dark:stroke-white hover:scale-105 active:scale-95 hover:stroke-green-500 dark:hover:stroke-green-500"
                     width="40"
                     height="40"
                     viewBox="0 0 24 24"
@@ -100,7 +100,7 @@ const Home = () => {
                 <button className="px-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    class="icon icon-tabler icon-tabler-brand-apple stroke-black dark:stroke-white hover:scale-105 active:scale-95 hover:stroke-pink-500"
+                    class="icon icon-tabler icon-tabler-brand-apple stroke-black dark:stroke-white hover:scale-105 active:scale-95 hover:stroke-pink-500 dark:hover:stroke-pink-500"
                     width="40"
                     height="40"
                     viewBox="0 0 24 24"
@@ -123,7 +123,7 @@ const Home = () => {
                 <button className="px-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    class="icon icon-tabler icon-tabler-brand-youtube stroke-black dark:stroke-white hover:scale-105 active:scale-95 hover:stroke-red-500 "
+                    class="icon icon-tabler icon-tabler-brand-youtube stroke-black dark:stroke-white hover:scale-105 active:scale-95 hover:stroke-red-500 dark:hover:stroke-red-500"
                     width="40"
                     height="40"
                     viewBox="0 0 24 24"
@@ -146,7 +146,7 @@ const Home = () => {
                 <button className="px-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    class="icon icon-tabler icon-tabler-brand-instagram stroke-black dark:stroke-white hover:scale-105 active:scale-95 hover:stroke-pink-300"
+                    class="icon icon-tabler icon-tabler-brand-instagram stroke-black dark:stroke-white hover:scale-105 active:scale-95 hover:stroke-pink-300 dark:hover:stroke-pink-300"
                     width="40"
                     height="40"
                     viewBox="0 0 24 24"
@@ -167,7 +167,7 @@ const Home = () => {
                 <button>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    class="icon icon-tabler icon-tabler-brand-x stroke-black dark:stroke-white hover:scale-105 active:scale-95 hover:stroke-blue-500"
+                    class="icon icon-tabler icon-tabler-brand-x stroke-black dark:stroke-white hover:scale-105 active:scale-95 hover:stroke-blue-500 dark:hover:stroke-blue-500"
                     width="40"
                     height="40"
                     viewBox="0 0 24 24"
