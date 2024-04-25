@@ -200,7 +200,7 @@ const Home = () => {
               {/*  --------------------- FAVORITE ARTISTS + SCORES ---------------------- */}
               <div className="border-b py-4">
                 <h1 className="font-extrabold text-3xl">Favorite Artists</h1>
-                <p>(at the moment)</p>
+                <p className="mb-4">(at the moment)</p>
                 {/* Artist 1 */}
                 <div className="flex items-center py-3 mb-2 border px-3 hover:bg-slate-200 hover:border-slate-600 hover:dark:text-black hover:dark:border-black  rounded-lg">
                   <div className="flex items-center ">

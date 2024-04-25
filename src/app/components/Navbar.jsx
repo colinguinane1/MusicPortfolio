@@ -31,7 +31,7 @@ const Navbar = () => {
 
   return (
     <main>
-      <div className="hidden md:block absolute top-[10px] left-24 z-[10000]">
+      <div className="hidden md:block absolute top-[8.4px] left-24 z-[10000]">
         <ThemeSwitcher />
       </div>
       <div
@@ -200,7 +200,7 @@ const Navbar = () => {
                   CONTACT
                 </a>
               </li>
-              <div className="ml-4">
+              <div className="ml-4 flex text-base">
                 <ThemeSwitcher />
               </div>
             </ul>
