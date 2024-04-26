@@ -226,7 +226,7 @@ const MusicPlayer = () => {
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class={`icon icon-tabler icon-tabler-settings transition-all stroke-black hover:stroke-blue-500 ${
+                class={`icon icon-tabler icon-tabler-settings transition-all dark:stroke-white stroke-black hover:stroke-blue-500 ${
                   gridSettingsDropdown ? "rotate-90" : ""
                 }`}
                 width="30"
@@ -263,7 +263,7 @@ const MusicPlayer = () => {
                   <button onClick={addColumns} className="">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      class={`icon icon-tabler icon-tabler-layout-grid-add stroke-black mt-1`}
+                      class={`icon icon-tabler icon-tabler-layout-grid-add stroke-black dark:stroke-white mt-1`}
                       width="25"
                       height="25"
                       viewBox="0 0 24 24"
@@ -283,7 +283,7 @@ const MusicPlayer = () => {
                   <button onClick={subtractColumns}>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      class="icon icon-tabler icon-tabler-layout-grid-remove stroke-black mt-1"
+                      class="icon icon-tabler icon-tabler-layout-grid-remove stroke-black dark:stroke-white mt-1"
                       width="25"
                       height="25"
                       viewBox="0 0 24 24"
