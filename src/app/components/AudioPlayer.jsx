@@ -341,7 +341,7 @@ const MusicPlayer = () => {
                       <img
                         src={folder.coverUrl}
                         alt={`Cover for ${folder.name}`}
-                        className="w-screen"
+                        className="w-screen md:max-w-96"
                       />
                       {folderLoading[folder.name] && (
                         <div className="absolute inset-0 flex justify-center items-center bg-gray-500 bg-opacity-50">
@@ -382,7 +382,7 @@ const MusicPlayer = () => {
                     <img
                       src={folder.coverUrl}
                       alt={`Cover for ${folder.name}`}
-                      className="w-screen"
+                      className="w-screen md:max-w-96"
                       width={240}
                       height={240}
                     />
