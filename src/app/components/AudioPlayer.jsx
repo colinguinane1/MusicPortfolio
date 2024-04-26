@@ -179,6 +179,7 @@ const MusicPlayer = () => {
     if (gridCols < 4) {
       setGridCols((prevGridCols) => {
         const updatedGridCols = prevGridCols + 1;
+        console.log(updatedGridCols);
         return updatedGridCols;
       });
     }
@@ -188,6 +189,7 @@ const MusicPlayer = () => {
     if (gridCols > 1) {
       setGridCols((prevGridCols) => {
         const updatedGridCols = prevGridCols - 1;
+        console.log(updatedGridCols);
         return updatedGridCols;
       });
     }
@@ -254,7 +256,7 @@ const MusicPlayer = () => {
                 <div className="flex gap-1">
                   <h1 className="">Sort:</h1>
                   <select id="sort" className="" onChange={handleSortChange}>
-                    <option value="recent">Most Recent</option>
+                    <option value="recent">Recent</option>
                     <option value="oldest">Oldest</option>
                   </select>
                 </div>
@@ -316,6 +318,7 @@ const MusicPlayer = () => {
                       <path d="M14 17h6" />
                     </svg>
                   </motion.button>
+                  <h1>{gridCols}</h1>
                 </div>
               </motion.div>
             )}

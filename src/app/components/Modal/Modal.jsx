@@ -285,7 +285,7 @@ const Modal = ({
             {yearReleased}
           </h1>
           <div className="md:flex grid grid-flow-row">
-            <h1 className="dark:text-gray-300 md:text-white text-slate-600 max-w-[28rem] md:text-base text-sm py-2">
+            <h1 className="dark:text-slate-400 md:text-white text-slate-600 max-w-[28rem] md:text-base text-sm py-2">
               {albumDescription}
             </h1>
           </div>
@@ -390,7 +390,7 @@ const Modal = ({
                   <h3 className="dark:text-white md:text-white">
                     {tidyFileName(item.name)}
                   </h3>
-                  <p className="text-gray-400">{artist}</p>
+                  <p className="text-slate-600 dark:text-slate-400">{artist}</p>
                   {item.name === artistChoice && (
                     <h1 className="text-yellow-300">Artist&apos;s Choice</h1>
                   )}
