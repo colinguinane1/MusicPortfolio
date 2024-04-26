@@ -84,17 +84,8 @@ const Modal = ({
       }
     },
   });
-
   const isLargeScreen = useMediaQuery("(min-width: 768px)");
-
   const downloadLink = `https://storage.googleapis.com/music-portfolio-67eb6.appspot.com/music/${folderName}`;
-
-  async function getServerSideProps() {
-    const imageUrl = `https://storage.googleapis.com/music-portfolio-67eb6.appspot.com/music/${folderName}/cover.jpg`;
-    const colors = await extractColorsFromImage(imageUrl);
-    console.log(colors);
-  }
-
   return (
     <div>
       <div className="w-full h-full">
@@ -115,11 +106,11 @@ const Modal = ({
         <div
           onClick={dropdownModalCheck}
           id="modal"
-          className={`p-4 pt-6 md:rounded-lg shadow-lg modal-content dark:bg-black dark:bg-opacity-10 bg-white bg-opacity-20 md:min-h-fit min-h-[500%] backdrop-blur-3xl z-50 
+          className={`p-4 md:p-8 pt-6 md:rounded-lg shadow-lg modal-content dark:bg-black md:dark:bg-opacity-5 bg-white md:bg-opacity-20 md:min-h-fit min-h-[500%] backdrop-blur-3xl z-50 
           ${
             isLargeScreen
               ? ""
-              : "bg-white  dark:bg-black dark:bg-opacity-50 bg-opacity-90 text-black dark:text-white"
+              : "bg-white  dark:bg-black bg-opacity-0 dark:bg-opacity-0 text-black dark:text-white dark:from-black dark:to-transparent bg-gradient-to-b from-white to-transparent bg-gradient-stops-[0%,1%,100%]"
           }
           `}
         >

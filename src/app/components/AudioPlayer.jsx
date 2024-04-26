@@ -23,7 +23,6 @@ const MusicPlayer = () => {
   const [isMostRecentSelected, setIsMostRecentSelected] = useState(true);
   const [gridCols, setGridCols] = useState(2);
   const [gridSettingsDropdown, setGridSettingsDropdown] = useState(false);
-  let updatedGridCols;
 
   const handlePlay = () => {
     setIsPlaying(false);
@@ -341,7 +340,7 @@ const MusicPlayer = () => {
                       <img
                         src={folder.coverUrl}
                         alt={`Cover for ${folder.name}`}
-                        className="w-screen "
+                        className="w-screen"
                       />
                       {folderLoading[folder.name] && (
                         <div className="absolute inset-0 flex justify-center items-center bg-gray-500 bg-opacity-50">
