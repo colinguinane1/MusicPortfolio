@@ -215,12 +215,12 @@ const MusicPlayer = () => {
         }
       />
       <div className="flex justify-center items-center   flex-col mx-4">
-        <div className="mt-[5rem] flex items-center gap-6 -mb-14">
+        <div className="mt-[5rem] w-full flex items-center gap-6 -mb-14">
           <div className="">
             <motion.button
               className="no_transition"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               onClick={toggleGridSettings}
             >
               <svg
@@ -248,10 +248,10 @@ const MusicPlayer = () => {
           <AnimatePresence>
             {gridSettingsDropdown && (
               <motion.div
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                exit={{ scale: 0 }}
-                className="flex gap-6 items-center no_transition"
+                initial={{ x: -100, scale: 0 }}
+                animate={{ scale: 1, x: 0 }}
+                exit={{ scale: 0, x: -100 }}
+                className="flex gap-6 bg-gray-300 p-2 px-2 rounded-full items-center no_transition"
               >
                 <div className="flex gap-1">
                   <h1 className="">Sort:</h1>

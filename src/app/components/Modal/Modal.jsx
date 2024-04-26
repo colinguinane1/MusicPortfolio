@@ -116,22 +116,25 @@ const Modal = ({
         >
           <div className="flex flex-col  items-center md:hidden">
             {" "}
-            <span className="absolute right-1 -mt-5" onClick={onClose}>
+            <span className="right-4 border-t -mt-5 py-2" onClick={onClose}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="md:hidden icon icon-tabler icon-tabler-circle-x dark:stroke-white stroke-black hover:stroke-red-500 hover:scale-105 active:scale-95 cursor-pointer"
-                width="40"
-                height="40"
+                class="icon icon-tabler icon-tabler-fold-down hover:stroke-blue-500 cursor-pointer"
+                width="44"
+                height="44"
                 viewBox="0 0 24 24"
                 stroke-width="1.5"
-                stroke="#2c3e50"
+                stroke="#000000"
                 fill="none"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
-                <path d="M10 10l4 4m0 -4l-4 4" />
+                <path d="M12 11v8l3 -3m-6 0l3 3" />
+                <path d="M9 7l1 0" />
+                <path d="M14 7l1 0" />
+                <path d="M19 7l1 0" />
+                <path d="M4 7l1 0" />
               </svg>
             </span>
             {/* image optimization doesnt work with automatic height nad width */}
