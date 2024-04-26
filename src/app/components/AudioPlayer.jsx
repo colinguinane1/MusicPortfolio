@@ -5,7 +5,6 @@ import { motion, spring, AnimatePresence } from "framer-motion";
 import Player from "./Player";
 import { useMediaQuery } from "@react-hook/media-query";
 import Image from "next/image";
-import { toggle } from "@nextui-org/react";
 
 const MusicPlayer = () => {
   const [folders, setFolders] = useState([]);
@@ -180,8 +179,7 @@ const MusicPlayer = () => {
   const addColumns = () => {
     if (gridCols < 4) {
       setGridCols((prevGridCols) => {
-        updatedGridCols = prevGridCols + 1;
-        console.log(updatedGridCols);
+        const updatedGridCols = prevGridCols + 1;
         return updatedGridCols;
       });
     }
@@ -190,8 +188,7 @@ const MusicPlayer = () => {
   const subtractColumns = () => {
     if (gridCols > 1) {
       setGridCols((prevGridCols) => {
-        updatedGridCols = prevGridCols - 1;
-        console.log(updatedGridCols);
+        const updatedGridCols = prevGridCols - 1;
         return updatedGridCols;
       });
     }
@@ -215,22 +212,25 @@ const MusicPlayer = () => {
             ? folders.find((folder) => folder.name === selectedFolder).coverUrl
             : ""
         }
-      />{" "}
+      />
       <div className="flex justify-center items-center  flex-col mx-4">
-        <div className="mt-16 flex items-center gap-6 -mb-14">
-          {" "}
+        <div className="mt-[5rem] flex items-center gap-6 -mb-14">
           <div className="">
-            <button
-              className="transition-all duration-1000"
+            <motion.button
+              className="no_transition"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
               onClick={toggleGridSettings}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class={`icon icon-tabler icon-tabler-settings transition-all dark:stroke-white stroke-black hover:stroke-blue-500 ${
-                  gridSettingsDropdown ? "rotate-90" : ""
-                }`}
-                width="30"
-                height="30"
+                class={`icon icon-tabler icon-tabler-settings transition-all dark:stroke-white stroke-black dark:hover:stroke-blue-500 hover:stroke-blue-500 ${
+                  gridSettingsDropdown
+                    ? "rotate-45 stroke-blue-500"
+                    : "stroke-black dark:stroke-white"
+                } `}
+                width="25"
+                height="25"
                 viewBox="0 0 24 24"
                 stroke-width="1.5"
                 stroke="#ffffff"
@@ -242,28 +242,37 @@ const MusicPlayer = () => {
                 <path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z" />
                 <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
               </svg>
-            </button>
-          </div>{" "}
+            </motion.button>
+          </div>
           <AnimatePresence>
             {gridSettingsDropdown && (
               <motion.div
-                initial={{ x: -1000 }}
-                animate={{ x: 0 }}
-                exit={{ x: -1000 }}
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                exit={{ scale: 0 }}
                 className="flex gap-6 items-center no_transition"
               >
-                <div className="flex gap-6">
+                <div className="flex gap-1">
                   <h1 className="">Sort:</h1>
-                  <select id="sort" onChange={handleSortChange}>
+                  <select id="sort" className="" onChange={handleSortChange}>
                     <option value="recent">Most Recent</option>
                     <option value="oldest">Oldest</option>
                   </select>
                 </div>
                 <div className="flex gap-6">
-                  <button onClick={addColumns} className="">
+                  <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    onClick={addColumns}
+                    className=""
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      class={`icon icon-tabler icon-tabler-layout-grid-add stroke-black dark:stroke-white mt-1`}
+                      class={`icon icon-tabler icon-tabler-layout-grid-add stroke-black dark:hover:stroke-blue-500 hover:stroke-blue-500 dark:stroke-white ${
+                        gridCols == 4
+                          ? "stroke:slate-300 dark:stroke-slate-400 dark:hover:stroke-slate-400 hover:stroke-slate-300 cursor-not-allowed"
+                          : ""
+                      }`}
                       width="25"
                       height="25"
                       viewBox="0 0 24 24"
@@ -279,11 +288,19 @@ const MusicPlayer = () => {
                       <path d="M4 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
                       <path d="M14 17h6m-3 -3v6" />
                     </svg>
-                  </button>
-                  <button onClick={subtractColumns}>
+                  </motion.button>
+                  <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    onClick={subtractColumns}
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      class="icon icon-tabler icon-tabler-layout-grid-remove stroke-black dark:stroke-white mt-1"
+                      class={`icon icon-tabler icon-tabler-layout-grid-remove stroke-black dark:hover:stroke-blue-500 hover:stroke-blue-500 dark:stroke-white ${
+                        gridCols == 1
+                          ? "stroke:slate-300 dark:stroke-slate-400 dark:hover:stroke-slate-400 hover:stroke-slate-300 cursor-not-allowed"
+                          : ""
+                      }`}
                       width="25"
                       height="25"
                       viewBox="0 0 24 24"
@@ -299,16 +316,14 @@ const MusicPlayer = () => {
                       <path d="M4 15a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-4z" />
                       <path d="M14 17h6" />
                     </svg>
-                  </button>
+                  </motion.button>
                 </div>
               </motion.div>
             )}
           </AnimatePresence>
         </div>
         <div
-          className={`grid grid-cols-${gridCols} gap-4 items-center mt-20 pb-3 z-[1] ${
-            isMostRecentSelected ? "" : "reverse-order"
-          }`}
+          className={`grid grid-cols-${gridCols} gap-4 items-center mt-20 pb-3 z-[1]`}
         >
           {isMostRecentSelected
             ? folders
@@ -323,12 +338,10 @@ const MusicPlayer = () => {
                       onClick={() => handleFolderSelect(folder.name)}
                       className="w-full h-full rounded-md overflow-hidden focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 no_transition"
                     >
-                      <Image
+                      <img
                         src={folder.coverUrl}
                         alt={`Cover for ${folder.name}`}
-                        className="w-60"
-                        width={240}
-                        height={240}
+                        className="w-screen"
                       />
                       {folderLoading[folder.name] && (
                         <div className="absolute inset-0 flex justify-center items-center bg-gray-500 bg-opacity-50">
@@ -366,10 +379,10 @@ const MusicPlayer = () => {
                     onClick={() => handleFolderSelect(folder.name)}
                     className="w-full h-full rounded-md overflow-hidden focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 no_transition"
                   >
-                    <Image
+                    <img
                       src={folder.coverUrl}
                       alt={`Cover for ${folder.name}`}
-                      className="w-60"
+                      className="w-screen"
                       width={240}
                       height={240}
                     />

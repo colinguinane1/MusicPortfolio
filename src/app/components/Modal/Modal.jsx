@@ -115,7 +115,7 @@ const Modal = ({
         <div
           onClick={dropdownModalCheck}
           id="modal"
-          className={`p-8 md:rounded-lg shadow-lg modal-content dark:bg-black dark:bg-opacity-10 bg-white bg-opacity-20 md:min-h-fit min-h-[500%] backdrop-blur-3xl z-50 
+          className={`p-4 pt-6 md:rounded-lg shadow-lg modal-content dark:bg-black dark:bg-opacity-10 bg-white bg-opacity-20 md:min-h-fit min-h-[500%] backdrop-blur-3xl z-50 
           ${
             isLargeScreen
               ? ""
@@ -377,7 +377,7 @@ const Modal = ({
             {folderContents.map((item, index) => (
               <li
                 key={index}
-                className="flex items-center transition-all dark:text-white md:text-base text-sm space-x-4 py-2 md:py-1 px-2 hover:bg-blue-500 rounded-md hover:scale-105 active:scale-95 transition-all duration-400 cursor-pointer"
+                className="flex items-center dark:text-white md:text-base text-sm space-x-4 py-2 md:py-1 px-2 hover:bg-blue-500 rounded-md hover:scale-105 active:scale-95 transition-all duration-400 cursor-pointer"
                 onClick={() => handleItemClick(item.name, index)}
               >
                 {index === currentSongIndex && (
