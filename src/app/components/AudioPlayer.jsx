@@ -5,6 +5,7 @@ import { motion, spring, AnimatePresence } from "framer-motion";
 import Player from "./Player";
 import { useMediaQuery } from "@react-hook/media-query";
 import Image from "next/image";
+import { toggle } from "@nextui-org/react";
 
 const MusicPlayer = () => {
   const [folders, setFolders] = useState([]);
@@ -21,6 +22,9 @@ const MusicPlayer = () => {
   const isLargeScreen = useMediaQuery("(min-width: 768px)");
   const [selectedSong, setSelectedSong] = useState(null);
   const [isMostRecentSelected, setIsMostRecentSelected] = useState(true);
+  const [gridCols, setGridCols] = useState(2);
+  const [gridSettingsDropdown, setGridSettingsDropdown] = useState(false);
+  let updatedGridCols;
 
   const handlePlay = () => {
     setIsPlaying(false);
@@ -158,7 +162,7 @@ const MusicPlayer = () => {
 
   const handleSortChange = (event) => {
     setIsMostRecentSelected(event.target.value === "recent");
-    console.log(isMostRecentSelected)
+    console.log(isMostRecentSelected);
   };
 
   if (loading) {
@@ -173,7 +177,29 @@ const MusicPlayer = () => {
     setCurrentSong(song.name); // Assuming song.name holds the file path of the song
   };
 
-  
+  const addColumns = () => {
+    if (gridCols < 4) {
+      setGridCols((prevGridCols) => {
+        updatedGridCols = prevGridCols + 1;
+        console.log(updatedGridCols);
+        return updatedGridCols;
+      });
+    }
+  };
+
+  const subtractColumns = () => {
+    if (gridCols > 1) {
+      setGridCols((prevGridCols) => {
+        updatedGridCols = prevGridCols - 1;
+        console.log(updatedGridCols);
+        return updatedGridCols;
+      });
+    }
+  };
+
+  const toggleGridSettings = () => {
+    setGridSettingsDropdown(!gridSettingsDropdown);
+  };
 
   return (
     <div>
@@ -189,103 +215,192 @@ const MusicPlayer = () => {
             ? folders.find((folder) => folder.name === selectedFolder).coverUrl
             : ""
         }
-      />
-      <div className="flex justify-center items-center flex-col mx-[1rem]"> 
-      <div className="mt-16 flex gap-2 -mb-14">
-          <h1 className="mt-1">Sort:</h1>
-          <select id="sort" onChange={handleSortChange}>
-            <option value="recent">Most Recent</option>
-            <option value="oldest">Oldest</option>
-          </select>
+      />{" "}
+      <div className="flex justify-center items-center  flex-col mx-4">
+        <div className="mt-16 flex items-center gap-6 -mb-14">
+          {" "}
+          <div className="">
+            <button
+              className="transition-all duration-1000"
+              onClick={toggleGridSettings}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class={`icon icon-tabler icon-tabler-settings transition-all stroke-black hover:stroke-blue-500 ${
+                  gridSettingsDropdown ? "rotate-90" : ""
+                }`}
+                width="30"
+                height="30"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="#ffffff"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z" />
+                <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
+              </svg>
+            </button>
+          </div>{" "}
+          <AnimatePresence>
+            {gridSettingsDropdown && (
+              <motion.div
+                initial={{ x: -1000 }}
+                animate={{ x: 0 }}
+                exit={{ x: -1000 }}
+                className="flex gap-6 items-center no_transition"
+              >
+                <div className="flex gap-6">
+                  <h1 className="">Sort:</h1>
+                  <select id="sort" onChange={handleSortChange}>
+                    <option value="recent">Most Recent</option>
+                    <option value="oldest">Oldest</option>
+                  </select>
+                </div>
+                <div className="flex gap-6">
+                  <button onClick={addColumns} className="">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class={`icon icon-tabler icon-tabler-layout-grid-add stroke-black mt-1`}
+                      width="25"
+                      height="25"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="#ffffff"
+                      fill="none"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                      <path d="M4 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
+                      <path d="M14 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
+                      <path d="M4 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
+                      <path d="M14 17h6m-3 -3v6" />
+                    </svg>
+                  </button>
+                  <button onClick={subtractColumns}>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="icon icon-tabler icon-tabler-layout-grid-remove stroke-black mt-1"
+                      width="25"
+                      height="25"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="#ffffff"
+                      fill="none"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                      <path d="M4 5a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-4z" />
+                      <path d="M14 5a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-4z" />
+                      <path d="M4 15a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-4z" />
+                      <path d="M14 17h6" />
+                    </svg>
+                  </button>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
-        <div className={`grid grid-cols-2 md:grid-cols-3 gap-4 items-center mt-20 pb-3 z-[1] ${isMostRecentSelected ? '' : 'reverse-order'}`}>
-  {isMostRecentSelected ? folders.slice().reverse().map((folder, index) => (
-    <div key={index} className="relative">
-      <motion.button
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        transition={{ type: spring }}
-        onClick={() => handleFolderSelect(folder.name)}
-        className="w-full h-full rounded-md overflow-hidden focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 no_transition"
-      >
-        <Image
-          src={folder.coverUrl}
-          alt={`Cover for ${folder.name}`}
-          className="w-60"
-          width={240}
-          height={240}
-        />
-        {folderLoading[folder.name] && (
-          <div className="absolute inset-0 flex justify-center items-center bg-gray-500 bg-opacity-50">
-            <svg
-              className="animate-spin h-8 w-8 text-white"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-            >
-              <circle
-                className="opacity-25"
-                cx="12"
-                cy="12"
-                r="10"
-                stroke="currentColor"
-                strokeWidth="4"
-              ></circle>
-              <path
-                className="opacity-75"
-                fill="currentColor"
-                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A8.001 8.001 0 0120 12h-4a4 4 0 00-4-4V0C8.727 0 4.155 3.669 4 8.291z"
-              ></path>
-            </svg>
-          </div>
-        )}
-      </motion.button>
-    </div>
-  )) : folders.slice().map((folder, index) => (
-    <div key={index} className="relative">
-      <motion.button
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        transition={{ type: spring }}
-        onClick={() => handleFolderSelect(folder.name)}
-        className="w-full h-full rounded-md overflow-hidden focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 no_transition"
-      >
-        <Image
-          src={folder.coverUrl}
-          alt={`Cover for ${folder.name}`}
-          className="w-60"
-          width={240}
-          height={240}
-        />
-        {folderLoading[folder.name] && (
-          <div className="absolute inset-0 flex justify-center items-center bg-gray-500 bg-opacity-50">
-            <svg
-              className="animate-spin h-8 w-8 text-white"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-            >
-              <circle
-                className="opacity-25"
-                cx="12"
-                cy="12"
-                r="10"
-                stroke="currentColor"
-                strokeWidth="4"
-              ></circle>
-              <path
-                className="opacity-75"
-                fill="currentColor"
-                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A8.001 8.001 0 0120 12h-4a4 4 0 00-4-4V0C8.727 0 4.155 3.669 4 8.291z"
-              ></path>
-            </svg>
-          </div>
-        )}
-      </motion.button>
-    </div>
-  ))}
-</div>
-
+        <div
+          className={`grid grid-cols-${gridCols} gap-4 items-center mt-20 pb-3 z-[1] ${
+            isMostRecentSelected ? "" : "reverse-order"
+          }`}
+        >
+          {isMostRecentSelected
+            ? folders
+                .slice()
+                .reverse()
+                .map((folder, index) => (
+                  <div key={index} className="relative">
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      transition={{ type: spring }}
+                      onClick={() => handleFolderSelect(folder.name)}
+                      className="w-full h-full rounded-md overflow-hidden focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 no_transition"
+                    >
+                      <Image
+                        src={folder.coverUrl}
+                        alt={`Cover for ${folder.name}`}
+                        className="w-60"
+                        width={240}
+                        height={240}
+                      />
+                      {folderLoading[folder.name] && (
+                        <div className="absolute inset-0 flex justify-center items-center bg-gray-500 bg-opacity-50">
+                          <svg
+                            className="animate-spin h-8 w-8 text-white"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                          >
+                            <circle
+                              className="opacity-25"
+                              cx="12"
+                              cy="12"
+                              r="10"
+                              stroke="currentColor"
+                              strokeWidth="4"
+                            ></circle>
+                            <path
+                              className="opacity-75"
+                              fill="currentColor"
+                              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A8.001 8.001 0 0120 12h-4a4 4 0 00-4-4V0C8.727 0 4.155 3.669 4 8.291z"
+                            ></path>
+                          </svg>
+                        </div>
+                      )}
+                    </motion.button>
+                  </div>
+                ))
+            : folders.slice().map((folder, index) => (
+                <div key={index} className="relative">
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    transition={{ type: spring }}
+                    onClick={() => handleFolderSelect(folder.name)}
+                    className="w-full h-full rounded-md overflow-hidden focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 no_transition"
+                  >
+                    <Image
+                      src={folder.coverUrl}
+                      alt={`Cover for ${folder.name}`}
+                      className="w-60"
+                      width={240}
+                      height={240}
+                    />
+                    {folderLoading[folder.name] && (
+                      <div className="absolute inset-0 flex justify-center items-center bg-gray-500 bg-opacity-50">
+                        <svg
+                          className="animate-spin h-8 w-8 text-white"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                        >
+                          <circle
+                            className="opacity-25"
+                            cx="12"
+                            cy="12"
+                            r="10"
+                            stroke="currentColor"
+                            strokeWidth="4"
+                          ></circle>
+                          <path
+                            className="opacity-75"
+                            fill="currentColor"
+                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A8.001 8.001 0 0120 12h-4a4 4 0 00-4-4V0C8.727 0 4.155 3.669 4 8.291z"
+                          ></path>
+                        </svg>
+                      </div>
+                    )}
+                  </motion.button>
+                </div>
+              ))}
+        </div>
       </div>
       <AnimatePresence>
         {isModalOpen && (

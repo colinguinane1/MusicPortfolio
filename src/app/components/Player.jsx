@@ -124,9 +124,9 @@ const Player = memo(({ currentSong, currentCover, coverUrl, songs }) => {
       <AnimatePresence>
         <motion.div
           key="player"
-          initial={{ y: "100%" }} 
-          animate={{ y: 0 }} 
-          exit={{ y: "100%" }} 
+          initial={{ y: "100%" }}
+          animate={{ y: 0 }}
+          exit={{ y: "100%" }}
           transition={{ duration: 1, type: "spring" }}
           className={`flex flex-col items-center scale-1 no-transition ${
             currentSong ? "" : ""
@@ -146,7 +146,7 @@ const Player = memo(({ currentSong, currentCover, coverUrl, songs }) => {
                 onclick={playerToggle}
                 className="min-w-fit md:text-base text-sm md:mt-0 mt-1"
               >
-                <h1 className="dark:text-white md:text-white  ">
+                <h1 className="dark:text-white   ">
                   {tidyFileName(currentSong)}
                 </h1>
                 <h1 className="dark:text-gray-400 text-black">{artist}</h1>
@@ -251,11 +251,11 @@ const Player = memo(({ currentSong, currentCover, coverUrl, songs }) => {
               )}
             </div>
 
-                      {isPlaying && (            //DISABLED UNLESS IN BIG PLAYER / MEDIUM SCREEN SIZE - I THINK THAT LOOKS BETTER
-            <h1 className="text-white hidden md:block items-center text-sm ml-4">
-              {remainingTime != 0 && formatTime(remainingTime)}
-            </h1>
-          )} 
+            {isPlaying && ( //DISABLED UNLESS IN BIG PLAYER / MEDIUM SCREEN SIZE - I THINK THAT LOOKS BETTER
+              <h1 className="text-white hidden md:block items-center text-sm ml-4">
+                {remainingTime != 0 && formatTime(remainingTime)}
+              </h1>
+            )}
           </div>
           {bigPlayer && (
             <AnimatePresence>
