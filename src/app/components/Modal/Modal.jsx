@@ -106,11 +106,11 @@ const Modal = ({
         <div
           onClick={dropdownModalCheck}
           id="modal"
-          className={`p-4 md:p-8 pt-6 md:rounded-lg shadow-lg modal-content dark:bg-black md:dark:bg-opacity-5 bg-white md:bg-opacity-20 md:min-h-fit min-h-[500%] backdrop-blur-3xl z-50 
+          className={`p-4 md:p-8 pt-6 md:rounded-lg shadow-lg modal-content md:dark:bg-opacity-5 bg-white md:bg-opacity-20 md:min-h-fit min-h-[500%] backdrop-blur-xl md:backdrop-blur-3xl z-50 
           ${
             isLargeScreen
               ? ""
-              : "bg-white  dark:bg-black bg-opacity-0 dark:bg-opacity-0 text-black dark:text-white dark:from-black dark:to-transparent bg-gradient-to-b from-white to-transparent bg-gradient-stops-[0%,1%,100%]"
+              : "bg-white  dark:bg-black bg-opacity-0 dark:bg-opacity-0 text-black dark:text-white dark:from-black dark:to-transparent bg-gradient-to-b from-white to-transparent bg-gradient-stops-[0%,0.1%,100%]"
           }
           `}
         >
