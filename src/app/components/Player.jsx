@@ -146,7 +146,7 @@ const Player = memo(({ currentSong, currentCover, coverUrl, songs }) => {
                 onclick={playerToggle}
                 className="min-w-fit md:text-base text-sm md:mt-0 mt-1"
               >
-                <h1 className="dark:text-white   ">
+                <h1 className="dark:text-white font-bold  ">
                   {tidyFileName(currentSong)}
                 </h1>
                 <h1 className="dark:text-gray-400 text-black">{artist}</h1>
