@@ -212,7 +212,7 @@ const MusicPlayer = () => {
             : ""
         }
       />
-      <div className="flex justify-center items-center  flex-col mx-4">
+      <div className="flex justify-center items-center   flex-col mx-4">
         <div className="mt-[5rem] flex items-center gap-6 -mb-14">
           <div className="">
             <motion.button
@@ -322,7 +322,7 @@ const MusicPlayer = () => {
           </AnimatePresence>
         </div>
         <div
-          className={`grid grid-cols-${gridCols} gap-4 items-center mt-20 pb-3 z-[1]`}
+          className={`grid grid-cols-${gridCols} gap-4 max-w-[500px] items-center mt-20 pb-3 z-[1]`}
         >
           {isMostRecentSelected
             ? folders
