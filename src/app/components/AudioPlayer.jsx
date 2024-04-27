@@ -319,7 +319,7 @@ const MusicPlayer = () => {
                       <path d="M14 17h6" />
                     </svg>
                   </motion.button>
-                  <h1 className="text-sm">{gridCols}</h1>
+                  {/* <h1 className="text-sm">{gridCols}</h1>  ------- was just for debugging*/}
                 </div>
               </motion.div>
             )}
