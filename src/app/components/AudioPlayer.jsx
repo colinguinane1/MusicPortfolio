@@ -255,16 +255,15 @@ const MusicPlayer = () => {
                 className="flex gap-6 -mt-2 bg-white border dark:bg-black dark:border-gray-600 border-gray-300 px-4 p-1 rounded-full items-center no_transition"
               >
                 <div className="flex gap-1">
-                  <h1 className="">Sort:</h1>
-                  <select id="sort" className="" onChange={handleSortChange}>
-                    <option value="recent">Recent</option>
-                    <option value="oldest">Oldest</option>
+                  <select id="sort" onChange={handleSortChange}>
+                    <option value="recent">Sort: Recent</option>
+                    <option value="oldest">Sort: Oldest</option>
                   </select>
                 </div>
                 <div className="flex gap-6">
                   <motion.button
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
+                    whileHover={gridCols == 4 ? { scale: 1 } : { scale: 1.1 }}
+                    whileTap={gridCols == 4 ? { scale: 1 } : { scale: 0.9 }}
                     onClick={addColumns}
                     className=""
                   >
@@ -292,8 +291,8 @@ const MusicPlayer = () => {
                     </svg>
                   </motion.button>
                   <motion.button
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
+                    whileHover={gridCols == 1 ? { scale: 1 } : { scale: 1.1 }}
+                    whileTap={gridCols == 1 ? { scale: 1 } : { scale: 0.9 }}
                     onClick={subtractColumns}
                   >
                     <svg
@@ -340,9 +339,11 @@ const MusicPlayer = () => {
                 .map((folder, index) => (
                   <div key={index} className="relative">
                     <motion.button
-                      whileHover={{ scale: 1.05 }}
+                      whileHover={
+                        isLargeScreen ? { scale: 1.01 } : { scale: 1.02 }
+                      }
                       whileTap={{ scale: 0.95 }}
-                      transition={{ type: spring }}
+                      transition={{ type: "spring", duration: 0.4 }}
                       onClick={() => handleFolderSelect(folder.name)}
                       className="w-full h-full rounded-md overflow-hidden focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 no_transition"
                     >

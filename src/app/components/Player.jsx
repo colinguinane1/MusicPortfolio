@@ -146,15 +146,17 @@ const Player = memo(({ currentSong, currentCover, coverUrl, songs }) => {
                 onclick={playerToggle}
                 className="min-w-fit md:text-base text-sm md:mt-0 mt-1"
               >
-                <h1 className="dark:text-white font-bold  ">
+                <h1 className="dark:text-white md:text-white font-bold  ">
                   {tidyFileName(currentSong)}
                 </h1>
-                <h1 className="dark:text-gray-400 text-black">{artist}</h1>
+                <h1 className="dark:text-gray-400 md:text-white text-black">
+                  {artist}
+                </h1>
               </div>
             </main>
             <audio ref={audioRef}></audio>
             {isPlaying && (
-              <div className="pt-[67px] md:mt-[-147px] absolute">
+              <div className="pt-[70px] md:mt-[-149px] absolute">
                 {" "}
                 {/* {nice} */}
                 <input
@@ -256,13 +258,13 @@ const Player = memo(({ currentSong, currentCover, coverUrl, songs }) => {
                 {remainingTime != 0 && formatTime(remainingTime)}
               </h1>
             )}
-          </div>
-          {bigPlayer && (
-            <AnimatePresence>
+          </div>{" "}
+          <AnimatePresence>
+            {bigPlayer && (
               <motion.div
                 initial={{ y: "100%" }}
                 animate={{ y: 0 }}
-                transition={{ duration: 0.4 }}
+                transition={{ duration: 0.3, type: "spring" }}
                 exit={{ y: "100%" }}
                 className="fixed z-[1000] flex justify-center items-center w-full h-full top-0 no_transition"
               >
@@ -294,13 +296,13 @@ const Player = memo(({ currentSong, currentCover, coverUrl, songs }) => {
                     <img
                       src={currentCover}
                       alt="Album Cover"
-                      className="w-[80%] md:w-[80%] max-w-[600px] rounded-lg h-auto md:mt-12 mx-auto my-6"
+                      className="w-[80%] md:w-[80%] max-w-[600px] rounded-lg shadow-2xl h-auto md:mt-12 mx-auto my-6"
                     />
                     <div className="md:text-base text-sm">
-                      <h1 className="text-white">
+                      <h1 className="text-white font-bold">
                         {tidyFileName(currentSong)}
                       </h1>
-                      <h1 className="text-gray-400">{artist}</h1>
+                      <h1 className="text-gray-400 ">{artist}</h1>
                     </div>
                     <div className="">
                       <div className="flex justify-center  my-8 ml-2 items-center">
@@ -372,8 +374,8 @@ const Player = memo(({ currentSong, currentCover, coverUrl, songs }) => {
                   </div>
                 </div>
               </motion.div>
-            </AnimatePresence>
-          )}
+            )}
+          </AnimatePresence>
         </motion.div>
       </AnimatePresence>
     )
