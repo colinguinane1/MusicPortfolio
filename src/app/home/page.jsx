@@ -36,14 +36,14 @@ const Home = () => {
               music for over 6 years.
             </p>
             <div className="border-b py-4">
-              <a className="flex flex-col items-center" href="listen">
+              <a className="flex flex-col items-center " href="listen">
                 <motion.button
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ duration: 0.3, type: "spring" }}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="button-blue-gradient no_transition"
+                  className="button-blue-gradient no_transition hover:text-white hover:stroke-white group"
                 >
                   Listen{" "}
                   <svg
@@ -409,15 +409,17 @@ const Home = () => {
               </div>{" "}
             </div>
             <div>
-              <h1 className="font-extrabold text-3xl py-3">Recent Release</h1>
+              <h1 className="font-extrabold text-3xl py-3">
+                Recent Full Release
+              </h1>
               <div className="flex flex-col items-center gap-1">
                 <a
                   className="items-center flex-col flex"
                   href="https://distrokid.com/hyperfollow/colinguinane/hyper-original-score"
                 >
                   <img
-                    src="https://storage.googleapis.com/music-portfolio-67eb6.appspot.com/music/HYPER/cover.jpg"
-                    className="rounded-lg w-[30%] h-[30%]"
+                    src="https://storage.googleapis.com/music-portfolio-67eb6.appspot.com/music/20.HYPER/cover.jpg"
+                    className="rounded-lg w-[50%] h-[50%]"
                   ></img>
                 </a>
                 <div className="">

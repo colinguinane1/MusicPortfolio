@@ -14,29 +14,31 @@ const Post1 = () => {
           <br></br>On this website you will find various tags on my playlists
           such as:
         </p>
-        <div className="flex gap-1 my-2 items-center">
-          <h1 className="border-yellow-500 border min-w-fit px-2 rounded-full text-yellow-500">
+        <div className="md:flex gap-1 my-2 items-center">
+          <h1 className="border-yellow-500 border max-w-fit px-2 rounded-full text-yellow-500">
             Artist Choice
           </h1>
           <p>This shows my favorite track in a playlist.</p>
         </div>
-        <div className="flex gap-1 my-2 items-center">
-          <h1 className="border-green-500 border min-w-fit max-h-fit px-2 rounded-full text-green-500">
+        <div className="md:flex gap-1 my-2 items-center">
+          <h1 className="border-green-500 border max-w-fit max-h-fit px-2 rounded-full text-green-500">
             Website Exclusive
           </h1>
           <p> Albums that have never been released elsewhere.</p>
         </div>
-        <div className="flex gap-1 my-2 items-center">
-          <h1 className="border-red-500 border min-w-fit max-h-fit px-2 rounded-full text-red-500">
+        <div className="md:flex gap-1 my-2 items-center">
+          <h1 className="border-red-500 border max-w-fit max-h-fit px-2 rounded-full text-red-500">
             YouTube
           </h1>
           <p>Click this to see an accompanying YouTube video.</p>
         </div>
-        <div className="flex gap-1 my-2 items-center">
-          <h1 className="border-blue-500 border min-w-fit max-h-fit px-2 rounded-full text-blue-500">
+        <div className="md:flex gap-1 my-2 items-center">
+          <h1 className="border-blue-500 border max-w-fit max-h-fit px-2 rounded-full text-blue-500">
             Inspiration
           </h1>
-          <p>Click this to see an accompanying source of inspiration.</p>
+          <p className="pb-4">
+            Click this to see an accompanying source of inspiration.
+          </p>
         </div>
         You can find the source code for the website{" "}
         <a

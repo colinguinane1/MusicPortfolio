@@ -287,7 +287,7 @@ const Modal = ({
                 </span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="icon icon-tabler icon-tabler-arrow-up-right stroke-red-500 md:mt-[2.5px]"
+                  class="icon icon-tabler icon-tabler-arrow-up-right stroke-red-500 md:mt-[2.2px]"
                   width="20"
                   height="20"
                   viewBox="0 0 24 24"
