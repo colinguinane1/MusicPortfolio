@@ -147,18 +147,26 @@ const Player = memo(
                 transition={{ type: "spring", duration: 0.4 }}
                 className="fixed md:ml-2 no_transition md:mb-0 mb-8 bottom-0 bg dark:bg-black dark:bg-opacity-20 bg-white bg-opacity-10 shadow-lg  w-full backdrop-blur-3xl md:scale-100 scale-[0.92] rounded-lg h-20 flex justify-center items-center z-[100]"
               >
-                <main className="flex mx-4 -ml-1 z-10">
+                <main className="flex mx-2 items-center z-10">
+                  {isPlaying && (
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ duration: 0.3 }}
+                      className="w-4 h-4  flex flex-col justify-center items-center rounded-full bg-blue-500 animate-pulse"
+                    ></motion.div>
+                  )}
                   <img
                     src={currentCover}
                     alt="Album Cover"
-                    className="w-12 h-12 rounded-md mx-3 cursor-pointer"
+                    className="w-12 h-12 rounded-md mx-4 cursor-pointer"
                     width={48}
                     height={48}
                     onClick={playerToggle}
                   />
                   <div
                     onclick={playerToggle}
-                    className="min-w-fit md:text-base text-sm md:mt-0 mt-1"
+                    className="min-w-fit md:text-base text-sm"
                   >
                     <h1
                       className={`dark:text-white md:text-white font-bold ${
@@ -176,25 +184,36 @@ const Player = memo(
                     </h1>
                   </div>
                 </main>
-                {isPlaying && (
-                  <div className="pt-[70px] md:mt-[-149px] absolute">
-                    {" "}
-                    {/* {nice} */}
-                    <input
-                      type="range"
-                      id="songDuration"
-                      min="0"
-                      max="100"
-                      value={progress}
-                      onChange={handleSeek}
-                      className="w-full max-h-fit bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-300 z-0"
-                    />
-                  </div>
-                )}
+                <AnimatePresence>
+                  {isPlaying && (
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      className="pt-[67px] no_transition md:mt-[-149px] absolute"
+                    >
+                      {" "}
+                      {/* {nice} */}
+                      <input
+                        type="range"
+                        id="songDuration"
+                        min="0"
+                        max="100"
+                        value={progress}
+                        onChange={handleSeek}
+                        className="w-full max-h-fit bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-300 z-0"
+                      />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
                 {!isPlaying && (
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="icon icon-tabler icon-tabler-player-play-filled dark:stroke-black stroke-white rounded-full p-2 dark:bg-white bg-black hover:scale-105 active:scale-95 cursor-pointer hover:stroke-blue-400 z-[100]"
+                    className={`icon icon-tabler icon-tabler-player-play-filled   rounded-full p-2  hover:scale-105 active:scale-95 cursor-pointer hover:stroke-blue-400 z-[100] ${
+                      isModalOpen
+                        ? "stroke-black dark:stroke-white"
+                        : "stroke-white"
+                    }`}
                     width="44"
                     height="44"
                     viewBox="0 0 24 24"
@@ -211,7 +230,11 @@ const Player = memo(
                 {isPlaying && (
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="icon icon-tabler icon-tabler-player-pause-filled dark:stroke-black stroke-white dark:bg-white bg-black rounded-full p-2 hover:scale-105 active:scale-95 cursor-pointer hover:stroke-blue-400 z-[100]"
+                    className={`icon icon-tabler icon-tabler-player-pause-filled    rounded-full p-2 hover:scale-105 active:scale-95 cursor-pointer hover:stroke-blue-400 z-[100] ${
+                      isModalOpen
+                        ? "stroke-black dark:stroke-white"
+                        : "stroke-white"
+                    }`}
                     width="44"
                     height="44"
                     viewBox="0 0 24 24"
@@ -227,7 +250,11 @@ const Player = memo(
                 )}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="icon icon-tabler icon-tabler-player-stop-filled mx-4 dark:stroke-black stroke-white dark:bg-white bg-black rounded-full p-2 hover:stroke-blue-400 hover:scale-105 active:scale-95 cursor-pointer z-[100]"
+                  className={`icon icon-tabler icon-tabler-player-stop-filled mx-4   rounded-full p-2 hover:stroke-blue-400 hover:scale-105 active:scale-95 cursor-pointer z-[100] ${
+                    isModalOpen
+                      ? "stroke-black dark:stroke-white"
+                      : "stroke-white"
+                  }`}
                   width="44"
                   height="44"
                   viewBox="0 0 24 24"
@@ -243,7 +270,7 @@ const Player = memo(
                 <div className="md:block hidden">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="icon icon-tabler icon-tabler-volume dark:stroke-black stroke-white dark:bg-white bg-black rounded-full p-2 hover:stroke-blue-400 hover:scale-105 active:scale-95 cursor-pointer z-[100]"
+                    className="icon icon-tabler icon-tabler-volume  stroke-white rounded-full p-2 hover:stroke-blue-400 hover:scale-105 active:scale-95 cursor-pointer z-[100]"
                     width="44"
                     height="44"
                     viewBox="0 0 24 24"
@@ -318,7 +345,7 @@ const Player = memo(
                       <img
                         src={currentCover}
                         alt="Album Cover"
-                        className="w-[80%] md:w-[80%] max-w-[600px] rounded-lg shadow-2xl h-auto md:mt-12 mx-auto my-6"
+                        className="w-[80%] md:w-[80%] max-w-[600px] rounded-lg  shadow-2xl h-auto md:mt-12 mx-auto my-6"
                       />
                       <div className="md:text-base text-sm">
                         <h1 className="text-white font-bold">
