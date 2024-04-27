@@ -325,10 +325,13 @@ const MusicPlayer = () => {
             )}
           </AnimatePresence>
         </div>
+        {/* I KNOW THIS IS A LAZY UNSCALEABLE FIX BUT GOD DAMN I TRIED TO FIX THIS FOR SO LONG */}
         <div
           className={`grid grid-cols-${gridCols} max-w-[800px] md:gap-4  gap-2 items-center mt-20 pb-3 z-[1] ${
             gridCols === 4 ? "grid-cols-4" : ""
-          }`}
+          } ${gridCols === 3 ? "grid-cols-3" : ""} ${
+            gridCols === 2 ? "grid-cols-2" : ""
+          } ${gridCols === 1 ? "grid-cols-1" : ""}`}
         >
           {isMostRecentSelected
             ? folders
