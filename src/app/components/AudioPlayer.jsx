@@ -251,7 +251,8 @@ const MusicPlayer = () => {
                 initial={{ x: -100, scale: 0 }}
                 animate={{ scale: 1, x: 0 }}
                 exit={{ scale: 0, x: -100 }}
-                className="flex gap-6 bg-gray-300 p-2 px-2 rounded-full items-center no_transition"
+                transition={{ duration: 0.3, type: "spring" }}
+                className="flex gap-6 -mt-2 bg-white border dark:bg-black dark:border-gray-600 border-gray-300 px-4 p-1 rounded-full items-center no_transition"
               >
                 <div className="flex gap-1">
                   <h1 className="">Sort:</h1>
@@ -271,7 +272,7 @@ const MusicPlayer = () => {
                       xmlns="http://www.w3.org/2000/svg"
                       class={`icon icon-tabler icon-tabler-layout-grid-add stroke-black dark:hover:stroke-blue-500 hover:stroke-blue-500 dark:stroke-white ${
                         gridCols == 4
-                          ? "stroke:slate-300 dark:stroke-slate-400 dark:hover:stroke-slate-400 hover:stroke-slate-300 cursor-not-allowed"
+                          ? "stroke-slate-500 hover:stroke-slate-500 dark:stroke-slate-400 dark:hover:stroke-slate-400  cursor-not-allowed"
                           : ""
                       }`}
                       width="25"
@@ -318,14 +319,16 @@ const MusicPlayer = () => {
                       <path d="M14 17h6" />
                     </svg>
                   </motion.button>
-                  <h1>{gridCols}</h1>
+                  <h1 className="text-sm">{gridCols}</h1>
                 </div>
               </motion.div>
             )}
           </AnimatePresence>
         </div>
         <div
-          className={`grid grid-cols-${gridCols} gap-4 max-w-[500px] items-center mt-20 pb-3 z-[1]`}
+          className={`grid grid-cols-${gridCols} max-w-[800px] md:gap-4  gap-2 items-center mt-20 pb-3 z-[1] ${
+            gridCols === 4 ? "grid-cols-4" : ""
+          }`}
         >
           {isMostRecentSelected
             ? folders

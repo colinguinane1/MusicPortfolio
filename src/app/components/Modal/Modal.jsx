@@ -119,7 +119,7 @@ const Modal = ({
             <span className="right-4 border-t -mt-5 py-2" onClick={onClose}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="icon icon-tabler icon-tabler-fold-down hover:stroke-blue-500 cursor-pointer"
+                class="icon icon-tabler icon-tabler-fold-down stroke-slate-200 hover:stroke-blue-500 cursor-pointer"
                 width="44"
                 height="44"
                 viewBox="0 0 24 24"
