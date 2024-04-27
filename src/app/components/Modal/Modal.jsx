@@ -31,6 +31,7 @@ const Modal = ({
   const [currentSongIndex, setCurrentSongIndex] = useState(-1);
   const [dropdown, enableDropdown] = useState(false);
   const [dominantColors, setDominantColors] = useState([]);
+  const [songStopped, setSongStopped] = useState(false);
 
   /*   useEffect(() => {
     const fetchColors = async () => {
@@ -88,6 +89,7 @@ const Modal = ({
   const downloadLink = `https://storage.googleapis.com/music-portfolio-67eb6.appspot.com/music/${folderName}`;
   return (
     <div>
+      <Player setCurrentSong={setCurrentSong} />
       <div className="w-full h-full">
         <Backdrop />
       </div>
@@ -114,12 +116,20 @@ const Modal = ({
           }
           `}
         >
-          <div className="flex flex-col  items-center md:hidden">
+          <div className="flex flex-col  items-center md:hidden ">
             {" "}
-            <span className="-mt-5 py-1" onClick={onClose}>
+            <motion.span
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 0.5 }}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              className="-mt-5 py-1 no_transition z-0"
+              onClick={onClose}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="icon icon-tabler icon-tabler-fold-down stroke-slate-200 hover:stroke-blue-500 cursor-pointer"
+                class="icon icon-tabler icon-tabler-fold-down stroke-slate-200 dark:stroke-slate-600 dark:hover:stroke-blue-500 hover:stroke-blue-500 cursor-pointer"
                 width="44"
                 height="44"
                 viewBox="0 0 24 24"
@@ -136,12 +146,12 @@ const Modal = ({
                 <path d="M19 7l1 0" />
                 <path d="M4 7l1 0" />
               </svg>
-            </span>
+            </motion.span>
             {/* image optimization doesnt work with automatic height nad width */}
             <img
               src={`https://storage.googleapis.com/music-portfolio-67eb6.appspot.com/music/${folderName}/cover.jpg`}
               alt="Icon"
-              className="h-auto w-auto max-h-fit my-6 rounded-[20px]"
+              className="h-auto w-auto max-h-fit my-6 shadow-md rounded-[20px]"
             />
           </div>
 
@@ -262,7 +272,7 @@ const Modal = ({
             </h1>
           </div>
 
-          <div className="border-b border-gray-500 md:border-slate-400 dark:md:border-slate-500  pb-2 border-opacity-50 md:flex gap-3 md:text-base text-sm">
+          <div className="border-b border-gray-500 md:border-gray-500 dark:md:border-gray-500  pb-2 border-opacity-50 md:flex gap-3 md:text-base text-sm">
             {artistChoice && (
               <h1 className="text-yellow-500 dark:text-yellow-300  border-2 border-yellow-500 max-w-fit px-3 rounded-full my-2">
                 Artist&apos;s Choice:{" "}
@@ -315,7 +325,7 @@ const Modal = ({
                 </span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="icon icon-tabler icon-tabler-arrow-up-right stroke-blue-600 md:mt-[3px]"
+                  class="icon icon-tabler icon-tabler-arrow-up-right stroke-blue-600 md:mt-[2px]"
                   width="20"
                   height="20"
                   viewBox="0 0 24 24"
@@ -340,7 +350,7 @@ const Modal = ({
             {folderContents.map((item, index) => (
               <li
                 key={index}
-                className="flex items-center dark:text-white md:text-base text-sm space-x-4 py-2 md:py-1 px-2 hover:bg-blue-500 rounded-md hover:scale-105 active:scale-95 transition-all duration-400 cursor-pointer"
+                className="flex items-center dark:text-white md:text-base text-sm space-x-4 py-2 md:py-2 px-2 hover:bg-blue-500 rounded-md hover:scale-105 active:scale-95 transition-all duration-400 cursor-pointer"
                 onClick={() => handleItemClick(item.name, index)}
               >
                 {index === currentSongIndex && (

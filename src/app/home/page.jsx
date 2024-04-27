@@ -202,7 +202,7 @@ const Home = () => {
                 <h1 className="font-extrabold text-3xl">Favorite Artists</h1>
                 <p className="mb-4">(at the moment)</p>
                 {/* Artist 1 */}
-                <div className="flex items-center py-3 mb-2 border px-3 hover:bg-slate-200 hover:border-slate-600 hover:dark:text-black hover:dark:border-black  rounded-lg">
+                <div className="flex items-center py-3 mb-2 border px-3 hover:bg-slate-200 shadow-md hover:border-slate-600 hover:dark:text-black hover:dark:border-black  rounded-lg">
                   <div className="flex items-center ">
                     <a
                       href="https://open.spotify.com/artist/692KvxElsJHIJQCS6Eoc32?si=pkwD2L_DSyCg3uPs7xHx3Q"
@@ -241,7 +241,7 @@ const Home = () => {
                 </div>
 
                 {/* Artist 2 */}
-                <div className="flex items-center py-3 mb-2 border px-3  rounded-lg  hover:bg-slate-200 hover:border-slate-600 hover:dark:text-black hover:dark:border-black">
+                <div className="flex items-center py-3 mb-2 border px-3  rounded-lg shadow-md  hover:bg-slate-200 hover:border-slate-600 hover:dark:text-black hover:dark:border-black">
                   <div className="flex items-center">
                     <a
                       href="https://open.spotify.com/artist/6dU7gPN2BhEPfO5QHLt7es?si=_UOeu8T0Rj2wLRi7gOtPpQ"
@@ -279,7 +279,7 @@ const Home = () => {
                   </div>
                 </div>
                 {/* Artist 3 */}
-                <div className="flex items-center py-3 mb-2 border px-3  rounded-lg  hover:bg-slate-200 hover:border-slate-600 hover:dark:text-black hover:dark:border-black">
+                <div className="flex items-center py-3 mb-2 border px-3  rounded-lg  shadow-md hover:bg-slate-200 hover:border-slate-600 hover:dark:text-black hover:dark:border-black">
                   <div className="flex items-center">
                     <a
                       href="https://open.spotify.com/artist/0YC192cP3KPCRWx8zr8MfZ?si=FNbmG_6tSOWRzDXA_gUfPw"
@@ -318,7 +318,7 @@ const Home = () => {
                 </div>
 
                 {/* Artist 4 */}
-                <div className="flex items-center py-3 mb-2 border px-3  rounded-lg  hover:bg-slate-200 hover:border-slate-600 hover:dark:text-black hover:dark:border-black">
+                <div className="flex items-center py-3 mb-2 border px-3  rounded-lg shadow-md  hover:bg-slate-200 hover:border-slate-600 hover:dark:text-black hover:dark:border-black">
                   <div className="flex items-center">
                     <a
                       href="https://open.spotify.com/artist/3MhnTc9AODdRGMrtntEqIz?si=M0petTWhTgadQEuvL1ntkQ"
@@ -357,12 +357,12 @@ const Home = () => {
                 </div>
 
                 {/* Artist 5 */}
-                <div className="flex items-center py-3 mb-2 border px-3  rounded-lg  hover:bg-slate-200 hover:border-slate-600 hover:dark:text-black hover:dark:border-black">
+                <div className="flex items-center py-3 mb-2 border px-3  rounded-lg shadow-md  hover:bg-slate-200 hover:border-slate-600 hover:dark:text-black hover:dark:border-black">
                   <div className="flex items-center">
                     <a
                       href="https://open.spotify.com/artist/5svDnd8joFhbpbA3Ar0CfN?si=Txy6XjCiTgWkjmFqPuoUEg"
                       target="_blank"
-                      className="flex items-center"
+                      className="flex items-center w-full"
                     >
                       <img
                         src="https://kraft-engel.com/wp-content/uploads/clients/tom-holkenborg/holkenborg.jpg"

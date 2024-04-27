@@ -28,15 +28,6 @@ const MusicPlayer = () => {
     setIsPlaying(false);
   };
 
-  const handlePause = () => {
-    setIsPlaying(false);
-  };
-
-  const handleStop = () => {
-    setIsPlaying(false);
-    setCurrentSong(null);
-  };
-
   useEffect(() => {
     const fetchFolders = async () => {
       try {
@@ -207,6 +198,7 @@ const MusicPlayer = () => {
         isPlaying={isPlaying}
         setIsPlaying={setIsPlaying}
         handlePlay={handlePlay}
+        isModalOpen={isModalOpen}
         songs={folderContents.map((item) => item.name)}
         coverUrl={
           selectedFolder
