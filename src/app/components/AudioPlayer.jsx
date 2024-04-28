@@ -22,7 +22,7 @@ const MusicPlayer = () => {
   const isLargeScreen = useMediaQuery("(min-width: 768px)");
   const [selectedSong, setSelectedSong] = useState(null);
   const [isMostRecentSelected, setIsMostRecentSelected] = useState(true);
-  const [gridCols, setGridCols] = useState(2);
+  const [gridCols, setGridCols] = useState(isLargeScreen ? 3 : 2);
   const [gridSettingsDropdown, setGridSettingsDropdown] = useState(false);
 
   const handlePlay = () => {
