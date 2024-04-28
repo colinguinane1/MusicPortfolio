@@ -15,25 +15,25 @@ const Post1 = () => {
           such as:
         </p>
         <div className="md:flex gap-1 my-2 items-center">
-          <h1 className="border-yellow-500 border max-w-fit px-2 rounded-full text-yellow-500">
+          <h1 className="border-yellow-500 mb-2 border max-w-fit px-2 rounded-full text-yellow-500">
             Artist Choice
           </h1>
           <p>This shows my favorite track in a playlist.</p>
         </div>
         <div className="md:flex gap-1 my-2 items-center">
-          <h1 className="border-green-500 border max-w-fit max-h-fit px-2 rounded-full text-green-500">
+          <h1 className="border-green-500 mb-2 border max-w-fit max-h-fit px-2 rounded-full text-green-500">
             Website Exclusive
           </h1>
           <p> Albums that have never been released elsewhere.</p>
         </div>
-        <div className="md:flex gap-1 my-2 items-center">
-          <h1 className="border-red-500 border max-w-fit max-h-fit px-2 rounded-full text-red-500">
+        <div className="md:flex gap-1 my-2  items-center">
+          <h1 className="border-red-500 border mb-2 max-w-fit max-h-fit px-2 rounded-full text-red-500">
             YouTube
           </h1>
           <p>Click this to see an accompanying YouTube video.</p>
         </div>
-        <div className="md:flex gap-1 my-2 items-center">
-          <h1 className="border-blue-500 border max-w-fit max-h-fit px-2 rounded-full text-blue-500">
+        <div className="md:flex gap-1 my-2  items-center">
+          <h1 className="border-blue-500 mb-2 border max-w-fit max-h-fit px-2 rounded-full text-blue-500">
             Inspiration
           </h1>
           <p className="pb-4">
