@@ -5,6 +5,7 @@ import { motion, spring, AnimatePresence } from "framer-motion";
 import Player from "./Player";
 import { useMediaQuery } from "@react-hook/media-query";
 import Image from "next/image";
+import Footer from "./Footer";
 
 const MusicPlayer = () => {
   const [folders, setFolders] = useState([]);
@@ -155,7 +156,28 @@ const MusicPlayer = () => {
   };
 
   if (loading) {
-    return <div className="">Loading...</div>;
+    return (
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[100000]">
+        <div className="animate-spin">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-loader-2 stroke-blue-500 "
+            width="150"
+            height="150"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="#000000"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M12 3a9 9 0 1 0 9 9" />
+          </svg>
+        </div>
+        <h1 className="ml-10 text-blue-500 font-extrabold">Loading...</h1>
+      </div>
+    );
   }
 
   if (error) {
@@ -317,8 +339,11 @@ const MusicPlayer = () => {
           </AnimatePresence>
         </div>
         {/* I KNOW THIS IS A LAZY UNSCALEABLE FIX BUT GOD DAMN I TRIED TO FIX THIS FOR SO LONG */}
-        <div
-          className={`grid grid-cols-${gridCols} max-w-[800px] md:gap-4  gap-2 items-center mt-20 pb-3 z-[1] ${
+        <motion.div
+          initial={{ y: 1000, opacity: -1 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.4, type: "just" }}
+          className={`grid no_transition grid-cols-${gridCols} max-w-[800px] md:gap-4  gap-2 items-center mt-20 pb-3 z-[1] ${
             gridCols === 4 ? "grid-cols-4" : ""
           } ${gridCols === 3 ? "grid-cols-3" : ""} ${
             gridCols === 2 ? "grid-cols-2" : ""
@@ -414,7 +439,7 @@ const MusicPlayer = () => {
                   </motion.button>
                 </div>
               ))}
-        </div>
+        </motion.div>
       </div>
       <AnimatePresence>
         {isModalOpen && (
@@ -441,6 +466,13 @@ const MusicPlayer = () => {
           />
         )}
       </AnimatePresence>
+      <div
+        className={`  ${
+          currentSong ? "bg-gray-400 dark:bg-black  md:pb-20" : ""
+        }`}
+      >
+        <Footer />
+      </div>
     </div>
   );
 };
