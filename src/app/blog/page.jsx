@@ -9,9 +9,6 @@ const Page = () => {
         <Navbar />
         <div className="flex flex-col items-center justify-center text-center">
           <div className="mt-20 w-full max-w-[900px]">
-            <h1 className=" dark:text-white text-4xl pb-4  ont-extrabold">
-              Blog Entries
-            </h1>
             <div className="font-extrabold text-left py-4 px-4 border rounded-md mx-4 md:text-base text-sm">
               <Post1 />
             </div>
