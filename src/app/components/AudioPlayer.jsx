@@ -468,7 +468,7 @@ const MusicPlayer = () => {
       </AnimatePresence>
       <div
         className={`  ${
-          currentSong ? "bg-gray-400 dark:bg-black  md:pb-20" : ""
+          currentSong ? "bg-gray-300 pb-10 dark:bg-black  md:pb-20" : ""
         }`}
       >
         <Footer />
