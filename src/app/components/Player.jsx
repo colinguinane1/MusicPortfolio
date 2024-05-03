@@ -303,7 +303,7 @@ const Player = memo(
 
                 {isPlaying && ( //DISABLED UNLESS IN BIG PLAYER / MEDIUM SCREEN SIZE - I THINK THAT LOOKS BETTER
                   <h1
-                    className={`items-center text-sm ml-4 ${
+                    className={`items-center text-sm ml-2 ${
                       isModalOpen ? "text-black" : "text-white"
                     }`}
                   >

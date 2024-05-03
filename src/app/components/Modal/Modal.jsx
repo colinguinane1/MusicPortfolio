@@ -359,7 +359,7 @@ const Modal = ({
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ duration: 0.3 }}
-                    className="w-4 h-4 transition-all rounded-full bg-blue-300 animate-pulse"
+                    className="min-w-4 min-h-4 transition-all rounded-full bg-blue-300 animate-pulse"
                   ></motion.div>
                 )}
 
