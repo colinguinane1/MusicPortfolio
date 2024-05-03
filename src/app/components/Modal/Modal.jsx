@@ -10,6 +10,7 @@ import Image from "next/image";
 const Modal = ({
   setCurrentCover,
   currentCover,
+  currentSong,
   folderName,
   isPlaying,
   folderContents,
@@ -112,7 +113,7 @@ const Modal = ({
           ${
             isLargeScreen
               ? ""
-              : "bg-white  dark:bg-black bg-opacity-0 dark:bg-opacity-0 text-black dark:text-white dark:from-black dark:to-transparent bg-gradient-to-b from-white to-blue-900 bg-gradient-stops-[0%,0.1%]"
+              : "bg-white  dark:bg-black bg-opacity-0 dark:bg-opacity-0 text-black dark:text-white dark:from-black dark:to-transparent bg-gradient-to-b from-white to-gray-600 "
           }
           `}
         >
@@ -121,7 +122,7 @@ const Modal = ({
             <motion.span
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.4, delay: 0.2, type: "spring" }}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               className="-mt-5 py-1 no_transition z-0"
@@ -350,7 +351,7 @@ const Modal = ({
             {folderContents.map((item, index) => (
               <li
                 key={index}
-                className="flex items-center dark:text-white md:text-base text-sm space-x-4 py-2 md:py-2 px-2 hover:bg-blue-500 rounded-md hover:scale-105 active:scale-95 transition-all duration-400 cursor-pointer"
+                className="flex items-center group dark:text-white md:text-base text-sm space-x-4 py-2 md:py-2 px-2 hover:bg-blue-500 rounded-md hover:scale-105 active:scale-95 transition-all duration-400 cursor-pointer"
                 onClick={() => handleItemClick(item.name, index)}
               >
                 {index === currentSongIndex && (
@@ -361,6 +362,7 @@ const Modal = ({
                     className="w-4 h-4 transition-all rounded-full bg-blue-300 animate-pulse"
                   ></motion.div>
                 )}
+
                 <Image
                   src={`https://storage.googleapis.com/music-portfolio-67eb6.appspot.com/music/${folderName}/cover.jpg`}
                   alt="Icon"
@@ -368,16 +370,42 @@ const Modal = ({
                   width={56}
                   height={56}
                 />
-                <div className="min-w-fit">
-                  <h3 className="dark:text-white md:text-white">
-                    {tidyFileName(item.name)}
-                  </h3>
-                  <p className="text-slate-600 md:text-slate-400 dark:text-slate-400">
-                    {artist}
-                  </p>
-                  {item.name === artistChoice && (
-                    <h1 className="text-yellow-300">Artist&apos;s Choice</h1>
-                  )}
+                <div className="flex w-full items-center justify-between">
+                  <div className="min-w-fit">
+                    <h3 className="dark:text-white md:text-white">
+                      {tidyFileName(item.name)}
+                    </h3>
+                    <p className="text-slate-600 md:text-slate-400 dark:text-slate-400">
+                      {artist}
+                    </p>
+
+                    {item.name === artistChoice && (
+                      <h1 className="text-yellow-300">Artist&apos;s Choice</h1>
+                    )}
+                  </div>
+                  {/* <div> ----- download button disabled
+                    <motion.button>
+                      <a href={currentSong}>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="icon icon-tabler icon-tabler-download stroke-gray-500 hover:bg-white rounded-full"
+                          width="25"
+                          height="25"
+                          viewBox="0 0 24 24"
+                          stroke-width="1.5"
+                          stroke="#000000"
+                          fill="none"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        >
+                          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                          <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" />
+                          <path d="M7 11l5 5l5 -5" />
+                          <path d="M12 4l0 12" />
+                        </svg>
+                      </a>
+                    </motion.button>
+                  </div> */}
                 </div>
               </li>
             ))}

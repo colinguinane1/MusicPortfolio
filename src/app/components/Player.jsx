@@ -145,7 +145,7 @@ const Player = memo(
                 }
                 exit={{ scale: 0 }}
                 transition={{ type: "spring", duration: 0.4 }}
-                className="fixed md:ml-2 no_transition md:mb-0 mb-8 bottom-0 bg dark:bg-black dark:bg-opacity-20 bg-white bg-opacity-10 shadow-lg  w-full backdrop-blur-3xl md:scale-100 scale-[0.92] rounded-lg h-20 flex justify-center items-center z-[100]"
+                className="fixed md:rounded-none no_transition md:mb-0 mb-8 bottom-0 bg dark:bg-black dark:bg-opacity-20 bg-white bg-opacity-10 shadow-lg  w-full backdrop-blur-3xl md:scale-100 scale-[0.92] rounded-lg h-20 flex justify-center items-center z-[100]"
               >
                 <main className="flex mx-2 items-center z-10">
                   {isPlaying && (
@@ -153,7 +153,7 @@ const Player = memo(
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
                       transition={{ duration: 0.3 }}
-                      className="w-4 h-4  flex flex-col justify-center items-center rounded-full bg-blue-500 animate-pulse"
+                      className="min-w-4 min-h-4  flex flex-col justify-center items-center rounded-full bg-blue-500 animate-pulse"
                     ></motion.div>
                   )}
                   <img
@@ -211,7 +211,7 @@ const Player = memo(
                     xmlns="http://www.w3.org/2000/svg"
                     className={`icon icon-tabler icon-tabler-player-play-filled   rounded-full p-2  hover:scale-105 active:scale-95 cursor-pointer hover:stroke-blue-400 z-[100] ${
                       isModalOpen
-                        ? "stroke-black dark:stroke-white"
+                        ? "stroke-black md:stroke-white dark:stroke-white"
                         : "stroke-white"
                     }`}
                     width="44"
@@ -232,7 +232,7 @@ const Player = memo(
                     xmlns="http://www.w3.org/2000/svg"
                     className={`icon icon-tabler icon-tabler-player-pause-filled    rounded-full p-2 hover:scale-105 active:scale-95 cursor-pointer hover:stroke-blue-400 z-[100] ${
                       isModalOpen
-                        ? "stroke-black dark:stroke-white"
+                        ? "stroke-black md:stroke-white dark:stroke-white"
                         : "stroke-white"
                     }`}
                     width="44"
@@ -248,11 +248,11 @@ const Player = memo(
                     <path d="M6 4h4v16h-4zm8 0h4v16h-4z" />
                   </svg>
                 )}
-                <svg
+                {/* <svg         ----------      button disabled as it doesnt really do anything
                   xmlns="http://www.w3.org/2000/svg"
                   className={`icon icon-tabler icon-tabler-player-stop-filled mx-4   rounded-full p-2 hover:stroke-blue-400 hover:scale-105 active:scale-95 cursor-pointer z-[100] ${
                     isModalOpen
-                      ? "stroke-black dark:stroke-white"
+                      ? "stroke-black md:stroke-white dark:stroke-white"
                       : "stroke-white"
                   }`}
                   width="44"
@@ -266,7 +266,7 @@ const Player = memo(
                   onClick={handleStop}
                 >
                   <path d="M6 6h12v12H6z" />
-                </svg>
+                </svg> */}
                 <div className="md:block hidden">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -302,7 +302,11 @@ const Player = memo(
                 </div>
 
                 {isPlaying && ( //DISABLED UNLESS IN BIG PLAYER / MEDIUM SCREEN SIZE - I THINK THAT LOOKS BETTER
-                  <h1 className="text-white hidden md:block items-center text-sm ml-4">
+                  <h1
+                    className={`items-center text-sm ml-4 ${
+                      isModalOpen ? "text-black" : "text-white"
+                    }`}
+                  >
                     {remainingTime != 0 && formatTime(remainingTime)}
                   </h1>
                 )}

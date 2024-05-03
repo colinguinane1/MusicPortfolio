@@ -271,7 +271,7 @@ const MusicPlayer = () => {
                   animate={{ scale: 1, x: 0 }}
                   exit={{ scale: 0, x: -100 }}
                   transition={{ duration: 0.3, type: "spring" }}
-                  className="flex gap-6 mr-60 -mt-2 bg-white border dark:bg-black dark:border-gray-600 border-gray-300 px-4 p-1 rounded-full items-center no_transition"
+                  className="flex ml-8 absolute gap-6 mr-60 -mt-2 bg-white border dark:bg-black dark:border-gray-600 border-gray-300 px-4 p-1 rounded-full items-center no_transition"
                 >
                   <div className="flex gap-1">
                     <select id="sort" onChange={handleSortChange}>
@@ -376,7 +376,7 @@ const MusicPlayer = () => {
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: 500, opacity: 0 }}
                 transition={{ duration: 0.2, type: "just" }}
-                className="fixed z-[10000] h-full  w-full top-0  mt-14 border rounded-md backdrop-blur-3xl p-4"
+                className="fixed z-[10000] h-full  w-full top-0  mt-14 rounded-md backdrop-blur-3xl no_transition p-4"
               >
                 <div className="flex flex-col items-center">
                   <div className="absolute right-2 top-2">
@@ -401,8 +401,8 @@ const MusicPlayer = () => {
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     class="icon icon-tabler icon-tabler-alert-triangle stroke-yellow-500"
-                    width="25"
-                    height="25"
+                    width="45"
+                    height="45"
                     viewBox="0 0 24 24"
                     stroke-width="1.5"
                     stroke="#000000"
@@ -415,11 +415,11 @@ const MusicPlayer = () => {
                     <path d="M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636 -2.87l-8.106 -13.536a1.914 1.914 0 0 0 -3.274 0z" />
                     <path d="M12 16h.01" />
                   </svg>
-                  <h1 className="text-center font-extrabold text-3xl py-2">
+                  <h1 className="text-center text-white font-extrabold text-3xl py-2">
                     WARNING
                   </h1>
                 </div>
-                <p className="text-sm text-center">
+                <p className="text-sm text-center text-white">
                   Song files are uncompressed in their original size and
                   quality.
                   <br></br>
@@ -547,6 +547,7 @@ const MusicPlayer = () => {
             tidyAlbumName={tidyAlbumName}
             onClose={handleCloseModal}
             setCurrentSong={setCurrentSong}
+            currentSong={currentSong}
             handlePlay={handlePlay}
             isPlaying={isPlaying}
             // Pass metadata to the Modal component
