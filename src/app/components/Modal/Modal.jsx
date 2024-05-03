@@ -112,7 +112,7 @@ const Modal = ({
           ${
             isLargeScreen
               ? ""
-              : "bg-white  dark:bg-black bg-opacity-0 dark:bg-opacity-0 text-black dark:text-white dark:from-black dark:to-transparent bg-gradient-to-b from-white to-transparent bg-gradient-stops-[0%,0.1%,100%]"
+              : "bg-white  dark:bg-black bg-opacity-0 dark:bg-opacity-0 text-black dark:text-white dark:from-black dark:to-transparent bg-gradient-to-b from-white to-blue-900 bg-gradient-stops-[0%,0.1%]"
           }
           `}
         >

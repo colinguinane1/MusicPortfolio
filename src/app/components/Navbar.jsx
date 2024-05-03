@@ -106,14 +106,11 @@ const Navbar = () => {
             variants={menuVariants}
           >
             <ul className="text-6xl dark:bg-black dark:bg-opacity-40 text-white bg-opacity-50 h-screen">
-              <li className="pt-8 pb-4">
-                <a
-                  className="navbar_text font-extrabold flex group"
-                  href="home"
-                >
+              <li className="pt-8 pb-4 group">
+                <a className="navbar_text font-extrabold flex " href="home">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    class="icon icon-tabler icon-tabler-home-2 mt-[2px] mx-2 stroke-white group:stroke-blue-500"
+                    class="icon icon-tabler icon-tabler-home-2 mt-[2px] mx-2  group:hover:stroke-blue-500"
                     width="55"
                     height="55"
                     viewBox="0 0 24 24"

@@ -6,6 +6,7 @@ import Player from "./Player";
 import { useMediaQuery } from "@react-hook/media-query";
 import Image from "next/image";
 import Footer from "./Footer";
+import Backdrop from "./Modal/Backdrop";
 
 const MusicPlayer = () => {
   const [folders, setFolders] = useState([]);
@@ -24,6 +25,11 @@ const MusicPlayer = () => {
   const [isMostRecentSelected, setIsMostRecentSelected] = useState(true);
   const [gridCols, setGridCols] = useState(isLargeScreen ? 3 : 2);
   const [gridSettingsDropdown, setGridSettingsDropdown] = useState(false);
+  const [warning, setWarning] = useState(false);
+
+  const toggleWarning = () => {
+    setWarning(!warning);
+  };
 
   const handlePlay = () => {
     setIsPlaying(false);
@@ -228,9 +234,9 @@ const MusicPlayer = () => {
             : ""
         }
       />
-      <div className="flex justify-center items-center   flex-col mx-4">
+      <div className="flex justify-center items-center    flex-col mx-4">
         <div className="mt-[5rem] w-full flex items-center gap-6 -mb-14">
-          <div className="">
+          <div className="flex items-center justify-between w-full">
             <motion.button
               className="no_transition"
               whileHover={{ scale: 1.05 }}
@@ -257,87 +263,174 @@ const MusicPlayer = () => {
                 <path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z" />
                 <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
               </svg>
-            </motion.button>
-          </div>
-          <AnimatePresence>
-            {gridSettingsDropdown && (
-              <motion.div
-                initial={{ x: -100, scale: 0 }}
-                animate={{ scale: 1, x: 0 }}
-                exit={{ scale: 0, x: -100 }}
-                transition={{ duration: 0.3, type: "spring" }}
-                className="flex gap-6 -mt-2 bg-white border dark:bg-black dark:border-gray-600 border-gray-300 px-4 p-1 rounded-full items-center no_transition"
+            </motion.button>{" "}
+            <AnimatePresence>
+              {gridSettingsDropdown && (
+                <motion.div
+                  initial={{ x: -100, scale: 0 }}
+                  animate={{ scale: 1, x: 0 }}
+                  exit={{ scale: 0, x: -100 }}
+                  transition={{ duration: 0.3, type: "spring" }}
+                  className="flex gap-6 mr-60 -mt-2 bg-white border dark:bg-black dark:border-gray-600 border-gray-300 px-4 p-1 rounded-full items-center no_transition"
+                >
+                  <div className="flex gap-1">
+                    <select id="sort" onChange={handleSortChange}>
+                      <option value="recent">Sort: Recent</option>
+                      <option value="oldest">Sort: Oldest</option>
+                    </select>
+                  </div>
+                  <div className="flex gap-6">
+                    <motion.button
+                      whileHover={gridCols == 4 ? { scale: 1 } : { scale: 1.1 }}
+                      whileTap={gridCols == 4 ? { scale: 1 } : { scale: 0.9 }}
+                      onClick={addColumns}
+                      className=""
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class={`icon icon-tabler icon-tabler-layout-grid-add stroke-black dark:hover:stroke-blue-500 hover:stroke-blue-500 dark:stroke-white ${
+                          gridCols == 4
+                            ? "stroke-slate-500 hover:stroke-slate-500 dark:stroke-slate-400 dark:hover:stroke-slate-400  cursor-not-allowed"
+                            : ""
+                        }`}
+                        width="25"
+                        height="25"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="#ffffff"
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M4 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
+                        <path d="M14 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
+                        <path d="M4 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
+                        <path d="M14 17h6m-3 -3v6" />
+                      </svg>
+                    </motion.button>
+                    <motion.button
+                      whileHover={gridCols == 1 ? { scale: 1 } : { scale: 1.1 }}
+                      whileTap={gridCols == 1 ? { scale: 1 } : { scale: 0.9 }}
+                      onClick={subtractColumns}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class={`icon icon-tabler icon-tabler-layout-grid-remove stroke-black dark:hover:stroke-blue-500 hover:stroke-blue-500 dark:stroke-white ${
+                          gridCols == 1
+                            ? "stroke:slate-300 dark:stroke-slate-400 dark:hover:stroke-slate-400 hover:stroke-slate-300 cursor-not-allowed"
+                            : ""
+                        }`}
+                        width="25"
+                        height="25"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="#ffffff"
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M4 5a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-4z" />
+                        <path d="M14 5a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-4z" />
+                        <path d="M4 15a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-4z" />
+                        <path d="M14 17h6" />
+                      </svg>
+                    </motion.button>
+                    {/* <h1 className="text-sm">{gridCols}</h1>  ------- was just for debugging*/}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>{" "}
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={toggleWarning}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="icon icon-tabler icon-tabler-info-circle dark:stroke-white hover:stroke-blue-500 dark:hover:stroke-blue-500"
+                width="25"
+                height="25"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="#000000"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
               >
-                <div className="flex gap-1">
-                  <select id="sort" onChange={handleSortChange}>
-                    <option value="recent">Sort: Recent</option>
-                    <option value="oldest">Sort: Oldest</option>
-                  </select>
-                </div>
-                <div className="flex gap-6">
-                  <motion.button
-                    whileHover={gridCols == 4 ? { scale: 1 } : { scale: 1.1 }}
-                    whileTap={gridCols == 4 ? { scale: 1 } : { scale: 0.9 }}
-                    onClick={addColumns}
-                    className=""
-                  >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" />
+                <path d="M12 9h.01" />
+                <path d="M11 12h1v4h1" />
+              </svg>
+            </motion.button>
+          </div>{" "}
+        </div>{" "}
+        <AnimatePresence>
+          {warning && (
+            <>
+              <Backdrop />
+              <motion.div
+                initial={{ y: 500, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: 500, opacity: 0 }}
+                transition={{ duration: 0.2, type: "just" }}
+                className="fixed z-[10000] h-full  w-full top-0  mt-14 border rounded-md backdrop-blur-3xl p-4"
+              >
+                <div className="flex flex-col items-center">
+                  <div className="absolute right-2 top-2">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      class={`icon icon-tabler icon-tabler-layout-grid-add stroke-black dark:hover:stroke-blue-500 hover:stroke-blue-500 dark:stroke-white ${
-                        gridCols == 4
-                          ? "stroke-slate-500 hover:stroke-slate-500 dark:stroke-slate-400 dark:hover:stroke-slate-400  cursor-not-allowed"
-                          : ""
-                      }`}
-                      width="25"
-                      height="25"
+                      class="icon icon-tabler icon-tabler-circle-x cursor-pointer stroke-red-500"
+                      width="30"
+                      height="30"
                       viewBox="0 0 24 24"
+                      onClick={toggleWarning}
                       stroke-width="1.5"
-                      stroke="#ffffff"
+                      stroke="#000000"
                       fill="none"
                       stroke-linecap="round"
                       stroke-linejoin="round"
                     >
                       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                      <path d="M4 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
-                      <path d="M14 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
-                      <path d="M4 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
-                      <path d="M14 17h6m-3 -3v6" />
+                      <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+                      <path d="M10 10l4 4m0 -4l-4 4" />
                     </svg>
-                  </motion.button>
-                  <motion.button
-                    whileHover={gridCols == 1 ? { scale: 1 } : { scale: 1.1 }}
-                    whileTap={gridCols == 1 ? { scale: 1 } : { scale: 0.9 }}
-                    onClick={subtractColumns}
+                  </div>{" "}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="icon icon-tabler icon-tabler-alert-triangle stroke-yellow-500"
+                    width="25"
+                    height="25"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="#000000"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      class={`icon icon-tabler icon-tabler-layout-grid-remove stroke-black dark:hover:stroke-blue-500 hover:stroke-blue-500 dark:stroke-white ${
-                        gridCols == 1
-                          ? "stroke:slate-300 dark:stroke-slate-400 dark:hover:stroke-slate-400 hover:stroke-slate-300 cursor-not-allowed"
-                          : ""
-                      }`}
-                      width="25"
-                      height="25"
-                      viewBox="0 0 24 24"
-                      stroke-width="1.5"
-                      stroke="#ffffff"
-                      fill="none"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    >
-                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                      <path d="M4 5a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-4z" />
-                      <path d="M14 5a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-4z" />
-                      <path d="M4 15a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-4z" />
-                      <path d="M14 17h6" />
-                    </svg>
-                  </motion.button>
-                  {/* <h1 className="text-sm">{gridCols}</h1>  ------- was just for debugging*/}
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M12 9v4" />
+                    <path d="M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636 -2.87l-8.106 -13.536a1.914 1.914 0 0 0 -3.274 0z" />
+                    <path d="M12 16h.01" />
+                  </svg>
+                  <h1 className="text-center font-extrabold text-3xl py-2">
+                    WARNING
+                  </h1>
                 </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
+                <p className="text-sm text-center">
+                  Song files are uncompressed in their original size and
+                  quality.
+                  <br></br>
+                  <br></br>
+                  Slow connections may experience longer stream times for some
+                  songs.
+                </p>
+              </motion.div>{" "}
+            </>
+          )}
+        </AnimatePresence>
         {/* I KNOW THIS IS A LAZY UNSCALEABLE FIX BUT GOD DAMN I TRIED TO FIX THIS FOR SO LONG */}
         <motion.div
           initial={{ y: 1000, opacity: -1 }}
@@ -399,9 +492,11 @@ const MusicPlayer = () => {
             : folders.slice().map((folder, index) => (
                 <div key={index} className="relative">
                   <motion.button
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    transition={{ type: spring }}
+                    transition={{ type: "spring", duration: 0.4 }}
                     onClick={() => handleFolderSelect(folder.name)}
                     className="w-full h-full rounded-md overflow-hidden focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 no_transition"
                   >
