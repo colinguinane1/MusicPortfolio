@@ -107,20 +107,22 @@ const Navbar = () => {
           >
             <ul className="text-6xl dark:bg-black dark:bg-opacity-40 text-white bg-opacity-50 h-screen">
               <li className="pt-8 pb-4 group">
-                <a className="navbar_text font-extrabold flex " href="home">
+                <a
+                  className="navbar_text font-extrabold flex items-center group:hover:text-blue-500"
+                  href="home"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    class="icon icon-tabler icon-tabler-home-2 mt-[2px] mx-2  group:hover:stroke-blue-500"
+                    className="icon icon-tabler icon-tabler-home-2 mt-[2px] mx-2 stroke-current group-hover:stroke-blue-500"
                     width="55"
                     height="55"
                     viewBox="0 0 24 24"
-                    stroke-width="1.5"
+                    strokeWidth="1.5"
                     stroke="#2c3e50"
                     fill="none"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   >
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                     <path d="M5 12l-2 0l9 -9l9 9l-2 0" />
                     <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
                     <path d="M10 12h4v4h-4z" />
@@ -128,6 +130,7 @@ const Navbar = () => {
                   HOME
                 </a>
               </li>
+
               <li className="py-4">
                 <a className="navbar_text font-extrabold flex" href="listen">
                   <svg
