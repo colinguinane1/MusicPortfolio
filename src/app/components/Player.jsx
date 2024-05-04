@@ -129,6 +129,14 @@ const Player = memo(
       audioRef.current.currentTime = seekTime;
     };
 
+    const add10sec = () => {
+      audioRef.current.currentTime += 10;
+    };
+
+    const remove10sec = () => {
+      audioRef.current.currentTime -= 10;
+    };
+
     const formatTime = (time) => {
       const minutes = Math.floor(time / 60);
       const seconds = Math.floor(time % 60);
@@ -368,7 +376,7 @@ const Player = memo(
                                 initial={{ scale: 0 }}
                                 animate={{ scale: 1 }}
                                 transition={{ duration: 0.3 }}
-                                className="min-w-4 ml-2 max-w-4 max-h-4 min-h-4  flex flex-col justify-center items-center rounded-full bg-blue-500 animate-pulse"
+                                className="min-w-2 ml-2 max-w-2 max-h-2 min-h-2  flex flex-col justify-center items-center rounded-full bg-blue-500 animate-pulse"
                               ></motion.div>
                             )}
                           </span>
@@ -394,6 +402,25 @@ const Player = memo(
                           )}
                         </div>
                         <div className="flex items-center justify-center my-4">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="icon icon-tabler icon-tabler-rewind-backward-10 stroke-white  rounded-full p-2 hover:scale-105 active:scale-95 cursor-pointer hover:stroke-blue-400 z-[100]"
+                            width="44"
+                            height="44"
+                            viewBox="0 0 24 24"
+                            stroke-width="1.5"
+                            stroke="#000000"
+                            fill="none"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            onClick={remove10sec}
+                          >
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M7 9l-3 -3l3 -3" />
+                            <path d="M15.997 17.918a6.002 6.002 0 0 0 -.997 -11.918h-11" />
+                            <path d="M6 14v6" />
+                            <path d="M9 15.5v3a1.5 1.5 0 0 0 3 0v-3a1.5 1.5 0 0 0 -3 0z" />
+                          </svg>
                           {!isPlaying && (
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
@@ -443,6 +470,25 @@ const Player = memo(
                           >
                             <path d="M6 6h12v12H6z" />
                           </svg>{" "}
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="icon icon-tabler icon-tabler-rewind-forward-10 stroke-white  rounded-full p-2 hover:scale-105 active:scale-95 cursor-pointer hover:stroke-blue-400 z-[100]"
+                            width="44"
+                            height="44"
+                            viewBox="0 0 24 24"
+                            stroke-width="1.5"
+                            stroke="#000000"
+                            fill="none"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            onClick={add10sec}
+                          >
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M17 9l3 -3l-3 -3" />
+                            <path d="M8 17.918a5.997 5.997 0 0 1 -5 -5.918a6 6 0 0 1 6 -6h11" />
+                            <path d="M12 14v6" />
+                            <path d="M15 15.5v3a1.5 1.5 0 0 0 3 0v-3a1.5 1.5 0 0 0 -3 0z" />
+                          </svg>
                         </div>
                       </div>
                     </div>
