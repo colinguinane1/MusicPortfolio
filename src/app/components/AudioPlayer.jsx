@@ -17,6 +17,7 @@ const MusicPlayer = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [folderLoading, setFolderLoading] = useState({});
+
   const [metadata, setMetadata] = useState(null); // State for metadata
   const [currentSong, setCurrentSong] = useState(null);
   const [currentCover, setCurrentCover] = useState(null);

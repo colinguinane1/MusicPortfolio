@@ -11,6 +11,7 @@ const Modal = ({
   setCurrentCover,
   currentCover,
   currentSong,
+
   folderName,
   isPlaying,
   folderContents,
@@ -33,6 +34,7 @@ const Modal = ({
   const [dropdown, enableDropdown] = useState(false);
   const [dominantColors, setDominantColors] = useState([]);
   const [songStopped, setSongStopped] = useState(false);
+  const [currentFolder, setCurrentFolder] = useState(null);
 
   /*   useEffect(() => {
     const fetchColors = async () => {
@@ -75,6 +77,10 @@ const Modal = ({
     setCurrentCover(
       `https://storage.googleapis.com/music-portfolio-67eb6.appspot.com/music/${folderName}/cover.jpg`
     );
+    setCurrentFolder(folderName);
+
+    console.log("Current Folder:" + currentFolder);
+    console.log("Current Track:" + currentSong);
     //console.log(currentCover); DEBUGGING
     setCurrentSongIndex(index);
   };
@@ -90,7 +96,7 @@ const Modal = ({
   const downloadLink = `https://storage.googleapis.com/music-portfolio-67eb6.appspot.com/music/${folderName}`;
   return (
     <div>
-      <Player setCurrentSong={setCurrentSong} />
+      <Player setCurrentSong={setCurrentSong} currentFolder={currentFolder} />
       <div className="w-full h-full">
         <Backdrop />
       </div>

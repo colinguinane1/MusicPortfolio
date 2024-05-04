@@ -8,6 +8,7 @@ import { useMediaQuery } from "@react-hook/media-query";
 const Player = memo(
   ({
     currentSong,
+    currentFolder,
 
     setCurrentSong,
     currentCover,
@@ -22,9 +23,11 @@ const Player = memo(
     const isLargeScreen = useMediaQuery("(min-width: 768px)");
     const [currentSongIndex, setCurrentSongIndex] = useState(0);
     const [remainingTime, setRemainingTime] = useState(null);
+    const [elapsedTime, setElapsedTime] = useState(null);
     const [progress, setProgress] = useState(0);
     const [duration, setDuration] = useState(0);
     const [prevSong, setPrevSong] = useState(null);
+
     const [bigPlayer, enableBigPlayer] = useState(false);
     const [volume, setVolume] = useState(50); // Step 1: Volume state with initial value
     const [showVolSlider, setShowVolSlider] = useState(false);
@@ -74,7 +77,9 @@ const Player = memo(
 
       const handleTimeUpdate = () => {
         const remaining = audio.duration - audio.currentTime;
+        const elapsed = audio.currentTime;
         setRemainingTime(remaining);
+        setElapsedTime(elapsed);
         setProgress((audio.currentTime / audio.duration) * 100);
       };
 
@@ -334,43 +339,50 @@ const Player = memo(
                   animate={{ y: 0 }}
                   transition={{ duration: 0.3, type: "spring" }}
                   exit={{ y: "100%" }}
-                  className="fixed z-[1000] flex justify-center w-full h-full top-0 no_transition"
+                  className="fixed z-[1000] flex justify-center dark:bg-black bg-white bg-opacity-50 bg-gradient-to-b from-white dark:from-black to-transparent  backdrop-blur-xl dark:bg-opacity-10 w-full h-full top-0 no_transition"
                 >
-                  <div className="backdrop-blur-xl bg-black bg-opacity-50 px-8 w-full h-full flex justify-center items-center">
-                    <button
+                  <div className="flex flex-col justify-center mx-4 items-center">
+                    <motion.span
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ duration: 0.4, delay: 0.2, type: "spring" }}
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
                       onClick={playerToggle}
-                      className="absolute top-2 right-2"
+                      className="-mt-5 py-1 no_transition z-0"
                     >
-                      {" "}
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        class="icon icon-tabler icon-tabler-circle-x stroke-white hover:stroke-red-500 hover:scale-105 active:scale-95"
-                        width="40"
-                        height="40"
+                        class="icon icon-tabler icon-tabler-fold-down  dark:stroke-white dark:hover:stroke-blue-500 hover:stroke-blue-500 cursor-pointer"
+                        width="44"
+                        height="44"
                         viewBox="0 0 24 24"
                         stroke-width="1.5"
-                        stroke="#2c3e50"
+                        stroke="#000000"
                         fill="none"
                         stroke-linecap="round"
                         stroke-linejoin="round"
                       >
                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                        <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
-                        <path d="M10 10l4 4m0 -4l-4 4" />
+                        <path d="M12 11v8l3 -3m-6 0l3 3" />
+                        <path d="M9 7l1 0" />
+                        <path d="M14 7l1 0" />
+                        <path d="M19 7l1 0" />
+                        <path d="M4 7l1 0" />
                       </svg>
-                    </button>
+                    </motion.span>
                     <div className="">
                       {/* image optimization doesn't seem to work with percentages */}
                       <img
                         src={currentCover}
                         alt="Album Cover"
-                        className=" w-full max-w-[600px] rounded-lg  shadow-2xl h-auto md:mt-12 mx-auto my-6"
+                        className=" w-full max-w-[600px] rounded-lg  shadow-2xl h-auto md:mt-12 mx-auto my-4"
                       />
                       <div className="md:text-base text-sm">
-                        <h1 className="text-2xl pr-4 text-white font-extrabold">
-                          {tidyAlbumName(folderName)}
-                          <span className="text-base ml-2 flex items-center mr-4">
-                            - {tidyFileName(currentSong)}{" "}
+                        <h1 className="text-2xl pr-4 dark:text-white font-extrabold">
+                          {/* {tidyFileName(currentFolder)} */}
+                          <span className="text-2xl my-1 flex items-center mr-4">
+                            {tidyFileName(currentSong)}{" "}
                             {isPlaying && (
                               <motion.div
                                 initial={{ scale: 0 }}
@@ -385,7 +397,7 @@ const Player = memo(
                         <h1 className="text-gray-400 ">{artist}</h1>
                       </div>
                       <div className="">
-                        <div className="flex   my-8 ml-2 ">
+                        <div className="flex items-center justify-center      mt-4  ">
                           <input
                             id="songDuration"
                             type="range"
@@ -393,18 +405,22 @@ const Player = memo(
                             max="100"
                             value={progress}
                             onChange={handleSeek}
-                            className="min-w-[92%] cursor-pointer"
-                          />
-                          {isPlaying && (
-                            <h1 className="text-white text-xs mx-2">
-                              {remainingTime != 0 && formatTime(remainingTime)}
-                            </h1>
-                          )}
+                            className="cursor-pointer max-w-[22rem]"
+                          />{" "}
                         </div>
-                        <div className="flex items-center justify-center my-4">
+                        <div className="flex justify-between mt-4 w-full">
+                          {" "}
+                          <h1 className="dark:text-white   text-black text-xs mx-2">
+                            {elapsedTime != 0 && formatTime(elapsedTime)}
+                          </h1>
+                          <h1 className="dark:text-white  text-black text-xs mx-2">
+                            {remainingTime != 0 && formatTime(remainingTime)}
+                          </h1>
+                        </div>
+                        <div className="flex items-center pt-4  justify-center my-4">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            class="icon icon-tabler icon-tabler-rewind-backward-10 stroke-white  rounded-full p-2 hover:scale-105 active:scale-95 cursor-pointer hover:stroke-blue-400 z-[100]"
+                            class="icon icon-tabler icon-tabler-rewind-backward-10 dark:stroke-white stroke-black  rounded-full p-2 hover:scale-105 active:scale-95 cursor-pointer hover:stroke-blue-400 z-[100]"
                             width="44"
                             height="44"
                             viewBox="0 0 24 24"
@@ -424,7 +440,7 @@ const Player = memo(
                           {!isPlaying && (
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
-                              className="icon icon-tabler icon-tabler-player-play-filled stroke-white rounded-full p-2 hover:scale-105 active:scale-95 cursor-pointer hover:stroke-blue-400 z-[100]"
+                              className="icon icon-tabler icon-tabler-player-play-filled dark:stroke-white stroke-black rounded-full p-2 hover:scale-105 active:scale-95 cursor-pointer hover:stroke-blue-400 z-[100]"
                               width="50"
                               height="50"
                               viewBox="0 0 24 24"
@@ -441,7 +457,7 @@ const Player = memo(
                           {isPlaying && (
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
-                              className="icon icon-tabler icon-tabler-player-pause-filled stroke-white  rounded-full p-2 hover:scale-105 active:scale-95 cursor-pointer hover:stroke-blue-400 z-[100]"
+                              className="icon icon-tabler icon-tabler-player-pause-filled dark:stroke-white stroke-black  rounded-full p-2 hover:scale-105 active:scale-95 cursor-pointer hover:stroke-blue-400 z-[100]"
                               width="50"
                               height="50"
                               viewBox="0 0 24 24"
@@ -457,7 +473,7 @@ const Player = memo(
                           )}
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            className="icon icon-tabler icon-tabler-player-stop-filled mx-2 stroke-white rounded-full p-2 hover:stroke-blue-400 hover:scale-105 active:scale-95 cursor-pointer z-[100]"
+                            className="icon icon-tabler icon-tabler-player-stop-filled mx-2 dark:stroke-white stroke-black rounded-full p-2 hover:stroke-blue-400 hover:scale-105 active:scale-95 cursor-pointer z-[100]"
                             width="50"
                             height="50"
                             viewBox="0 0 24 24"
@@ -472,7 +488,7 @@ const Player = memo(
                           </svg>{" "}
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            class="icon icon-tabler icon-tabler-rewind-forward-10 stroke-white  rounded-full p-2 hover:scale-105 active:scale-95 cursor-pointer hover:stroke-blue-400 z-[100]"
+                            class="icon icon-tabler icon-tabler-rewind-forward-10 dark:stroke-white stroke-black  rounded-full p-2 hover:scale-105 active:scale-95 cursor-pointer hover:stroke-blue-400 z-[100]"
                             width="44"
                             height="44"
                             viewBox="0 0 24 24"
