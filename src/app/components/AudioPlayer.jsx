@@ -222,6 +222,8 @@ const MusicPlayer = () => {
     <div>
       <Player
         currentSong={currentSong}
+        folderName={selectedFolder}
+        tidyAlbumName={tidyAlbumName}
         currentCover={currentCover}
         isPlaying={isPlaying}
         setIsPlaying={setIsPlaying}

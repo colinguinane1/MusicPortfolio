@@ -13,6 +13,8 @@ const Player = memo(
     currentCover,
     coverUrl,
     isModalOpen,
+    folderName,
+
     songs,
   }) => {
     const audioRef = useRef(new Audio());
@@ -31,6 +33,11 @@ const Player = memo(
     const playerToggle = () => {
       enableBigPlayer(!bigPlayer);
       console.log(playerToggle);
+    };
+
+    const tidyAlbumName = (folderName) => {
+      // Remove leading numbers followed by a dot and trim any spaces
+      return folderName.replace(/^\d+\./, "").trim();
     };
 
     const toggleVolumeSlider = () => {
@@ -319,9 +326,9 @@ const Player = memo(
                   animate={{ y: 0 }}
                   transition={{ duration: 0.3, type: "spring" }}
                   exit={{ y: "100%" }}
-                  className="fixed z-[1000] flex justify-center items-center w-full h-full top-0 no_transition"
+                  className="fixed z-[1000] flex justify-center w-full h-full top-0 no_transition"
                 >
-                  <div className="backdrop-blur-xl bg-black bg-opacity-50 w-full h-full flex text-center justify-center items-center">
+                  <div className="backdrop-blur-xl bg-black bg-opacity-50 px-8 w-full h-full flex justify-center items-center">
                     <button
                       onClick={playerToggle}
                       className="absolute top-2 right-2"
@@ -349,16 +356,28 @@ const Player = memo(
                       <img
                         src={currentCover}
                         alt="Album Cover"
-                        className="w-[80%] md:w-[80%] max-w-[600px] rounded-lg  shadow-2xl h-auto md:mt-12 mx-auto my-6"
+                        className=" w-full max-w-[600px] rounded-lg  shadow-2xl h-auto md:mt-12 mx-auto my-6"
                       />
                       <div className="md:text-base text-sm">
-                        <h1 className="text-white font-bold">
-                          {tidyFileName(currentSong)}
+                        <h1 className="text-2xl pr-4 text-white font-extrabold">
+                          {tidyAlbumName(folderName)}
+                          <span className="text-base ml-2 flex items-center mr-4">
+                            - {tidyFileName(currentSong)}{" "}
+                            {isPlaying && (
+                              <motion.div
+                                initial={{ scale: 0 }}
+                                animate={{ scale: 1 }}
+                                transition={{ duration: 0.3 }}
+                                className="min-w-4 ml-2 max-w-4 max-h-4 min-h-4  flex flex-col justify-center items-center rounded-full bg-blue-500 animate-pulse"
+                              ></motion.div>
+                            )}
+                          </span>
                         </h1>
+
                         <h1 className="text-gray-400 ">{artist}</h1>
                       </div>
                       <div className="">
-                        <div className="flex justify-center  my-8 ml-2 items-center">
+                        <div className="flex   my-8 ml-2 ">
                           <input
                             id="songDuration"
                             type="range"
@@ -366,17 +385,19 @@ const Player = memo(
                             max="100"
                             value={progress}
                             onChange={handleSeek}
-                            className="max-w-[75%] cursor-pointer"
+                            className="min-w-[92%] cursor-pointer"
                           />
-                          <h1 className="text-white text-xs mx-2">
-                            {remainingTime != 0 && formatTime(remainingTime)}
-                          </h1>
+                          {isPlaying && (
+                            <h1 className="text-white text-xs mx-2">
+                              {remainingTime != 0 && formatTime(remainingTime)}
+                            </h1>
+                          )}
                         </div>
                         <div className="flex items-center justify-center my-4">
                           {!isPlaying && (
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
-                              className="icon icon-tabler icon-tabler-player-play-filled stroke-black rounded-full p-2 bg-white hover:scale-105 active:scale-95 cursor-pointer hover:stroke-blue-400 z-[100]"
+                              className="icon icon-tabler icon-tabler-player-play-filled stroke-white rounded-full p-2 hover:scale-105 active:scale-95 cursor-pointer hover:stroke-blue-400 z-[100]"
                               width="50"
                               height="50"
                               viewBox="0 0 24 24"
@@ -393,7 +414,7 @@ const Player = memo(
                           {isPlaying && (
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
-                              className="icon icon-tabler icon-tabler-player-pause-filled stroke-black bg-white rounded-full p-2 hover:scale-105 active:scale-95 cursor-pointer hover:stroke-blue-400 z-[100]"
+                              className="icon icon-tabler icon-tabler-player-pause-filled stroke-white  rounded-full p-2 hover:scale-105 active:scale-95 cursor-pointer hover:stroke-blue-400 z-[100]"
                               width="50"
                               height="50"
                               viewBox="0 0 24 24"
@@ -409,7 +430,7 @@ const Player = memo(
                           )}
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            className="icon icon-tabler icon-tabler-player-stop-filled mx-2 stroke-black bg-white rounded-full p-2 hover:stroke-blue-400 hover:scale-105 active:scale-95 cursor-pointer z-[100]"
+                            className="icon icon-tabler icon-tabler-player-stop-filled mx-2 stroke-white rounded-full p-2 hover:stroke-blue-400 hover:scale-105 active:scale-95 cursor-pointer z-[100]"
                             width="50"
                             height="50"
                             viewBox="0 0 24 24"
