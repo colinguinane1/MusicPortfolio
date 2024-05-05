@@ -179,7 +179,7 @@ const Player = memo(
                   <img
                     src={currentCover}
                     alt="Album Cover"
-                    className="w-12 h-12 rounded-md mx-4 cursor-pointer"
+                    className="w-12 h-12 hover:border hover:shadow-2xl rounded-md mx-4 cursor-pointer"
                     width={48}
                     height={48}
                     onClick={playerToggle}
@@ -324,7 +324,9 @@ const Player = memo(
                 {isPlaying && ( //DISABLED UNLESS IN BIG PLAYER / MEDIUM SCREEN SIZE - I THINK THAT LOOKS BETTER
                   <h1
                     className={`items-center text-sm ml-2 ${
-                      isModalOpen ? "text-black" : "text-white"
+                      isModalOpen
+                        ? "text-black dark:text-white md:text-white"
+                        : "text-white"
                     }`}
                   >
                     {remainingTime != 0 && formatTime(remainingTime)}
@@ -349,7 +351,7 @@ const Player = memo(
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.9 }}
                       onClick={playerToggle}
-                      className="-mt-5 py-1 no_transition z-0"
+                      className="no_transition z-0"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -376,7 +378,7 @@ const Player = memo(
                       <img
                         src={currentCover}
                         alt="Album Cover"
-                        className=" w-full max-w-[600px] rounded-lg  shadow-2xl h-auto md:mt-12 mx-auto my-4"
+                        className=" w-full max-w-[24.5rem] rounded-lg  shadow-2xl h-auto md:mt-12 mx-auto my-6"
                       />
                       <div className="md:text-base text-sm">
                         <h1 className="text-2xl pr-4 dark:text-white font-extrabold">
@@ -394,10 +396,10 @@ const Player = memo(
                           </span>
                         </h1>
 
-                        <h1 className="text-gray-400 ">{artist}</h1>
+                        <h1 className="text-gray-800 ">{artist}</h1>
                       </div>
                       <div className="">
-                        <div className="flex items-center justify-center      mt-4  ">
+                        <div className="flex       mt-6  ">
                           <input
                             id="songDuration"
                             type="range"
@@ -405,19 +407,19 @@ const Player = memo(
                             max="100"
                             value={progress}
                             onChange={handleSeek}
-                            className="cursor-pointer max-w-[22rem]"
+                            className="cursor-pointer px-2 max-w-[22rem] md:max-w-full"
                           />{" "}
                         </div>
-                        <div className="flex justify-between mt-4 w-full">
+                        <div className="flex justify-between max-w-[24rem] mt-6 w-full">
                           {" "}
-                          <h1 className="dark:text-white   text-black text-xs mx-2">
+                          <h1 className="dark:text-white -mt-4   text-black text-xs mx-2">
                             {elapsedTime != 0 && formatTime(elapsedTime)}
                           </h1>
-                          <h1 className="dark:text-white  text-black text-xs mx-2">
+                          <h1 className="dark:text-white -mt-4  text-black text-xs mx-2">
                             {remainingTime != 0 && formatTime(remainingTime)}
                           </h1>
                         </div>
-                        <div className="flex items-center pt-4  justify-center my-4">
+                        <div className="flex items-center pt-4 md:pt-0 md:my-2 justify-center    my-6">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             class="icon icon-tabler icon-tabler-rewind-backward-10 dark:stroke-white stroke-black  rounded-full p-2 hover:scale-105 active:scale-95 cursor-pointer hover:stroke-blue-400 z-[100]"

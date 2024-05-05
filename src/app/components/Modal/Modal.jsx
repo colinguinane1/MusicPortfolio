@@ -109,7 +109,7 @@ const Modal = ({
         animate={{ scale: 1, y: isLargeScreen ? 0 : 0 }}
         exit={{ scale: isLargeScreen ? 0 : 1, y: isLargeScreen ? 0 : "100%" }}
         transition={{ type: "spring", duration: 0.4 }}
-        className="md:inset-0  md:flex  md:items-center no_transition md:justify-center md:fixed absolute  md:-mt-10 top-0 left-0 w-full h-full z-50 pt-14"
+        className="md:inset-0  md:flex   md:items-center no_transition md:justify-center md:fixed absolute   md:-mt-10 top-0 left-0 w-full h-full z-50 pt-14"
         onClick={handleClickOutside}
       >
         <div
@@ -123,7 +123,7 @@ const Modal = ({
           }
           `}
         >
-          <div className="flex flex-col  items-center md:hidden ">
+          <div className="flex flex-col   items-center md:hidden ">
             {" "}
             <motion.span
               initial={{ scale: 0 }}
@@ -154,6 +154,16 @@ const Modal = ({
                 <path d="M4 7l1 0" />
               </svg>
             </motion.span>
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              className={`absolute top-20 text-white right-0 no_transition z-[10000000] ${
+                folderContents.length > 10 ? "" : "hidden"
+              }`}
+              onClick={onClose}
+            >
+              X
+            </motion.button>
             {/* image optimization doesnt work with automatic height nad width */}
             <img
               src={`https://storage.googleapis.com/music-portfolio-67eb6.appspot.com/music/${folderName}/cover.jpg`}
@@ -350,9 +360,9 @@ const Modal = ({
             )}
           </div>
           <ul
-            className={`pt-3 pb-[30%] md:pb-0  grid grid-cols-1 ${
-              folderContents.length > 4 ? "md:grid-cols-2" : ""
-            } gap-4`}
+            className={`pt-3 pb-[30%] md:pb-0 grid grid-cols-1 ${
+              folderContents.length > 4 ? "md:grid-cols-2 gap-2" : "gap-4"
+            } ${folderContents.length > 10 ? "md:grid-cols-3" : ""} `}
           >
             {folderContents.map((item, index) => (
               <li
