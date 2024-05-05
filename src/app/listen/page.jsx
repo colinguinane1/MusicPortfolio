@@ -8,7 +8,7 @@ const raleway = Raleway({ subsets: ["latin"] });
 
 const Listen = () => {
   return (
-    <main className={raleway.className}>
+    <main>
       <div className="fixed z-[1000]">
         <Navbar />
       </div>

@@ -1,4 +1,4 @@
-import { Inter, Raleway } from "next/font/google";
+import { Inter, Raleway, Nunito } from "next/font/google";
 import Navbar from "./components/Navbar";
 import "./globals.css";
 import { ThemeProvider } from 'next-themes'
@@ -6,6 +6,7 @@ import { useTheme } from 'next-themes'
 
 const inter = Inter({ subsets: ["latin"] });
 const raleway = Raleway({ subsets: ["latin"] });
+const nunito = Nunito({subsets: ["latin"]})
 
 export const metadata = {
   title: "Colin Guinane | Music Discography",
